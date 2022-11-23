@@ -1,24 +1,21 @@
 <template>
-  <div v-if="account">
-    Connected to {{ ensName ?? account.address }}
-  </div>
-  <button v-else @click="connect">
+ <div class="">
+  <!-- <button @click="onClickConnect">
     Connect Wallet
-  </button>
+  </button> -->
+ </div>
 </template>
 
-<script setup>
-import { onMounted, ref, computed, watchEffect, reactive} from '@nuxtjs/composition-api';
-import { useAccount, useConnect, useEnsName } from 'vagmi'
-import { InjectedConnector } from 'vagmi/connectors/injected'
+<script>
+// import {onClickConnect} from "../util"
+export default {
+setup(){
 
-const { data: account } = useAccount()
-const { data: ensName } = useEnsName({
-  address: computed(() => account.value?.address),
-})
-const { connect } = useConnect({
-  connector: new InjectedConnector(),
-})
+
+
+    // return{onClickConnect}
+}
+}
 </script>
 
 

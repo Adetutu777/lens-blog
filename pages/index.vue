@@ -1,6 +1,8 @@
 <template>
 <div class="mt-4">
-<!-- {{JSON.stringify(getProfiles.data)}} -->
+ <button @click="onClickConnect">
+    Connect Wallet
+  </button>
 <div class="container">
 <div class="row">
 
@@ -27,9 +29,14 @@
 <script>
 import { onMounted, ref, computed, watchEffect, reactive} from '@nuxtjs/composition-api';
 import {client, recommendProfiles} from '../api'
+// import {signerProvider, signerOrProvider} from '../util'
     export default {
         setup(){
           const loading = ref(true)
+          const ethWindowObj = ref('')
+          const signerOrProvider = ref('')
+          const isConnected = ref(false)
+          const userAddress = ref('')
           const getProfiles = reactive({
             data:{
 
@@ -41,7 +48,6 @@ import {client, recommendProfiles} from '../api'
                 const resp = await client.query(recommendProfiles).toPromise()
               const mappedData = resp?.data?.recommendedProfiles.map((i)=>{
                 const CID = i.picture?.original?.url
-                console.log(CID, CID?.length, 'kky')
                 const getCid = CID ? CID.split('').slice(7).join('') : 'bafkreigfkue3cdeve7pa23vvsmp2lcmj32flksdvlrllt44gpl25bqhp6m'
                 return {...i, 
                 url: CID?.length === 66 ? 'https://ipfs.io/ipfs/'+ getCid : !CID?.length ?  'https://ipfs.io/ipfs/bafkreigfkue3cdeve7pa23vvsmp2lcmj32flksdvlrllt44gpl25bqhp6m' : CID
@@ -62,9 +68,25 @@ import {client, recommendProfiles} from '../api'
                fetchProfiles()
         }, [])
 
-             
+        onMounted(()=>{
+        signerOrProvider.value = window.ethereum
 
-          return{loading, getProfiles}
+        })
+
+             // function to connect to MetaMask
+      const onClickConnect = async () => {
+        try {
+            // Will open the MetaMask UI
+            const account = await signerOrProvider.value.send("eth_requestAccounts", []);
+            isConnected.value = true;
+            userAddress.value = account[0];
+        } catch (error) {
+            console.error(error);
+            console.log(error.message)
+        }
+    }
+
+          return{loading, getProfiles, onClickConnect , isConnected, userAddress}
         }
     }
 </script>
