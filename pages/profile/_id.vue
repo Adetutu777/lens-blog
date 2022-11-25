@@ -15,23 +15,38 @@ import {client, getProfiles} from "../../api"
 
         
 
-    watch(() => {
+    watchEffect(() => {
            
                 fetchProfile()
             
         }, [id])
 
 
-    async function fetchProfile(){
-    try {
-        const response = await client.query(getProfiles, { id}).toPromise()
-        console.log('response', response)
-    } catch (error) {
-        console.log('erry', error)
-    }
-}
+//     async function fetchProfile(){
+//     try {
+//         const response = await client.query(getProfiles, { id}).toPromise()
+//         console.log('response', response)
+//     } catch (error) {
+//         console.log('erry', error)
+//     }
+// }
+            const fetchProfile = async() =>{
+              try {
+                 const response = await client.query(getProfiles, { id}).toPromise()
+                     console.log('response', response)
+              
+            
+              }catch {
+                console.log('error')
+              }
+              
+            }
 
 
+
+            return {
+
+            }
         }
     }
 </script>
