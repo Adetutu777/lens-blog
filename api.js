@@ -1,6 +1,6 @@
 import { createClient } from "@urql/vue"
 
-import { request, gql } from 'graphql-request'
+// import { request, gql } from 'graphql-request'
 
 const API_URL = "https://api.lens.dev"
 
