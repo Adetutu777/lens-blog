@@ -1,97 +1,50 @@
 import { createClient } from "@urql/vue"
 
-// import { request, gql } from 'graphql-request'
+import { request, gql, GraphQLClient } from 'graphql-request'
 
 const API_URL = "https://api.lens.dev"
+
+export const clientId = new GraphQLClient(API_URL)
+// const data = await client.request(query, variables)
 
 export const client = createClient({
     url: API_URL,
 })
 // const query = gql`
-export const getProfiles = `
-query Profiles(
-  $id:ProfileId!
-)
-{
-  profiles(request: { profileIds: [$id], limit: 5 }) {
+
+export const query = gql`
+query Profile($id: ProfileId!){  
+  profile(request:{profileId:$id})
+  {
+    id
+    name
+    bio
+    stats{
+      totalFollowers
+}
+}
+
+}
+`
+export const publicationsQuery = `
+query Publications($publicationIds: PublicationsQueryRequest!) {
+  publications(request: {
+   
+    publicationTypes: [POST, COMMENT, MIRROR],
+    limit: 10
+  }) 
+  "publicationIds": ["0x12-0x02", "0x12-0x03"],
+  {
     items {
-      id
-      name
-      bio
-      attributes {
-        displayType
-        traitType
-        key
-        value
+      __typename 
+      ... on Post {
+        ...PostFields
       }
-      followNftAddress
-      metadata
-      isDefault
-      picture {
-        ... on NftImage {
-          contractAddress
-          tokenId
-          uri
-          verified
-        }
-        ... on MediaSet {
-          original {
-            url
-            mimeType
-          }
-        }
-        __typename
+      ... on Comment {
+        ...CommentFields
       }
-      handle
-      coverPicture {
-        ... on NftImage {
-          contractAddress
-          tokenId
-          uri
-          verified
-        }
-        ... on MediaSet {
-          original {
-            url
-            mimeType
-          }
-        }
-        __typename
-      }
-      ownedBy
-      dispatcher {
-        address
-        canUseRelay
-      }
-      stats {
-        totalFollowers
-        totalFollowing
-        totalPosts
-        totalComments
-        totalMirrors
-        totalPublications
-        totalCollects
-      }
-      followModule {
-        ... on FeeFollowModuleSettings {
-          type
-          amount {
-            asset {
-              symbol
-              name
-              decimals
-              address
-            }
-            value
-          }
-          recipient
-        }
-        ... on ProfileFollowModuleSettings {
-         type
-        }
-        ... on RevertFollowModuleSettings {
-         type
-        }
+      ... on Mirror {
+        ...MirrorFields
       }
     }
     pageInfo {
@@ -101,8 +54,339 @@ query Profiles(
     }
   }
 }
+
+fragment MediaFields on Media {
+  url
+  mimeType
+}
+
+fragment ProfileFields on Profile {
+  id
+  name
+  bio
+  attributes {
+     displayType
+     traitType
+     key
+     value
+  }
+  isFollowedByMe
+  isFollowing(who: null)
+  followNftAddress
+  metadata
+  isDefault
+  handle
+  picture {
+    ... on NftImage {
+      contractAddress
+      tokenId
+      uri
+      verified
+    }
+    ... on MediaSet {
+      original {
+        ...MediaFields
+      }
+    }
+  }
+  coverPicture {
+    ... on NftImage {
+      contractAddress
+      tokenId
+      uri
+      verified
+    }
+    ... on MediaSet {
+      original {
+        ...MediaFields
+      }
+    }
+  }
+  ownedBy
+  dispatcher {
+    address
+  }
+  stats {
+    totalFollowers
+    totalFollowing
+    totalPosts
+    totalComments
+    totalMirrors
+    totalPublications
+    totalCollects
+  }
+  followModule {
+    ...FollowModuleFields
+  }
+}
+
+fragment PublicationStatsFields on PublicationStats { 
+  totalAmountOfMirrors
+  totalAmountOfCollects
+  totalAmountOfComments
+  totalUpvotes
+  totalDownvotes
+}
+
+fragment MetadataOutputFields on MetadataOutput {
+  name
+  description
+  content
+  media {
+    original {
+      ...MediaFields
+    }
+  }
+  attributes {
+    displayType
+    traitType
+    value
+  }
+}
+
+fragment Erc20Fields on Erc20 {
+  name
+  symbol
+  decimals
+  address
+}
+
+fragment PostFields on Post {
+  id
+  profile {
+    ...ProfileFields
+  }
+  stats {
+    ...PublicationStatsFields
+  }
+  metadata {
+    ...MetadataOutputFields
+  }
+  createdAt
+  collectModule {
+    ...CollectModuleFields
+  }
+  referenceModule {
+    ...ReferenceModuleFields
+  }
+  appId
+  hidden
+  reaction(request: null)
+  mirrors(by: null)
+  hasCollectedByMe
+}
+
+fragment MirrorBaseFields on Mirror {
+  id
+  profile {
+    ...ProfileFields
+  }
+  stats {
+    ...PublicationStatsFields
+  }
+  metadata {
+    ...MetadataOutputFields
+  }
+  createdAt
+  collectModule {
+    ...CollectModuleFields
+  }
+  referenceModule {
+    ...ReferenceModuleFields
+  }
+  appId
+  hidden
+  reaction(request: null)
+  hasCollectedByMe
+}
+
+fragment MirrorFields on Mirror {
+  ...MirrorBaseFields
+  mirrorOf {
+   ... on Post {
+      ...PostFields          
+   }
+   ... on Comment {
+      ...CommentFields          
+   }
+  }
+}
+
+fragment CommentBaseFields on Comment {
+  id
+  profile {
+    ...ProfileFields
+  }
+  stats {
+    ...PublicationStatsFields
+  }
+  metadata {
+    ...MetadataOutputFields
+  }
+  createdAt
+  collectModule {
+    ...CollectModuleFields
+  }
+  referenceModule {
+    ...ReferenceModuleFields
+  }
+  appId
+  hidden
+  reaction(request: null)
+  mirrors(by: null)
+  hasCollectedByMe
+}
+
+fragment CommentFields on Comment {
+  ...CommentBaseFields
+  mainPost {
+    ... on Post {
+      ...PostFields
+    }
+    ... on Mirror {
+      ...MirrorBaseFields
+      mirrorOf {
+        ... on Post {
+           ...PostFields          
+        }
+        ... on Comment {
+           ...CommentMirrorOfFields        
+        }
+      }
+    }
+  }
+}
+
+fragment CommentMirrorOfFields on Comment {
+  ...CommentBaseFields
+  mainPost {
+    ... on Post {
+      ...PostFields
+    }
+    ... on Mirror {
+       ...MirrorBaseFields
+    }
+  }
+}
+
+fragment FollowModuleFields on FollowModule {
+  ... on FeeFollowModuleSettings {
+    type
+    amount {
+      asset {
+        name
+        symbol
+        decimals
+        address
+      }
+      value
+    }
+    recipient
+  }
+  ... on ProfileFollowModuleSettings {
+    type
+    contractAddress
+  }
+  ... on RevertFollowModuleSettings {
+    type
+    contractAddress
+  }
+  ... on UnknownFollowModuleSettings {
+    type
+    contractAddress
+    followModuleReturnData
+  }
+}
+
+fragment CollectModuleFields on CollectModule {
+  __typename
+  ... on FreeCollectModuleSettings {
+    type
+    followerOnly
+    contractAddress
+  }
+  ... on FeeCollectModuleSettings {
+    type
+    amount {
+      asset {
+        ...Erc20Fields
+      }
+      value
+    }
+    recipient
+    referralFee
+  }
+  ... on LimitedFeeCollectModuleSettings {
+    type
+    collectLimit
+    amount {
+      asset {
+        ...Erc20Fields
+      }
+      value
+    }
+    recipient
+    referralFee
+  }
+  ... on LimitedTimedFeeCollectModuleSettings {
+    type
+    collectLimit
+    amount {
+      asset {
+        ...Erc20Fields
+      }
+      value
+    }
+    recipient
+    referralFee
+    endTimestamp
+  }
+  ... on RevertCollectModuleSettings {
+    type
+  }
+  ... on TimedFeeCollectModuleSettings {
+    type
+    amount {
+      asset {
+        ...Erc20Fields
+      }
+      value
+    }
+    recipient
+    referralFee
+    endTimestamp
+  }
+  ... on UnknownCollectModuleSettings {
+    type
+    contractAddress
+    collectModuleReturnData
+  }
+}
+
+fragment ReferenceModuleFields on ReferenceModule {
+  ... on FollowOnlyReferenceModuleSettings {
+    type
+    contractAddress
+  }
+  ... on UnknownReferenceModuleSettings {
+    type
+    contractAddress
+    referenceModuleReturnData
+  }
+  ... on DegreesOfSeparationReferenceModuleSettings {
+    type
+    contractAddress
+    commentsRestricted
+    mirrorsRestricted
+    degreesOfSeparation
+  }
+}
+
 `
-// request(API_URL, getProfiles).then((data) => console.log('ola',data))
+
+
+
+
 
 export const recommendProfiles = `
 query RecommendedProfiles {
