@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { useRoute, computed, ref, watchEffect} from '@nuxtjs/composition-api';
+import { useRoute, computed, ref, watchEffect, onMounted} from '@nuxtjs/composition-api';
 import {client, getProfiles} from "../../api"
     export default {
         setup(){
@@ -13,14 +13,7 @@ import {client, getProfiles} from "../../api"
 
         const id = computed(() => route.value.params.id)
 
-    watchEffect(() => {
-            if(id) {
-                fetchProfile()
-            }
-        }, [id])
-
-
-async function fetchProfile(){
+        async function fetchProfile(){
     try {
         const response = await client.query(getProfiles, { id}).toPromise()
         console.log('response', response)
@@ -28,6 +21,15 @@ async function fetchProfile(){
         console.log('erry', error)
     }
 }
+
+    watchEffect(() => {
+           
+                // fetchProfile()
+            
+        }, [id])
+
+
+
 
         }
     }

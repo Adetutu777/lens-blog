@@ -1,11 +1,13 @@
 import { createClient } from "@urql/vue"
 
+import { request, gql } from 'graphql-request'
+
 const API_URL = "https://api.lens.dev"
 
 export const client = createClient({
     url: API_URL,
 })
-
+// const query = gql`
 export const getProfiles = `
 query Profiles(
   $id:ProfileId!
@@ -100,6 +102,7 @@ query Profiles(
   }
 }
 `
+// request(API_URL, getProfiles).then((data) => console.log('ola',data))
 
 export const recommendProfiles = `
 query RecommendedProfiles {
