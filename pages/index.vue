@@ -9,15 +9,15 @@
 
 
 <div class="col-md-4 mt-4" v-for="data in getProfiles.data" :key="data.id">
+<NuxtLink :to="'/profile/'+ data.id">
 <div class="card">
       <div class="card-body">
       <img class="w-25" :src="data.url" alt="image" >
      <h3>{{data.name}}</h3>
-     <p> {{data.bio}}</p>
-        
-        
+     <p> {{data.bio}}</p>   
 </div>
 </div>
+</NuxtLink>
     </div>
     </div>
 </div>

@@ -5,17 +5,30 @@
 </template>
 
 <script>
-import { useRoute, computed} from '@nuxtjs/composition-api';
+import { useRoute, computed, ref, watchEffect} from '@nuxtjs/composition-api';
+import {client, getProfiles} from "../../api"
     export default {
         setup(){
-            const route = useRoute
+            const route = useRoute()
 
-        //    export default function Profile() {
-        //     
-            
-        //    }
-        const userId = computed(() => route.value.params.id)
-        console.log('ly', userId)
+        const id = computed(() => route.value.params.id)
+
+    watchEffect(() => {
+            if(id) {
+                fetchProfile()
+            }
+        }, [id])
+
+
+async function fetchProfile(){
+    try {
+        const response = await client.query(getProfiles, { id}).toPromise()
+        console.log('response', response)
+    } catch (error) {
+        console.log('erry', error)
+    }
+}
+
         }
     }
 </script>
