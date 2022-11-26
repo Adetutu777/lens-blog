@@ -1,15 +1,11 @@
 <template>
 <div class="mt-4">
- 
-
-
 <div class="homepage">
     <nav>
         <div class="navbar">
             <h4 class="logo">
                 <span>story</span>tribe
             </h4>
-
 
             <div class="search-bar">
                 <i class="uil uil-search"></i>
@@ -95,6 +91,7 @@
                         <div class="head">
                             <div class="user">
                                 <div class="profile-photo">
+                                <!-- <div class="profile-photo" v-for="item in items" :key="item.id"> -->
                                     <img src="@/images/Ellipse 44.png">
                                 </div>
                                 <div class="info">
@@ -127,227 +124,10 @@
 
                     </div>
 
-                    <!------- feed 2 ------->
-                    <div class="feed">
-                        <div class="head">
-                            <div class="user">
-                                <div class="profile-photo">
-                                    <img src="@/images/profile-14.jpg">
-                                </div>
-                                <div class="info">
-                                    <h3>Esco Funds</h3>
-                                    <small>@esco_funds.lens  .  Nov 12, 2022</small>
+                   
 
-                                </div>
-                            </div>
-                            <span class="edit">
-                                <i class="uil uil-book-open"></i> 2mins read
-                            </span>
-                        </div>
-                        <div class="photo">
-                            <h3>The concert that shook a lot of relationships</h3>
-                            <img src="@/images/Frame 2.png">
-                        </div>
+                   
 
-                        <div class="action-button">
-                            <div class="interaction-button">
-                                <span><i class="uil uil-bookmark"></i></span>
-                                <h5>Money</h5>
-                                <h5>Business</h5>
-                                <h5>Dogecoin</h5>
-                            </div>
-                            <div class="bookmark">
-                                <span><i class="uil uil-heart"></i></span>
-                                <h5>24k</h5>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!------- feed 3 ------->
-                    <div class="feed">
-                        <div class="head">
-                            <div class="user">
-                                <div class="profile-photo">
-                                    <img src="@/images/profile-15.jpg">
-                                </div>
-                                <div class="info">
-                                    <h3>Esco Funds</h3>
-                                    <small>@esco_funds.lens  .  Nov 12, 2022</small>
-
-                                </div>
-                            </div>
-                            <span class="edit">
-                                <i class="uil uil-book-open"></i> 2mins read
-                            </span>
-                        </div>
-                        <div class="photo">
-                            <h3>Nigeria is not a democratic state, here's why.</h3>
-                            <img src="@/images/Frame 3.png">
-                        </div>
-
-                        <div class="action-button">
-                            <div class="interaction-button">
-                                <span><i class="uil uil-bookmark"></i></span>
-                                <h5>Money</h5>
-                                <h5>Business</h5>
-                                <h5>Dogecoin</h5>
-                            </div>
-                            <div class="bookmark">
-                                <span><i class="uil uil-heart"></i></span>
-                                <h5>24k</h5>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!------- feed 4 ------->
-                    <div class="feed">
-                        <div class="head">
-                            <div class="user">
-                                <div class="profile-photo">
-                                    <img src="@/images/profile-16.jpg">
-                                </div>
-                                <div class="info">
-                                    <h3>Esco Funds</h3>
-                                    <small>@esco_funds.lens  .  Nov 12, 2022</small>
-
-                                </div>
-                            </div>
-                            <span class="edit">
-                                <i class="uil uil-book-open"></i> 2mins read
-                            </span>
-                        </div>
-                        <div class="photo">
-                            <h3>Top 10 ways to make money during this times</h3>
-                            <img src="@/images/Frame 4.png">
-                        </div>
-
-                        <div class="action-button">
-                            <div class="interaction-button">
-                                <span><i class="uil uil-bookmark"></i></span>
-                                <h5>Money</h5>
-                                <h5>Business</h5>
-                                <h5>Dogecoin</h5>
-                            </div>
-                            <div class="bookmark">
-                                <span><i class="uil uil-heart"></i></span>
-                                <h5>24k</h5>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!------- feed 5 ------->
-                    <div class="feed">
-                        <div class="head">
-                            <div class="user">
-                                <div class="profile-photo">
-                                    <img src="@/images/profile-17.jpg">
-                                </div>
-                                <div class="info">
-                                    <h3>Esco Funds</h3>
-                                    <small>@esco_funds.lens  .  Nov 12, 2022</small>
-
-                                </div>
-                            </div>
-                            <span class="edit">
-                                <i class="uil uil-book-open"></i> 2mins read
-                            </span>
-                        </div>
-                        <div class="photo">
-                            <h3>FIFA World Cup predictions</h3>
-                            <img src="@/images/Frame 5.png">
-                        </div>
-
-                        <div class="action-button">
-                            <div class="interaction-button">
-                                <span><i class="uil uil-bookmark"></i></span>
-                                <h5>Money</h5>
-                                <h5>Business</h5>
-                                <h5>Dogecoin</h5>
-                            </div>
-                            <div class="bookmark">
-                                <span><i class="uil uil-heart"></i></span>
-                                <h5>24k</h5>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!------- feed 6 ------->
-                    <div class="feed">
-                        <div class="head">
-                            <div class="user">
-                                <div class="profile-photo">
-                                    <img src="@/images/profile-18.jpg">
-                                </div>
-                                <div class="info">
-                                    <h3>Esco Funds</h3>
-                                    <small>@esco_funds.lens  .  Nov 12, 2022</small>
-
-                                </div>
-                            </div>
-                            <span class="edit">
-                                <i class="uil uil-book-open"></i> 2mins read
-                            </span>
-                        </div>
-                        <div class="photo">
-                            <h3>D-ALLE vs Mid-journey which is better</h3>
-                            <img src="@/images/Frame 6.png">
-                        </div>
-
-                        <div class="action-button">
-                            <div class="interaction-button">
-                                <span><i class="uil uil-bookmark"></i></span>
-                                <h5>Money</h5>
-                                <h5>Business</h5>
-                                <h5>Dogecoin</h5>
-                            </div>
-                            <div class="bookmark">
-                                <span><i class="uil uil-heart"></i></span>
-                                <h5>24k</h5>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!------- feed 7 ------->
-                    <div class="feed">
-                        <div class="head">
-                            <div class="user">
-                                <div class="profile-photo">
-                                    <img src="@/images/profile-19.jpg">
-                                </div>
-                                <div class="info">
-                                    <h3>Esco Funds</h3>
-                                    <small>@esco_funds.lens  .  Nov 12, 2022</small>
-
-                                </div>
-                            </div>
-                            <span class="edit">
-                                <i class="uil uil-book-open"></i> 2mins read
-                            </span>
-                        </div>
-                        <div class="photo">
-                            <h3>Being among the top 1% is not as easy as it seems</h3>
-                            <img src="@/images/Frame 7.png">
-                        </div>
-
-                        <div class="action-button">
-                            <div class="interaction-button">
-                                <span><i class="uil uil-bookmark"></i></span>
-                                <h5>Money</h5>
-                                <h5>Business</h5>
-                                <h5>Dogecoin</h5>
-                            </div>
-                            <div class="bookmark">
-                                <span><i class="uil uil-heart"></i></span>
-                                <h5>24k</h5>
-                            </div>
-                        </div>
-
-                    </div>
                 </div>
             </div>
 
@@ -395,7 +175,10 @@ import "../main.css"
           const userAddress = ref('')
           const getProfiles = reactive({
             data:{
-
+            }
+          })
+          const publications = reactive({
+            data:{
             }
           })
 
@@ -407,7 +190,6 @@ import "../main.css"
                 const getCid = CID ? CID.split('').slice(7).join('') : 'bafkreigfkue3cdeve7pa23vvsmp2lcmj32flksdvlrllt44gpl25bqhp6m'
                 return {...i, 
                 url: CID?.length === 66 ? 'https://ipfs.io/ipfs/'+ getCid : !CID?.length ?  'https://ipfs.io/ipfs/bafkreigfkue3cdeve7pa23vvsmp2lcmj32flksdvlrllt44gpl25bqhp6m' : CID
-                // url:'https://ipfs.io/ipfs/'+ getCid
                 } 
               })
             
@@ -450,6 +232,8 @@ import "../main.css"
               const getProfilesId = await clientId.request(recommendProfiles)
               const ids= getProfilesId.recommendedProfiles.map((i)=> i.id)
                  const publicationsPost = await clientId.request( publicationsQuery, {ids} )
+                 publications.data = publicationsPost?.publications?.items
+                 console.log('tutu', publications.data)
                  console.log('omoKehindeGbegbon', publicationsPost)
             } catch (error) {
                  console.log('error', error)
