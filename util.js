@@ -11,3 +11,11 @@ import { ethers } from "ethers";
 //     const newProvider = isSigner ? signer : provider;
 //     return new ethers.Contract(contractAddress, ABI, newProvider);
 // }
+
+export const formatIpfdImg =(ipfs)=>{
+    const CID = ipfs
+     const getCid =  CID? CID.split('').slice(7).join('') : 'bafkreigfkue3cdeve7pa23vvsmp2lcmj32flksdvlrllt44gpl25bqhp6m'
+   const url =  CID?.length === (66 || 53)? 'https://ipfs.io/ipfs/'+ getCid : !CID?.length ?  'https://ipfs.io/ipfs/bafkreigfkue3cdeve7pa23vvsmp2lcmj32flksdvlrllt44gpl25bqhp6m' : CID
+
+   return url
+}

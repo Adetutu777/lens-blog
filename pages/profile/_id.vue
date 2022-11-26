@@ -14,13 +14,6 @@ import { request, gql } from 'graphql-request'
 
         const id = computed(() => route.value.params.id)
 
-
-
-      
-        
-     
-
-
             return {
 
             }
