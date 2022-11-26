@@ -87,16 +87,16 @@
                 <!-------------- feeds --------------->
                 <div class="feeds">
                     <!------- feed 1 ------->
-                    <div class="feed">
+                    <!-- {{JSON.stringify(publications)}} -->
+                    <div class="feed" v-for="item in publications.data" :key="item.id">
                         <div class="head">
                             <div class="user">
                                 <div class="profile-photo">
-                                <!-- <div class="profile-photo" v-for="item in items" :key="item.id"> -->
                                     <img src="@/images/Ellipse 44.png">
                                 </div>
                                 <div class="info">
-                                    <h3>Esco Funds</h3>
-                                    <small>@esco_funds.lens  .  Nov 26, 2022</small>
+                                    <h3>{{item?.profile?.name}}</h3>
+                                    <small>{{item?.profile?.handle}} .  {{item.createdAt}}</small>
 
                                 </div>
                             </div>
@@ -105,20 +105,22 @@
                             </span>
                         </div>
                         <div class="photo">
-                            <h3>Being among the top 1% is not as easy as it seems</h3>
-                            <a href="read.html"><img src="@/images/Frame 1.png"></a>
+                            <h3 v-if="(item?.mainPost?.metadata?.description)">{{(item?.mainPost?.metadata?.description)?.slice(0,70 )}}...</h3>
+                            <!-- <a href="read.html"> -->
+                                 <!-- <img :src="item.logoPath" @error="replaceByDefault"> -->
+                                <img :src="item?.metadata[0]?.url ?? 'https://github.com/DrVickie8/Team-Lens-Developers/blob/main/Lens-folder/images/Frame%202.png?raw=true'" @error="replaceByDefault">
+                                <!-- </a> -->
                         </div>
 
-                        <div class="action-button">
+                        <div class="action-button" >
                             <div class="interaction-button">
                                 <span><i class="uil uil-bookmark"></i></span>
-                                <h5>Money</h5>
-                                <h5>Business</h5>
-                                <h5>Dogecoin</h5>
+                                <h5 v-for="val in item?.mainPost?.metadata?.attribute" :key="val.value">{{val.value}}</h5>
+                                
                             </div>
                             <div class="bookmark">
                                 <span><i class="uil uil-heart"></i></span>
-                                <h5>24k</h5>
+                                <h5>{{item.stats.totalUpvotes}}</h5>
                             </div>
                         </div>
 
@@ -232,14 +234,34 @@ import "../main.css"
               const getProfilesId = await clientId.request(recommendProfiles)
               const ids= getProfilesId.recommendedProfiles.map((i)=> i.id)
                  const publicationsPost = await clientId.request( publicationsQuery, {ids} )
-                 publications.data = publicationsPost?.publications?.items
-                 console.log('tutu', publications.data)
-                 console.log('omoKehindeGbegbon', publicationsPost)
+                 
+                    const mappedData = publicationsPost?.publications?.items.map((i)=>{
+                        const dataMap = i.metadata.media.map((j)=>{
+                             const CID = j.original?.url
+                             const getCid = CID ? CID.split('').slice(7).join('') : 'bafkreigfkue3cdeve7pa23vvsmp2lcmj32flksdvlrllt44gpl25bqhp6m'
+                             console.log('cidy', getCid)
+                             console.log('dic', CID)
+                             return {...j, 
+                                    url: CID?.length === (66 || 53)? 'https://ipfs.io/ipfs/'+ getCid : !CID?.length ?  'https://ipfs.io/ipfs/bafkreigfkue3cdeve7pa23vvsmp2lcmj32flksdvlrllt44gpl25bqhp6m' : j.original.url
+                                    } 
+                        })
+                        console.log('tay', dataMap)
+                        return {
+                           ...i,
+                           metadata: dataMap
+                            }
+              })
+                 publications.data = mappedData ?? publications.data
+                 console.log('ýat', publications.data)
             } catch (error) {
                  console.log('error', error)
             }
         }
-          return{loading, getProfiles, onClickConnect , isConnected, userAddress}
+
+        const replaceByDefault=(e)=>{
+                  e.target.src = "https://github.com/DrVickie8/Team-Lens-Developers/blob/main/Lens-folder/images/Frame%206.png?raw=true"
+        }
+          return{loading, getProfiles, onClickConnect , isConnected, userAddress, publications, replaceByDefault}
         }
     }
 </script>
