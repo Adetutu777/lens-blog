@@ -4,7 +4,6 @@
                 <!-------------- feeds --------------->
                 <div class="feeds">
                     <!------- feed 1 ------->
-                    <!-- {{JSON.stringify(publications)}} -->
                     <div class="feed" v-for="item in publications.data" :key="item.id">
                         <div class="head">
                             <div class="user">
