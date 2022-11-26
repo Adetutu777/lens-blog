@@ -15,31 +15,8 @@ import { request, gql } from 'graphql-request'
         const id = computed(() => route.value.params.id)
 
 
-    async function fetchProfile(){
-    try {
-        const response = await client.query(getProfiles, { id}).toPromise()
-        console.log('response', response)
-    } catch (error) {
-        console.log('erry', error)
-    }
-}
 
-     onMounted(() => {
-                userQuery()
-            
-        })
-
-        const userQuery =async()=>{
-            try {
-                 const qrl=  await clientId.request( query, {id:id.value}, )
-                 const publicationsPost = await clientId.request( publicationsQuery)
-                 console.log('heya', qrl)
-                 console.log('omoKehindeGbegbon', publicationsPost)
-            } catch (error) {
-                 console.log('era', error)
-            }
-        }
-
+      
         
      
 

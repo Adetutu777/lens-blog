@@ -27,14 +27,11 @@ query Profile($id: ProfileId!){
 }
 `
 export const publicationsQuery = `
-query Publications($publicationIds: PublicationsQueryRequest!) {
+query Publications($ids: [ProfileId!]) {
   publications(request: {
-   
-    publicationTypes: [POST, COMMENT, MIRROR],
-    limit: 10
-  }) 
-  "publicationIds": ["0x12-0x02", "0x12-0x03"],
-  {
+    profileIds: $ids,
+    limit: 50
+  }) {
     items {
       __typename 
       ... on Post {
@@ -383,10 +380,6 @@ fragment ReferenceModuleFields on ReferenceModule {
 }
 
 `
-
-
-
-
 
 export const recommendProfiles = `
 query RecommendedProfiles {
