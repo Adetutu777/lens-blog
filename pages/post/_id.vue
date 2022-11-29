@@ -83,8 +83,9 @@
                 <div class="title ">
                   <h4 class="mb-4">{{viewBlog?.data?.mainPost?.metadata?.description}}</h4>
                 </div>
+                {{viewBlog?.data?.media?.[0]?.original?.url}}
                 <div class="photo">
-                  <img :src="viewBlog?.data?.[0]?.url ?? 'https://github.com/DrVickie8/Team-Lens-Developers/blob/main/Lens-folder/images/Frame%202.png?raw=true'" @error="replaceByDefault">
+                  <img :src="viewBlog?.data?.blogUrl ?? 'https://github.com/DrVickie8/Team-Lens-Developers/blob/main/Lens-folder/images/Frame%202.png?raw=true'" @error="replaceByDefault">
                 </div>
 
                   <!-- {{JSON.stringify(viewBlog?.data?.mainPost?.metadata?.description)}}
@@ -413,16 +414,21 @@ import {formatIpfdImg} from "@/util"
         const getPublication = async()=>{
                 try {
                 const userPublication= await clientId.request(viewPublicationQuery, {id:id.value})
-                console.log("usy", userPublication)
                 viewBlog.data = userPublication.publication
                 console.log('vewy', viewBlog.data)
-                // viewBlog.data.profile.picture.original.url = formatIpfdImg(viewBlog.data.profile.picture.original.url)
+                const blogPicture = viewBlog?.data?.metadata?.media?.[0]?.original?.url
+                const blogUrl = blogPicture.startsWith('ipfs') ? formatIpfdImg(blogPicture) : blogPicture
+                viewBlog.data.blogUrl= blogUrl
+                console.log('tyt', viewBlog.data)
+                // viewBlog?.data?.metadata?.media?.[0]?.original?.url = formatIpfdImg(viewBlog.data.profile.picture.original.url)
                 } catch (error) {
                     
                 }
         }
-
-            return {viewBlog, id}
+     const replaceByDefault=(e)=>{
+                  e.target.src = "https://github.com/DrVickie8/Team-Lens-Developers/blob/main/Lens-folder/images/Frame%206.png?raw=true"
+        }
+            return {viewBlog, id, replaceByDefault}
         }
     }
 </script>"

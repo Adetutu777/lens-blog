@@ -130,11 +130,11 @@ import {formatIpfdImg} from "@/util"
       const userQuery =async()=>{
             try {
               const getProfilesId = await clientId.request(recommendProfiles)
-              const ids= getProfilesId?.recommendedProfiles.map((i)=> i.id)
-              
+              const ids= getProfilesId?.recommendedProfiles?.map((i)=> i.id)
+              console.log('idy', ids)
                  const publicationsPost = await clientId?.request( publicationsQuery, {ids} )
                  console.log('gety', publicationsPost)
-                    const mappedData = publicationsPost?.publications?.items.map((i)=>{
+                    const mappedData = publicationsPost?.publications?.items.filter((i)=>i.__typename=='Post')?.map((i)=>{
                         const dataMap = i?.metadata?.media?.map((j)=>{
                              return {...j, 
                                    url:formatIpfdImg(j?.original?.url)

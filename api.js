@@ -385,7 +385,7 @@ export const publicationsQuery = `
 query Publications($ids: [ProfileId!]) {
   publications(request: {
     profileIds: $ids,
-    limit: 10
+    limit:50
   }) {
     items {
       __typename 
