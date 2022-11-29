@@ -1,10 +1,23 @@
 <template>
-          <div class="read">
+    <div class="read">
     <nav>
       <div class="navbar">
         <h4 class="logo"><span>story</span>tribe</h4>
 
-        
+        <div class="search-bar">
+          <i class="uil uil-search"></i>
+          <input type="search" placeholder="Find your favourite blogs" />
+        </div>
+
+        <a class="profile">
+          <div class="profile-photo">
+            <img src="@/images/Ellipse 43.png" alt="pix 1" srcset="" />
+          </div>
+          <div class="handle">
+            <h4>Miss Asake</h4>
+            <p class="text-muted">@nkem_asake.lens</p>
+          </div>
+        </a>
       </div>
     </nav>
 
@@ -46,45 +59,332 @@
             </div>
           </div>
 
+              
           <!-- MIDDLE--------------------------- -->
-          <div class="feeds">
-                    <!------- feed 1 ------->
-                    {{JSON.stringify(viewBlog)}}
-                    <div class="feed" v-for="item in viewBlog.data" :key="item.id">
-                        <div class="head">
-                            <div class="user">
-                                <div class="profile-photo" style=" border:2px solid red">
-                                    <img :src="item?.profile?.picture?.original?.url ?? 'https://github.com/DrVickie8/Team-Lens-Developers/blob/main/Lens-folder/images/Frame%202.png?raw=true'">
-                                </div>
-                                <!-- <div class="info">
-                                    <h3>{{item?.profile?.name}}</h3>
-                                    <small>{{item?.profile?.handle}} .  {{item.createdAt}}</small>
-
-                                </div> -->
-                            </div>
-                            <span class="edit">
-                                <i class="uil uil-book-open"></i> 2mins read
-                            </span>
-                        </div>
-                        <!-- <div class="photo">
-                            <h3 v-if="(item?.mainPost?.metadata?.description)">{{(item?.mainPost?.metadata?.description)?.slice(0,70 )}}...</h3>
-                            <NuxtLink :to="'/post/' + item.id">
-                                <img :src="item?.metadata[0]?.url ?? 'https://github.com/DrVickie8/Team-Lens-Developers/blob/main/Lens-folder/images/Frame%202.png?raw=true'" @error="replaceByDefault">
-                                </NuxtLink>
-                        </div> -->
-
-                       
-
+          <div class="middle">
+            <div class="feeds" >
+              <div class="feed" >
+                <div class="head">
+                  <div class="user">
+                    <div class="profile-photo">
+                      <img src="@/images/Ellipse 44.png" alt="" />
                     </div>
-
-                   
-
-                   
-
+                    <div class="details">
+                      <h5>{{viewBlog?.data?.profile?.name}}</h5>
+                      <small>{{viewBlog?.profile?.handle}} .  {{viewBlog?.createdAt}}</small>
+                    </div>
+                  </div>
+                  <div class="info">
+                    <span><i class="uil uil-book-open"></i></span
+                    ><small>2min read</small>
+                    <span class="adjust"><i class="uil uil-bookmark"></i></span>
+                  </div>
                 </div>
+                <div class="title ">
+                  <h4 class="mb-4">{{viewBlog?.data?.mainPost?.metadata?.description}}</h4>
+                </div>
+                <div class="photo">
+                  <img :src="viewBlog?.data?.[0]?.url ?? 'https://github.com/DrVickie8/Team-Lens-Developers/blob/main/Lens-folder/images/Frame%202.png?raw=true'" @error="replaceByDefault">
+                </div>
+
+                  <!-- {{JSON.stringify(viewBlog?.data?.mainPost?.metadata?.description)}}
+                <div class="blog">
+                  <p>heya</p>
+                  <p>{{viewBlog?.data?.mainPost?.metadata?.description}}</p>
+                </div> -->
+              </div>
+              <div class="feed">
+                <div class="comment">
+                  <div class="all">
+                    <div class="grp1">
+                      <div class="grp1a">
+                        <span><i class="uil uil-comment-alt-lines"></i></span
+                        >700
+                      </div>
+                      <div class="grp1b">
+                        <span><i class="uil uil-align-center-justify"></i></span
+                        >Sort by
+                      </div>
+                    </div>
+                    <div class="grp2">
+                      <div class="flex">
+                        <div class="profile-photo">
+                          <img src="@/images/Ellipse 43.png" alt="" />
+                        </div>
+                        <div class="flex2" id="add">
+                          <input
+                            type="text"
+                            placeholder="Add a comment"
+                            style="
+                              font-size: 18px;
+                              background: transparent;
+                              margin-left: -1rem;
+                            "
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="grp3">
+                      <div class="flex3">
+                        <button id="cancel">Cancel</button>
+                        <button>Comment</button>
+                      </div>
+                    </div>
+                    <div class="profiles">
+                      <div class="ellipses">
+                        <div class="pro1">
+                          <div class="sub">
+                            <img
+                              src="@/images/Ellipse 53.png"
+                              alt=""
+                              class="profile-photo1"
+                            />
+                          </div>
+                          <div class="sub2">
+                            <small id="br">@milkway.lens</small><br />
+                            <small>God when will I be a billionaire ooo</small>
+                            <div class="sub2a">
+                              <span><i class="uil uil-heart"></i>20</span> <p>Reply</p>
+                            </div>
+                            <div class="sub2b">
+                              <span><i class="uil uil-triangle"></i></span><p>20
+                                replies</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="ellipses-main">
+                          <span><i class="uil uil-ellipsis-v"></i></span>
+                        </div>
+                      </div>
+
+                      <div class="ellipses">
+                        <div class="pro1">
+                          <div class="sub">
+                            <img
+                              src="@/images/Ellipse 54.png"
+                              alt=""
+                              class="profile-photo1"
+                            />
+                          </div>
+                          <div class="sub2">
+                            <small id="br">@milkway.lens</small><br />
+                            <small>God when will I be a billionaire ooo</small>
+                            <div class="sub2a">
+                              <span><i class="uil uil-heart"></i>20</span> <p>Reply</p>
+                            </div>
+                            <div class="sub2b">
+                              <span><i class="uil uil-triangle"></i></span><p>20
+                                replies</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="ellipses-main">
+                          <span><i class="uil uil-ellipsis-v"></i></span>
+                        </div>
+                      </div>
+
+                      <div class="ellipses">
+                        <div class="pro1">
+                          <div class="sub">
+                            <img
+                              src="@/images/Ellipse 55.png"
+                              alt=""
+                              class="profile-photo1"
+                            />
+                          </div>
+                          <div class="sub2">
+                            <small id="br">@milkway.lens</small><br />
+                            <small>God when will I be a billionaire ooo</small>
+                            <div class="sub2a">
+                              <span><i class="uil uil-heart"></i>20</span> <p>Reply</p>
+                            </div>
+                            <div class="sub2b">
+                              <span><i class="uil uil-triangle"></i></span><p>20
+                                replies</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="ellipses-main">
+                          <span><i class="uil uil-ellipsis-v"></i></span>
+                        </div>
+                      </div>
+
+                      <div class="ellipses">
+                        <div class="pro1">
+                          <div class="sub">
+                            <img
+                              src="@/images/Ellipse 56.png"
+                              alt=""
+                              class="profile-photo1"
+                            />
+                          </div>
+                          <div class="sub2">
+                            <small id="br">@milkway.lens</small><br />
+                            <small>God when will I be a billionaire ooo</small>
+                            <div class="sub2a">
+                              <span><i class="uil uil-heart"></i>20</span> <p>Reply</p>
+                            </div>
+                            <div class="sub2b">
+                              <span><i class="uil uil-triangle"></i></span><p>20
+                                replies</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="ellipses-main">
+                          <span><i class="uil uil-ellipsis-v"></i></span>
+                        </div>
+                      </div>
+
+                      <div class="ellipses">
+                        <div class="pro1">
+                          <div class="sub">
+                            <img
+                              src="@/images/Ellipse 57.png"
+                              alt=""
+                              class="profile-photo1"
+                            />
+                          </div>
+                          <div class="sub2">
+                            <small id="br">@milkway.lens</small><br />
+                            <small>God when will I be a billionaire ooo</small>
+                            <div class="sub2a">
+                              <span><i class="uil uil-heart"></i>20</span> <p>Reply</p>
+                            </div>
+                            <div class="sub2b">
+                              <span><i class="uil uil-triangle"></i></span><p>20
+                                replies</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="ellipses-main">
+                          <span><i class="uil uil-ellipsis-v"></i></span>
+                        </div>
+                      </div>
+
+                      <div class="ellipses">
+                        <div class="pro1">
+                          <div class="sub">
+                            <img
+                              src="@/images/Ellipse 58.png"
+                              alt=""
+                              class="profile-photo1"
+                            />
+                          </div>
+                          <div class="sub2">
+                            <small id="br">@milkway.lens</small><br />
+                            <small>God when will I be a billionaire ooo</small>
+                            <div class="sub2a">
+                              <span><i class="uil uil-heart"></i>20</span> <p>Reply</p>
+                            </div>
+                            <div class="sub2b">
+                              <span><i class="uil uil-triangle"></i></span><p>20
+                                replies</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="ellipses-main">
+                          <span><i class="uil uil-ellipsis-v"></i></span>
+                        </div>
+                      </div>
+
+                      <div class="ellipses">
+                        <div class="pro1">
+                          <div class="sub">
+                            <img
+                              src="@/images/Ellipse 59.png"
+                              alt=""
+                              class="profile-photo1"
+                            />
+                          </div>
+                          <div class="sub2">
+                            <small id="br">@milkway.lens</small><br />
+                            <small>God when will I be a billionaire ooo</small>
+                            <div class="sub2a">
+                              <span><i class="uil uil-heart"></i>20</span> <p>Reply</p>
+                            </div>
+                            <div class="sub2b">
+                              <span><i class="uil uil-triangle"></i></span><p>20
+                                replies</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="ellipses-main">
+                          <span><i class="uil uil-ellipsis-v"></i></span>
+                        </div>
+                      </div>
+
+                      <div class="ellipses">
+                        <div class="pro1">
+                          <div class="sub">
+                            <img
+                              src="@/images/Ellipse 60.png"
+                              alt=""
+                              class="profile-photo1"
+                            />
+                          </div>
+                          <div class="sub2">
+                            <small id="br">@milkway.lens</small><br />
+                            <small>God when will I be a billionaire ooo</small>
+                            <div class="sub2a">
+                              <span><i class="uil uil-heart"></i>20</span> <p>Reply</p>
+                            </div>
+                            <div class="sub2b">
+                              <span><i class="uil uil-triangle"></i></span><p>20
+                                replies</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="ellipses-main">
+                          <span><i class="uil uil-ellipsis-v"></i></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- RIGHT--------------------------- -->
+            <div class="main-right">
+              <div class="right">
+                <div class="content">
+                  <div class="first">
+                    <div class="profile-photo">
+                      <img src="@/images/Ellipse 46.png" alt="" />
+                    </div>
+                    <div class="funds">
+                      <h5>Esco Funds</h5>
+                      <small>@esco_funds.lens - Nov. 26, 2022</small>
+                    </div>
+                  </div>
+                  <div class="second">
+                    <p>
+                      Esco Funds, aka me, is all about helping people unlock
+                      their potential. I work with a wide range of clients, from
+                      small businesses to Fortune 50 companies, and I'm always
+                      on the lookout for new projects that will help me grow my
+                      network and get more exposure.
+                    </p>
+                  </div>
+                  <div class="third">
+                    <div class="fig1">
+                      <h5>50k</h5>
+                      <p>Followers</p>
+                    </div>
+                    <div class="fig2">
+                      <h5>5k</h5>
+                      <p>Blog Posts</p>
+                    </div>
+                  </div>
+                  <label for="create-post" class="btn btn-primary" id="post"
+                    >Follow</label
+                  >
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      
+      </div>
     </main>
   </div>
 </template>
@@ -93,14 +393,15 @@
 import { useRoute, computed, ref, watchEffect, onMounted, watch, reactive} from '@nuxtjs/composition-api';
 import {viewPublicationQuery, clientId} from "../../api"
 import "@/styles/readpost.css"
-import "@/styles/main.css"
+// import "@/styles/main.css"
 import {formatIpfdImg} from "@/util"
     export default {
        layout: "no-sidebar",
         setup(){
-            const viewBlog = reactive({
-                data: {}
-            })
+          const viewBlog = reactive({
+            data:{}
+          })
+            
             const route = useRoute()
 
             onMounted(()=>{

@@ -1,164 +1,209 @@
 <template>
-<div class="mt-4">
-        <div>
-                <!-------------- feeds --------------->
-                <div class="feeds">
-                    <!------- feed 1 ------->
-                    <div class="feed" v-for="item in publications.data" :key="item.id">
-                        <div class="head">
-                            <div class="user">
-                                <div class="profile-photo">
-                                    <img :src="item?.profile?.coverPicture?.original?.url ?? 'https://github.com/DrVickie8/Team-Lens-Developers/blob/main/Lens-folder/images/Frame%202.png?raw=true'">
-                                </div>
-                                <div class="info">
-                                    <h3>{{item?.profile?.name}}</h3>
-                                    <small>{{item?.profile?.handle}} .  {{item.createdAt}}</small>
+    <div>
+    <header>
+        <div class="nav-left">
+            <h4 class="logo">
+                <span>story</span>tribe
+            </h4>
+        </div>
 
-                                </div>
-                            </div>
-                            <span class="edit">
-                                <i class="uil uil-book-open"></i> 2mins read
-                            </span>
-                        </div>
-                        <div class="photo">
-                            <h3 v-if="(item?.mainPost?.metadata?.description)">{{(item?.mainPost?.metadata?.description)?.slice(0,70 )}}...</h3>
-                            <NuxtLink :to="'/post/' + item.id">
-                                <img :src="item?.metadata[0]?.url ?? 'https://github.com/DrVickie8/Team-Lens-Developers/blob/main/Lens-folder/images/Frame%202.png?raw=true'" @error="replaceByDefault">
-                                </NuxtLink>
-                        </div>
+        <div class="profile">
+            <div class="btn-secondary">
+                <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" aria-label="Close">Log in</button>
+            </div>
+            <div class="btn-primary">
+                <!-- <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" aria-label="Close">Create account</button> -->
+                <div>
+  <b-button v-b-modal.modal-1>Create account</b-button>
 
-                        <div class="action-button" >
-                            <div class="interaction-button">
-                                <span><i class="uil uil-bookmark"></i></span>
-                                <h5 v-for="val in item?.mainPost?.metadata?.attribute" :key="val.value">{{val.value}}</h5>
-                                
-                            </div>
-                            <div class="bookmark">
-                                <span><i class="uil uil-heart"></i></span>
-                                <h5>{{item.stats.totalUpvotes}}</h5>
-                            </div>
-                        </div>
+  <b-modal id="modal-1" title="BootstrapVue">
+        <h2>Connect to your wallet</h2>
+        <p>This process connects you to your wallet that is already saved in your browser</p>
+  </b-modal>
+</div>
+            </div>
+            </div>
+    </header>
 
+
+    <!-- Modal -->
+    <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-6" id="exampleModalLabel">Login or Signup to storytribe</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h2>Connect to your wallet</h2>
+                    <p>This process connects you to your wallet that is already saved in your browser</p>
+
+                    <button><a class="btn-primary" href="#">Connect Wallet</a></button>
+                    <div class="bottom">
+                        <h6>New here? <a href="#"> Sign up instead</a></h6>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
 
-                   
+    <!-- ------------Landing page body ------------------ -->
+    <!-- section 1 beegins -->
+    <div class="land1">
+        <div class="land1-left">
+            <h1>Stay curious</h1>
+            <p>Uncover stories from writers on any topicof your choice safely on the blockchain</p>
+            <button>Let's get started</button>
+        </div>
+        <div class="land1-right">
+            <img src="@/images/landing1.png">
+        </div>
+    </div>
+    <!-- section 1 ends -->
 
-                   
+    <!-- section 2 begins -->
+    <div class="land2">
+        <h2>Storytribe is such a vibe, here's why</h2>
+        <div class="cards">
+            <div class="card">
+                <div class="card-body">
+                    <i class="uil uil-check-circle"></i>
+                    <h6 class="card-sub">SAFE AND SECURE</h6>
+                    <p class="text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 
                 </div>
             </div>
-   
+
+            <div class="card">
+                <div class="card-body">
+                    <i class="uil uil-check-circle"></i>
+                    <h6 class="card-sub">used by millions</h6>
+                    <p class="text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
         </div>
+        <div class="cards1">
+            <div class="card">
+                <div class="card-body">
+                    <i class="uil uil-check-circle"></i>
+                    <h6 class="card-sub">own your data</h6>
+                    <p class="text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <i class="uil uil-check-circle"></i>
+                    <h6 class="card-sub">seemless signup</h6>
+                    <p class="text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- section 2 ends -->
+
+    <!-- section 3 begins -->
+    <div class="land3">
+        <div class="land3-left">
+            <img src="@/images/landing2.png">
+        </div>
+        <div class="land3-right">
+            <h1>Write freely</h1>
+            <p>Write about topics that you care about that is securely on the blockchain</p>
+            <button>Let's get started</button>
+        </div>
+    </div>
+    <!-- section 3 ends -->
+
+    <!-- section 4 begins -->
+    <div class="land4">
+        <h2>Featured posts</h2>
+        <div class="display-card">
+            <div class="card" style="width: 24rem;">
+                <img src="@/images/card2.png" class="card-img-top">
+                <div class="card-body">
+                    <h5>Under the night's sky</h5>
+                    <p class="card-text">It is said that bad things happen when the sun goes down. I believe that there are many benefits to exploring nature under the night sky,</p>
+                </div>
+            </div>
+
+            <div class="card" style="width: 24rem;">
+                <img src="@/images/card1.png" class="card-img-top">
+                <div class="card-body">
+                    <h5>Interplanetary exploration</h5>
+                    <p class="card-text">We will explore the unknown, reaching out beyond our world. We are space explorers and we want to share all that we find with you.</p>
+                </div>
+            </div>
+
+            <div class="card" style="width: 24rem;">
+                <img src="@/images/card.png" class="card-img-top">
+                <div class="card-body">
+                    <h5>Plastic bags are harming us</h5>
+                    <p class="card-text">Over 1 million people die prematurely as a result of all toxic substances in the air such as CO2 and air pollution. Let’s do something about it!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- section 4 ends -->
+
+    <!-- section 5 starts -->
+    <div class="land5">
+        <h5>Find topics that suit your interest</h5>
+
+        <button>Let's get started</button>
+
+        <div>
+            <img src="@/images/landing3.png">
+        </div>
+    </div>
+    <!-- section 5 ends -->
+    <footer>
+        <div class="footer-top">
+            <div class="footer-left">
+                <h4 class="logo">
+                    <span>story</span>tribe
+                </h4>
+                <p>A decentralized blogging experience. Built on the lens protocol</p>
+            </div>
+            <div class="footer-middle">
+                <h2>Company</h2>
+                <a href="#">About us</a>
+                <a href="#">Career</a>
+                <a href="#">Blog</a>
+                <a href="#">Pricing</a>
+            </div>
+            <div class="footer-right">
+                <h2>Resources</h2>
+                <a href="#">Tutorials</a>
+                <a href="#">Frequently asked questions</a>
+                <a href="#">Contact us</a>
+                <a href="#">Other projects</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <a href="#">Terms and conditions</a>
+            <a href="#">2022 copyright</a>
+            <a href="#">Privacy policy</a>
+        </div>
+    </footer>
+
+
+
+    <!-- ------------Landing page body ends-------------------- -->
+    </div>
 </template>
 
-
-
 <script>
-import { onMounted, ref, computed, watchEffect, reactive} from '@nuxtjs/composition-api';
-import {client, recommendProfiles, clientId, publicationsQuery} from '../api'
-import {formatIpfdImg} from "@/util"
-
+import "@/styles/homepage.css"
     export default {
-        setup(){
-          const loading = ref(true)
-          const ethWindowObj = ref('')
-          const signerOrProvider = ref('')
-          const isConnected = ref(false)
-          const userAddress = ref('')
-          const getProfiles = reactive({
-            data:{
-            }
-          })
-          const publications = reactive({
-            data:{
-            }
-          })
-
-     const fetchProfiles = async() =>{
-              try {
-                const resp = await client.query(recommendProfiles).toPromise()
-              const mappedData = resp?.data?.recommendedProfiles.map((i)=>{
-                const CID = i.picture?.original?.url
-                const getCid = CID ? CID.split('').slice(7).join('') : 'bafkreigfkue3cdeve7pa23vvsmp2lcmj32flksdvlrllt44gpl25bqhp6m'
-                return {...i, 
-                url: CID?.length === 66 ? 'https://ipfs.io/ipfs/'+ getCid : !CID?.length ?  'https://ipfs.io/ipfs/bafkreigfkue3cdeve7pa23vvsmp2lcmj32flksdvlrllt44gpl25bqhp6m' : CID
-                } 
-              })
-            
-              getProfiles.data = mappedData ?? getProfiles.data
-              } catch (error) {
-                console.log(error)
-              }finally {
-                loading.value = false
-                }
-              
-            }
-
-
-            watchEffect(() => {
-               fetchProfiles()
-        }, [])
-
-        
-
-        onMounted(()=>{
-        signerOrProvider.value = window.ethereum
-        userQuery()
-        })
-
-             // function to connect to MetaMask
-      const onClickConnect = async () => {
-        try {
-            // Will open the MetaMask UI
-            const account = await signerOrProvider.value.send("eth_requestAccounts", []);
-            isConnected.value = true;
-            userAddress.value = account[0];
-        } catch (error) {
-            console.error(error);
-            console.log(error.message)
-        }
-    }
-
-    // const formatIpfdImg =(ipfs)=>{
-    //     const CID = ipfs
-    //      const getCid =  CID? CID.split('').slice(7).join('') : 'bafkreigfkue3cdeve7pa23vvsmp2lcmj32flksdvlrllt44gpl25bqhp6m'
-    //    const url =  CID?.length === (66 || 53)? 'https://ipfs.io/ipfs/'+ getCid : !CID?.length ?  'https://ipfs.io/ipfs/bafkreigfkue3cdeve7pa23vvsmp2lcmj32flksdvlrllt44gpl25bqhp6m' : CID
-
-    //    return url
-    // }
-
-      const userQuery =async()=>{
-            try {
-              const getProfilesId = await clientId.request(recommendProfiles)
-              const ids= getProfilesId.recommendedProfiles.map((i)=> i.id)
-                 const publicationsPost = await clientId.request( publicationsQuery, {ids} )
-                 
-                    const mappedData = publicationsPost?.publications?.items.map((i)=>{
-                        const dataMap = i.metadata.media.map((j)=>{
-                             return {...j, 
-                                   url:formatIpfdImg(j?.original?.url)
-                                    } 
-                        })
-                        return {
-                           ...i,
-                           metadata: dataMap
-                            }
-              })
-                 publications.data = mappedData ?? publications.data
-                 console.log('ýat', publications.data)
-            } catch (error) {
-                 console.log('error', error)
-            }
-        }
-
-        const replaceByDefault=(e)=>{
-                  e.target.src = "https://github.com/DrVickie8/Team-Lens-Developers/blob/main/Lens-folder/images/Frame%206.png?raw=true"
-        }
-          return{loading, getProfiles, onClickConnect , isConnected, userAddress, publications, replaceByDefault}
-        }
+        layout: "no-sidebar"
     }
 </script>
 
-<style >
+<style lang="scss" scoped>
 
 </style>

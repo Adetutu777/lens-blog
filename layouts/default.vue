@@ -4,27 +4,30 @@
     <div class="mt-4">
 <div class="homepage">
     <nav>
-        <div class="navbar">
+        
+       <header class="navbar-header">
+        <div class="nav-left">
             <h4 class="logo">
                 <span>story</span>tribe
             </h4>
-
-            <div class="search-bar">
-                <i class="uil uil-search"></i>
-                <input type="search" placeholder="Find your favourite blogs">
-            </div>
-
-            <a class="profile">
-                <div class="profile-photo">
-                    <img src="@/images/Ellipse 43.png" alt="pix 1">
-                </div>
-                <div class="handle">
-                    <h4>Miss Asake</h4>
-                    <p class="text-muted">@nkem_asake.lens</p>
-                </div>
-            </a>
-
         </div>
+
+
+        <div class="search-bar">
+            <i class="uil uil-search"></i>
+            <input type="search" placeholder="Find your favourite blogs">
+        </div>
+
+        <a class="profile">
+            <div class="profile-photo">
+                <img src="@/images/Ellipse 43.png" alt="pix 1" srcset="">
+            </div>
+            <div class="handle">
+                <h4>Miss Asake</h4>
+                <p class="text-muted">@nkem_asake.lens</p>
+            </div>
+        </a>
+    </header>
     </nav>
 
     <!----------hero section--------->

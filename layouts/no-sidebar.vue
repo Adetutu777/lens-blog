@@ -13,8 +13,8 @@ export default {
 
 <style scoped>
 
-html {
+/* html {
     font-family: "Aktiv Grotesk";
-}
+} */
 
 </style>
