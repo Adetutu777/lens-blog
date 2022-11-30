@@ -9,7 +9,7 @@
 
         <div class="profile">
             <div class="btn-secondary">
-                <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" aria-label="Close">Log in</button>
+                <button @click="signData" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" aria-label="Close">Log in</button>
             </div>
             <div class="btn-primary">
                 <!-- <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" aria-label="Close">Create account</button> -->
@@ -198,9 +198,33 @@
 </template>
 
 <script>
+import { onMounted, ref, computed, watchEffect, reactive} from '@nuxtjs/composition-api';
+import {ethereumObj} from "../store"
+import { ethers } from "ethers";
 import "@/styles/homepage.css"
     export default {
-        layout: "no-sidebar"
+        layout: "no-sidebar",
+        setup(){
+              const signerOrProvider = ref('')
+
+           
+            onMounted(()=>{
+        // signerOrProvider.value = window.ethereum
+        console.log('tutu', window?.ethereum)
+        
+        })
+
+                 const signData =async()=>{
+                const signerOrProvider = new ethers.providers.Web3Provider(window?.ethereum);
+                const signer = signerOrProvider.getSigner()
+                let message = "\nhttps://api-mumbai.lens.dev wants you to sign in with your Ethereum account:\n0x4088edFa1ab3792b4Ec3B8fafaC0C20aDd364609\n\nSign in with ethereum to lens\n\nURI: https://api-mumbai.lens.dev\nVersion: 1\nChain ID: 80001\nNonce: bca3ed0f176b135b\nIssued At: 2022-11-30T14:50:54.021Z\n"
+                let signature = await signer.signMessage(message)
+                console.log('hello', signature)
+                 console.log('hello', signerOrProvider)
+                console.log('hi', window?.ethereum)
+            }
+            return {signData, signerOrProvider}
+        }
     }
 </script>
 

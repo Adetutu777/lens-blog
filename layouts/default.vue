@@ -124,14 +124,19 @@
 
 <script>
 import { onMounted, ref, computed, watchEffect, reactive} from '@nuxtjs/composition-api';
-import {ethereumObj} from "../store"
+// import {ethereumObj} from "../store"
+// import { ethers } from "ethers";
 import "@/styles/main.css"
 export default{
     setup (){
 
-        onMounted(()=>{
-        })
-        return {}
+        // onMounted(()=>{
+        //     ethereumObj.value = window.ethereum
+        // })
+
+        // const signerOrProvider = new ethers.providers.Web3Provider(ethereumObj.value);
+        // const signer = signerOrProvider.getSigner()
+        // return {}
     }
 }
 

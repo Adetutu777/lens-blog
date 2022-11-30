@@ -1,5 +1,6 @@
 <template>
 <div class="mt-4">
+    <button @click="onClickConnect" class="bg-info"> connect ijn </button>
         <div>
                 <!-------------- feeds --------------->
                 <div class="feeds">
