@@ -132,7 +132,6 @@ import {formatIpfdImg} from "@/util"
             try {
               const getProfilesId = await clientId.request(recommendProfiles)
               const ids= getProfilesId?.recommendedProfiles?.map((i)=> i.id)
-              console.log('idy', ids)
                  const publicationsPost = await clientId?.request( publicationsQuery, {ids} )
                  console.log('gety', publicationsPost)
                     const mappedData = publicationsPost?.publications?.items.filter((i)=>i.__typename=='Post')?.map((i)=>{

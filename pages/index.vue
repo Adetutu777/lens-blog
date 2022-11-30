@@ -1,5 +1,6 @@
 <template>
     <div>
+
     <header>
         <div class="nav-left">
             <h4 class="logo">
@@ -8,19 +9,18 @@
         </div>
 
         <div class="profile">
-            <div class="btn-secondary">
-                <button @click="signData" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" aria-label="Close">Log in</button>
+            <div class="bn-secondary" >
+                <!-- <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" aria-label="Close">Log in</button> -->
+                 <b-button  v-b-modal.modal-1>Log in</b-button>
+                  <b-modal id="modal-1" title="BootstrapVue">
+                        <button @click="login">login account</button>
+                            </b-modal>
             </div>
-            <div class="btn-primary">
+            <div cass="btn-primary">
+             <!-- <b-button v-b-modal.modal-2>Create account</b-button> -->
+             <!-- createAccount -->
+             <button @click="createAccount">Create</button>
                 <!-- <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" aria-label="Close">Create account</button> -->
-                <div>
-  <b-button v-b-modal.modal-1>Create account</b-button>
-
-  <b-modal id="modal-1" title="BootstrapVue">
-        <h2>Connect to your wallet</h2>
-        <p>This process connects you to your wallet that is already saved in your browser</p>
-  </b-modal>
-</div>
             </div>
             </div>
     </header>
@@ -194,40 +194,105 @@
 
 
     <!-- ------------Landing page body ends-------------------- -->
-    </div>
-</template>
 
+</div>
+
+</template>
 <script>
-import { onMounted, ref, computed, watchEffect, reactive} from '@nuxtjs/composition-api';
+import { onMounted, ref, computed, watchEffect, reactive, useRouter} from '@nuxtjs/composition-api';
 import {ethereumObj} from "../store"
+import { clientId, challenge, authenticate, createProfile } from "../api.js"
 import { ethers } from "ethers";
 import "@/styles/homepage.css"
     export default {
         layout: "no-sidebar",
         setup(){
+            const router = useRouter()
               const signerOrProvider = ref('')
-
-           
+                        const address = ref('')
+                        const token = ref('')
             onMounted(()=>{
         // signerOrProvider.value = window.ethereum
-        console.log('tutu', window?.ethereum)
+      
         
         })
 
                  const signData =async()=>{
                 const signerOrProvider = new ethers.providers.Web3Provider(window?.ethereum);
                 const signer = signerOrProvider.getSigner()
-                let message = "\nhttps://api-mumbai.lens.dev wants you to sign in with your Ethereum account:\n0x4088edFa1ab3792b4Ec3B8fafaC0C20aDd364609\n\nSign in with ethereum to lens\n\nURI: https://api-mumbai.lens.dev\nVersion: 1\nChain ID: 80001\nNonce: bca3ed0f176b135b\nIssued At: 2022-11-30T14:50:54.021Z\n"
-                let signature = await signer.signMessage(message)
+                let text = "\nhttps://api-mumbai.lens.dev wants you to sign in with your Ethereum account:\n0x1049dCFe27985721Fb103d22076266377381eC7D\n\nSign in with ethereum to lens\n\nURI: https://api-mumbai.lens.dev\nVersion: 1\nChain ID: 80001\nNonce: e1e3dfe3aafe331b\nIssued At: 2022-11-30T15:57:26.325Z\n "
+                let signature = await signer.signMessage(text)
+                let addressy = ethers.utils.verifyMessage(text, signature)
                 console.log('hello', signature)
-                 console.log('hello', signerOrProvider)
-                console.log('hi', window?.ethereum)
+                console.log('address', addressy)
+                 console.log('helly', signerOrProvider)
             }
-            return {signData, signerOrProvider}
+
+            async function checkConnection() {
+                const provider = new ethers.providers.Web3Provider(window.ethereum)
+                const accounts = await provider.listAccounts()
+                if (accounts.length) {
+                address.value= accounts[0]
+                }
+            
+            }
+              async function connect() {
+    /* this allows the user to connect their wallet */
+                const account = await window.ethereum.send('eth_requestAccounts')
+                if (account.result.length) {
+                address.value =account.result[0]
+                }
+            }
+
+            async function login() {
+                try {
+                    await connect()
+      /* first request the challenge from the API server */
+            const challengeInfo = await clientId.request(challenge, { address:address.value })
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner()
+      /* ask the user to sign a message with the challenge info returned from the server */
+      const signature = await signer.signMessage(challengeInfo.challenge.text)
+      /* authenticate the user */
+      const authData = await clientId.request(authenticate, {address:address.value, signature})
+      /* if user authentication is successful, you will receive an accessToken and refreshToken */
+      const  { authenticate: { accessToken }} = authData
+      
+     token.value= accessToken
+     if (token.value) {
+         router.push('/blogs')
+     }
+        
+    } catch (err) {
+      console.log('Error signing in: ', err)
+    }
+  }
+
+  const createAccount =async()=>{
+    try {
+        if (!token.value) {
+            await login()
+        }
+        
+         const createUserAcct = await clientId.request(createProfile, { handle: "adetutuOmoba",
+                profilePictureUri: null,
+                followNFTURI: null,
+                followModule: null }, {
+    headers: {
+      ['x-access-token']: token.value,
+    }
+  })
+
+   console.log('creaty', createUserAcct)
+    } catch (error) {
+        console.log('an error occured', error)
+    }
+  }
+            return {signData, signerOrProvider, address, token, login, createAccount}
         }
     }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
 </style>

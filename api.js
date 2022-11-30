@@ -1075,3 +1075,47 @@ export const viewPublicationQuery = `
  }
  
 `
+
+export const challenge = gql`
+  query Challenge($address: EthereumAddress!) {
+    challenge(request: { address: $address }) {
+      text
+    }
+  }
+`
+
+export const authenticate = gql`
+  mutation Authenticate(
+    $address: EthereumAddress!
+    $signature: Signature!
+  ) {
+    authenticate(request: {
+      address: $address,
+      signature: $signature
+    }) {
+      accessToken
+      refreshToken
+    }
+  }
+`
+
+// export const createProfile = gql`
+// mutation createProfile($request: CreateProfileRequest!) {
+//   createProfile(request: $request) {
+//     ... on RelayerResult {
+//       txHash
+//     }
+//     ... on RelayError {
+//       reason
+//     }
+//     __typename
+//   }
+// }
+// `
+export const createProfile = gql`
+mutation createProfile(request: CreateProfileRequest!): RelayResult! 
+ `
+// type Mutation {
+//   createProfile(request: CreateProfileRequest!): RelayResult!
+// }
+
