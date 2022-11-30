@@ -28,7 +28,7 @@
     --sticky-top-right: -18rem;
 }
 
-header {
+.header-top {
     width: 100%;
     background: #f1f7ff;
     position: fixed;
@@ -38,6 +38,7 @@ header {
     align-items: center;
     justify-content: space-between;
     padding: 0.7rem 4rem;
+    /* border: 2px solid red; */
 }
 
 .nav-left {
@@ -689,4 +690,11 @@ footer {
 .footer-bottom a {
     text-decoration: none;
     color: #6C6E70;
+}
+
+/* vue added */
+.btn-connect{
+    background: #0C2ACB;
+        border-radius: 1rem;
+        border:1px solid #0C2ACB;
 }

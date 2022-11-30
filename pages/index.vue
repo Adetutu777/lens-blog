@@ -1,7 +1,7 @@
 <template>
     <div>
 
-    <header>
+    <header class="header-top">
         <div class="nav-left">
             <h4 class="logo">
                 <span>story</span>tribe
@@ -9,17 +9,35 @@
         </div>
 
         <div class="profile">
-            <div class="bn-secondary" >
-                <!-- <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" aria-label="Close">Log in</button> -->
-                 <b-button  v-b-modal.modal-1>Log in</b-button>
-                  <b-modal id="modal-1" title="BootstrapVue">
-                        <button @click="login">login account</button>
-                            </b-modal>
+            <div class="btn-secondary" >
+                <div>
+                        <b-button v-b-modal.modal-1>Login</b-button>
+
+                        <b-modal id="modal-1" title="Login or Signup to storytribe">
+                           <h2>Connect to your wallet</h2>
+                           <p>This process connects you to a wallet that is already saved in your browser.</p>
+
+                           <button type="button" class="btn btn-lg btn-connect text-light" @click="login" >Connect Wallet</button>
+                           <p class="text-center">New here? Sign up instead</p>
+                        </b-modal>
+                        </div>
+            </div>
+            <div class="btn-secondary" >
+                <div>
+                        <b-button v-b-modal.modal-2>Create account</b-button>
+
+                        <b-modal id="modal-2" title="Login or Signup to storytribe">
+                           <h2>Connect to your wallet</h2>
+                           <p>This process connects you to a wallet that is already saved in your browser.</p>
+
+                           <button type="button" class="btn btn-lg btn-connect text-light" @click="createAccount" >Connect Wallet</button>
+                           <p class="text-center">New here? Sign up instead</p>
+                        </b-modal>
+                        </div>
             </div>
             <div cass="btn-primary">
              <!-- <b-button v-b-modal.modal-2>Create account</b-button> -->
              <!-- createAccount -->
-             <button @click="createAccount">Create</button>
                 <!-- <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" aria-label="Close">Create account</button> -->
             </div>
             </div>
