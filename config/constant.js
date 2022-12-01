@@ -1,0 +1,2 @@
+
+export const createProfileAddress = "0x1eeC6ecCaA4625da3Fa6Cd6339DBcc2418710E8a"

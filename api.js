@@ -10,7 +10,6 @@ export const clientId = new GraphQLClient(API_URL)
 export const client = createClient({
     url: API_URL,
 })
-// const query = gql`
 
 export const query = gql`
 query Profile($id: ProfileId!){  
@@ -1099,9 +1098,26 @@ export const authenticate = gql`
   }
 `
 
+export const createProfile = gql`
+mutation CreateProfile {
+  createProfile(request:{ 
+                  handle: "adetutu",
+                
+                    }) {
+   
+   
+    __typename
+  }
+}
+`
 // export const createProfile = gql`
-// mutation createProfile($request: CreateProfileRequest!) {
-//   createProfile(request: $request) {
+// mutation CreateProfile {
+//   createProfile(request:{ 
+//                 handle: "devjoshstevens",
+//                 profilePictureUri: null,
+//                 followNFTURI: null,
+//                 followModule: null
+//                 }) {
 //     ... on RelayerResult {
 //       txHash
 //     }
@@ -1112,9 +1128,7 @@ export const authenticate = gql`
 //   }
 // }
 // `
-export const createProfile = gql`
-mutation createProfile(request: CreateProfileRequest!): RelayResult! 
- `
+
 // type Mutation {
 //   createProfile(request: CreateProfileRequest!): RelayResult!
 // }

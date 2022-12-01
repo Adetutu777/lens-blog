@@ -9,61 +9,27 @@
         </div>
 
         <div class="profile">
-            <div class="btn-secondary" >
+            <!-- login wallet component -->
                 <div>
-                        <b-button v-b-modal.modal-1>Login</b-button>
+                    <b-button v-b-modal.modal-1>Login</b-button>
 
                         <b-modal id="modal-1" title="Login or Signup to storytribe">
                            <h2>Connect to your wallet</h2>
                            <p>This process connects you to a wallet that is already saved in your browser.</p>
 
-                           <button type="button" class="btn btn-lg btn-connect text-light" @click="login" >Connect Wallet</button>
+                                <LoginWallet />
+                           
                            <p class="text-center">New here? Sign up instead</p>
                         </b-modal>
                         </div>
-            </div>
-            <div class="btn-secondary" >
-                <div>
-                        <b-button v-b-modal.modal-2>Create account</b-button>
-
-                        <b-modal id="modal-2" title="Login or Signup to storytribe">
-                           <h2>Connect to your wallet</h2>
-                           <p>This process connects you to a wallet that is already saved in your browser.</p>
-
-                           <button type="button" class="btn btn-lg btn-connect text-light" @click="createAccount" >Connect Wallet</button>
-                           <p class="text-center">New here? Sign up instead</p>
-                        </b-modal>
-                        </div>
-            </div>
-            <div cass="btn-primary">
-             <!-- <b-button v-b-modal.modal-2>Create account</b-button> -->
-             <!-- createAccount -->
-                <!-- <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" aria-label="Close">Create account</button> -->
+            <!-- create account component -->
+            <div>
+            <CreateAccountWallet />
             </div>
             </div>
     </header>
 
 
-    <!-- Modal -->
-    <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-6" id="exampleModalLabel">Login or Signup to storytribe</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <h2>Connect to your wallet</h2>
-                    <p>This process connects you to your wallet that is already saved in your browser</p>
-
-                    <button><a class="btn-primary" href="#">Connect Wallet</a></button>
-                    <div class="bottom">
-                        <h6>New here? <a href="#"> Sign up instead</a></h6>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
 
     <!-- ------------Landing page body ------------------ -->
     <!-- section 1 beegins -->
@@ -241,9 +207,6 @@ import "@/styles/homepage.css"
                 let text = "\nhttps://api-mumbai.lens.dev wants you to sign in with your Ethereum account:\n0x1049dCFe27985721Fb103d22076266377381eC7D\n\nSign in with ethereum to lens\n\nURI: https://api-mumbai.lens.dev\nVersion: 1\nChain ID: 80001\nNonce: e1e3dfe3aafe331b\nIssued At: 2022-11-30T15:57:26.325Z\n "
                 let signature = await signer.signMessage(text)
                 let addressy = ethers.utils.verifyMessage(text, signature)
-                console.log('hello', signature)
-                console.log('address', addressy)
-                 console.log('helly', signerOrProvider)
             }
 
             async function checkConnection() {
@@ -254,38 +217,9 @@ import "@/styles/homepage.css"
                 }
             
             }
-              async function connect() {
-    /* this allows the user to connect their wallet */
-                const account = await window.ethereum.send('eth_requestAccounts')
-                if (account.result.length) {
-                address.value =account.result[0]
-                }
-            }
+           
 
-            async function login() {
-                try {
-                    await connect()
-      /* first request the challenge from the API server */
-            const challengeInfo = await clientId.request(challenge, { address:address.value })
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const signer = provider.getSigner()
-      /* ask the user to sign a message with the challenge info returned from the server */
-      const signature = await signer.signMessage(challengeInfo.challenge.text)
-      /* authenticate the user */
-      const authData = await clientId.request(authenticate, {address:address.value, signature})
-      /* if user authentication is successful, you will receive an accessToken and refreshToken */
-      const  { authenticate: { accessToken }} = authData
       
-     token.value= accessToken
-     if (token.value) {
-         router.push('/blogs')
-     }
-        
-    } catch (err) {
-      console.log('Error signing in: ', err)
-    }
-  }
-
   const createAccount =async()=>{
     try {
         if (!token.value) {
@@ -306,7 +240,7 @@ import "@/styles/homepage.css"
         console.log('an error occured', error)
     }
   }
-            return {signData, signerOrProvider, address, token, login, createAccount}
+            return {signData, signerOrProvider, address, token, createAccount}
         }
     }
 </script>

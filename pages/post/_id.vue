@@ -28,10 +28,11 @@
           <!-- LEFT--------------------------- -->
           <div class="left">
             <div class="sidebar">
-              <a class="menu-item active">
+              <!-- <a class="menu-item active">
                 <span><i class="uil uil-home"></i></span>
                 <h3>Home</h3>
-              </a>
+              </a> -->
+              <NuxtLink to="/blogs">Home</NuxtLink>
               <a class="menu-item">
                 <span><i class="uil uil-bookmark"></i></span>
                 <h3>Saved</h3>
@@ -88,11 +89,11 @@
                   <img :src="viewBlog?.data?.blogUrl ?? 'https://github.com/DrVickie8/Team-Lens-Developers/blob/main/Lens-folder/images/Frame%202.png?raw=true'" @error="replaceByDefault">
                 </div>
 
-                  <!-- {{JSON.stringify(viewBlog?.data?.mainPost?.metadata?.description)}}
+                  {{JSON.stringify(viewBlog?.data?.mainPost?.metadata?.description)}}
                 <div class="blog">
-                  <p>heya</p>
+                  <p>hello world</p>
                   <p>{{viewBlog?.data?.mainPost?.metadata?.description}}</p>
-                </div> -->
+                </div>
               </div>
               <div class="feed">
                 <div class="comment">
