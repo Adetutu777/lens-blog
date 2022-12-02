@@ -33,3 +33,15 @@ export const truncateEthAddress = (address) => {
   if (!match) return address;
   return `${match[1]}…${match[2]}`;
 };
+
+
+export const convertBase64 = (blob) => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.onerror = reject
+    reader.onload = () => {
+      resolve(reader.result)
+    }
+    reader.readAsDataURL(blob)
+  })
+}

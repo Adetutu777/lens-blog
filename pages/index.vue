@@ -29,8 +29,6 @@
             </div>
     </header>
 
-
-
     <!-- ------------Landing page body ------------------ -->
     <!-- section 1 beegins -->
     <div class="land1">
@@ -86,8 +84,6 @@
 
         </div>
     </div>
-
-    <!-- section 2 ends -->
 
     <!-- section 3 begins -->
     <div class="land3">
