@@ -29,15 +29,15 @@
 
             <section class="test-sec container">
 
-<form  @submit.prevent="uploadImage">
-  <!-- <b-form-input
-  type="file"
-    accept="image/jpeg/*"
-         v-model="showImg"
-         @change="uploadImage()"
+<form  @submit.prevent="postData">
+  <b-form-input
+         v-model="publishContent.data.content"
           class="mb-3" 
-
-           /> -->
+           />
+ <b-form-textarea
+          type="text"
+           rows="2"
+          v-model="publishContent.data.description" />
 
 <input type="file" 
 @change="uploadImage"
@@ -253,26 +253,99 @@
 </template>
 
 <script>
-import { onMounted, ref} from '@nuxtjs/composition-api';
-import {convertBase64} from "../../util"
+import { onMounted, ref, reactive} from '@nuxtjs/composition-api';
+import {publishPost, clientId } from "../../api.js"
 import { storeNFT} from "../../upload.js"
 
     export default {
           layout: "no-sidebar",
         setup(){
             const showImg = ref('')
-          const uploadImage =async(values)=>{
-      const base64Img = await convertBase64(values?.target.files[0])
-      showImg.value = base64Img
-      // const postData = {...values, coverPicture:base64Img}
-      // await addPost(postData) 
-      console.log('addy', base64Img)  
-      await storeNFT(values?.target.files[0], 'name', 'description')  
-    
-    
+            const crudStatus = ref('')
+            const imageRef = ref('')
+            const publishContent = reactive({
+                data:{
+                  fileCid :'',
+                  imageCid :'',
+                  content : '',
+                  description : '',
+
+                }
+            })
+
+  
+
+ const sampleJson ={
+"version": "2.0.0",
+"metadata_id": "1c71292d-b9a9-499c-9da6-08394572067d",
+"description": "Hello testing",
+"content": "Hello testing",
+"external_url": "https://lenster.xyz/u/testingme.test",
+"image": "ipfs://bafkreiguwgr6xrclk2hp3373m33anrzh2ioxunqlcfugw5s7f5ux7fid5m",
+"imageMimeType": "image/svg+xml",
+"name": "Comment by @testingme.test",
+"tags": [],
+"animation_url": null,
+"mainContentFocus": "TEXT_ONLY",
+"contentWarning": null,
+"attributes": [
+{
+"traitType": "type",
+"displayType": "string",
+"value": "text_only"
+}
+],
+"media": [],
+"locale": "en-US",
+"createdOn": "2022-12-01T16:27:45.881Z",
+"appId": "Lenster"
+}
+ 
+         const uploadImage =async(values)=>{
+          imageRef.value = values.target.files[0]
  }
 
-        return {showImg, uploadImage}
+    const postData =async()=>{
+    
+        try {
+          crudStatus.value ="image upload in progress..."
+          const imageUpload = await storeNFT(imageRef.value)
+          const jsonData ={
+  version: "2.0.0",
+  metadata_id: "",
+  description: publishContent.data.description,
+  content: publishContent.data.content,
+  external_url: "",
+  image: imageUpload,
+  imageMimeType: "image/svg+xml",
+  name: "",
+  tags: [],
+  animation_url: null,
+  mainContentFocus: "TEXT_ONLY",
+  contentWarning: null,
+  attributes: [
+    {
+      traitType: "type",
+      displayType: "string",
+      value: "text_only"
+    }
+  ],
+  media: [],
+  locale: "en-US",
+  createdOn: new Date(),
+  appId: "Lenster"
+    }
+
+    crudStatus.value = "uploading content..."
+ const file = await storeNFT(jsonData)
+ crudStatus.value = "Almost done"
+   const resp = await clientId.request(publishPost, { })
+        } catch (error) {
+          console.log('error', error)
+        }
+    }
+
+        return {showImg, uploadImage, publishContent, postData, crudStatus, imageRef}
         }
     }
 </script>

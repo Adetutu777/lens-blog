@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { useRoute, computed, ref, watchEffect, onMounted, watch, reactive} from '@nuxtjs/composition-api';
+import { useRoute, computed, ref, watchEffect, onMounted, watch, reactive, useRouter} from '@nuxtjs/composition-api';
 import {createProfileAddress} from "../config/constant"
 import profileAbi from "../config/createProfileAbi.json"
 import {ethers} from "ethers"
@@ -46,6 +46,7 @@ import {userAddress} from "../store"
   export default {
     setup(){
         const signer = ref('')
+        const router = useRouter()
        const getDetails =reactive({
         data: {
                     // walletAddress: '', 
@@ -62,9 +63,11 @@ import {userAddress} from "../store"
              const onSubmit =async()=>{
               try {
                 const contract = getContract(true)
-        const data = [userAddress.value, getDetails.data.handleName, getDetails.data.imageUrl, "0x0000000000000000000000000000000000000000", "0x", '']
-                const txn =  await contract.proxyCreateProfile(data)
+        const data = [userAddress.value, getDetails.data.handleName, getDetails.data.imageUrl, "0x0000000000000000000000000000000000000000", "0x", 'ipfs://QmbqbUQJkZqt8m1akGMKJBY3FZC94Ec2FMJKsLmp6szMNH']
+                const txn =  await contract.proxyCreateProfile(data, {gasLimit: 500000})
+               
               const newTxn =  await txn.wait()
+               console.log('txn', newTxn)
         if (newTxn.status) {
           router.push("/blogs")
         }

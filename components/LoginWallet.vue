@@ -9,8 +9,8 @@
 
 <script>
 import { onMounted, ref, computed, reactive, useRouter} from '@nuxtjs/composition-api';
-import { clientId, challenge, authenticate, createProfile } from "../api.js"
-import {userAddress, isConnected, userAccessToken, isConnecting } from "../store"
+import { clientId, challenge, authenticate, createProfile, defaultProfileQuery} from "../api.js"
+import {userAddress, isConnected, userAccessToken, isConnecting, defaultProfile  } from "../store"
 import { ethers } from "ethers";
     export default {
         setup(){
@@ -28,6 +28,10 @@ import { ethers } from "ethers";
                                                     address.value =account.result[0]
                                                     userAddress.value = address.value 
                                                     isConnected.value = true
+                                                    console.log('mymy', address.value)
+                                               const defaultId = await clientId.request(defaultProfileQuery, { address:address?.value})
+                                               console.log('defy', defaultId)
+                                            //    defaultProfile.data = defaultId
                                                     }
                                         } catch (error) {
                                             console.log(error)
@@ -40,9 +44,11 @@ import { ethers } from "ethers";
                 try {
                     await connect()
       /* first request the challenge from the API server */
-            const challengeInfo = await clientId.request(challenge, { address:address.value })
+       
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner()
+           const challengeInfo = await clientId.request(challenge, { address:address.value })
+           console.log('info', challengeInfo)
       /* ask the user to sign a message with the challenge info returned from the server */
       const signature = await signer.signMessage(challengeInfo.challenge.text)
       /* authenticate the user */

@@ -1110,26 +1110,130 @@ mutation CreateProfile {
   }
 }
 `
-// export const createProfile = gql`
-// mutation CreateProfile {
-//   createProfile(request:{ 
-//                 handle: "devjoshstevens",
-//                 profilePictureUri: null,
-//                 followNFTURI: null,
-//                 followModule: null
-//                 }) {
-//     ... on RelayerResult {
-//       txHash
-//     }
-//     ... on RelayError {
-//       reason
-//     }
-//     __typename
-//   }
-// }
-// `
 
-// type Mutation {
-//   createProfile(request: CreateProfileRequest!): RelayResult!
-// }
+export const publishPost = `
+mutation CreatePostTypedData($id: ProfileId!, $uri:Url!) {
+  createPostTypedData(request: {
+    profileId: $id,
+    contentURI: $uri,
+    collectModule: {
+      revertCollectModule: true
+    },
+    referenceModule: {
+      followerOnlyReferenceModule: false
+    }
+  }) {
+    id
+    expiresAt
+    typedData {
+      types {
+        PostWithSig {
+          name
+          type
+        }
+      }
+      domain {
+        name
+        chainId
+        version
+        verifyingContract
+      }
+      value {
+        nonce
+        deadline
+        profileId
+        contentURI
+        collectModule
+        collectModuleInitData
+        referenceModule
+        referenceModuleInitData
+      }
+    }
+  }
+}`
 
+
+export const defaultProfileQuery = `
+query DefaultProfile($address: EthereumAddress!) {
+  defaultProfile(request: { ethereumAddress: $address}) {
+    id
+    name
+    bio
+    isDefault
+    attributes {
+      displayType
+      traitType
+      key
+      value
+    }
+    followNftAddress
+    metadata
+    handle
+    picture {
+      ... on NftImage {
+        contractAddress
+        tokenId
+        uri
+        chainId
+        verified
+      }
+      ... on MediaSet {
+        original {
+          url
+          mimeType
+        }
+      }
+    }
+    coverPicture {
+      ... on NftImage {
+        contractAddress
+        tokenId
+        uri
+        chainId
+        verified
+      }
+      ... on MediaSet {
+        original {
+          url
+          mimeType
+        }
+      }
+    }
+    ownedBy
+    dispatcher {
+      address
+      canUseRelay
+    }
+    stats {
+      totalFollowers
+      totalFollowing
+      totalPosts
+      totalComments
+      totalMirrors
+      totalPublications
+      totalCollects
+    }
+    followModule {
+      ... on FeeFollowModuleSettings {
+        type
+        contractAddress
+        amount {
+          asset {
+            name
+            symbol
+            decimals
+            address
+          }
+          value
+        }
+        recipient
+      }
+      ... on ProfileFollowModuleSettings {
+       type
+      }
+      ... on RevertFollowModuleSettings {
+       type
+      }
+    }
+  }
+}`
