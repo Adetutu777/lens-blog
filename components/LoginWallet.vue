@@ -27,11 +27,12 @@ import { ethers } from "ethers";
                                                     if (account.result.length) {
                                                     address.value =account.result[0]
                                                     userAddress.value = address.value 
-                                                    isConnected.value = true
-                                                    console.log('mymy', address.value)
-                                               const defaultId = await clientId.request(defaultProfileQuery, { address:address?.value})
-                                               console.log('defy', defaultId)
-                                            //    defaultProfile.data = defaultId
+                                                    isConnected.value = true    
+                                                                                     
+                                               const defaultId = await clientId.request(defaultProfileQuery, { address:address.value})                                            
+                                               defaultProfile.data = defaultId.defaultProfile
+                                         
+
                                                     }
                                         } catch (error) {
                                             console.log(error)

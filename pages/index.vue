@@ -225,11 +225,13 @@ import "@/styles/homepage.css"
          const createUserAcct = await clientId.request(createProfile, { handle: "adetutuOmoba",
                 profilePictureUri: null,
                 followNFTURI: null,
-                followModule: null }, {
+                followModule: null }, 
+                {
     headers: {
       ['x-access-token']: token.value,
     }
-  })
+  }
+  )
 
    console.log('creaty', createUserAcct)
     } catch (error) {

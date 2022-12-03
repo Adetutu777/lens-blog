@@ -2,7 +2,8 @@ import { createClient } from "@urql/vue"
 
 import { request, gql, GraphQLClient } from 'graphql-request'
 
-const API_URL = "https://api.lens.dev"
+// const API_URL = "https://api.lens.dev"
+const API_URL = "https://api-mumbai.lens.dev"
 
 export const clientId = new GraphQLClient(API_URL)
 // const data = await client.request(query, variables)

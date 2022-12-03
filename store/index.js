@@ -6,6 +6,6 @@ export const ethereumObj = ref('')
 export const userAccessToken = ref('')
 export const isConnecting = ref(false)
 export const  profileId = ref('')
-const defaultProfile = reactive({
+export const defaultProfile = reactive({
     data:{}
 })

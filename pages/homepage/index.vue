@@ -15,10 +15,14 @@
         <b-nav-item href="#" disabled>Disabled</b-nav-item>
       </b-navbar-nav>
 
+        
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto ">
         <b-nav-form>
           <b-button size="sm" class="my-2 my-sm-0 login ">Login</b-button>
+          
+          
+
           <b-button size="sm" class="my-2 my-sm-0 create text-light ml-3">Create account</b-button>
         </b-nav-form>
       </b-navbar-nav>
@@ -256,10 +260,13 @@
 import { onMounted, ref, reactive} from '@nuxtjs/composition-api';
 import {publishPost, clientId } from "../../api.js"
 import { storeNFT} from "../../upload.js"
+import { defaultProfile } from "../../store"
+
 
     export default {
           layout: "no-sidebar",
         setup(){
+          console.log("ssdsdsds", {...defaultProfile})
             const showImg = ref('')
             const crudStatus = ref('')
             const imageRef = ref('')
@@ -339,7 +346,20 @@ import { storeNFT} from "../../upload.js"
     crudStatus.value = "uploading content..."
  const file = await storeNFT(jsonData)
  crudStatus.value = "Almost done"
-   const resp = await clientId.request(publishPost, { })
+
+       
+
+   const resp = await clientId.request(publishPost, { 
+    id:"",
+    uri:""
+
+   }, 
+    {
+    headers: {
+      ['x-access-token']: "t",
+    }
+  }
+   )
         } catch (error) {
           console.log('error', error)
         }

@@ -14,13 +14,22 @@
             <!-- <span class="" style="color:red">{{ errors[0] }}</span>
            </ValidationProvider>  -->
               <!-- <ValidationProvider rules="required" v-slot="{ errors }"> -->
-                <div class="">
+                <!-- <div class="">
+
          <b-form-input
          v-model="getDetails.data.imageUrl"
           class="mb-3" 
           type="text"
           placeholder="Enter profile image url"
            />
+           </div> -->
+
+            <div class="">
+
+           <input type="file" 
+ @change="handleChange"
+ class="form-control mb-3" id="customFile" />
+
            </div>
            
            <b-button
@@ -43,6 +52,7 @@ import {createProfileAddress} from "../config/constant"
 import profileAbi from "../config/createProfileAbi.json"
 import {ethers} from "ethers"
 import {userAddress} from "../store"
+import { storeNFT} from "../upload.js"
   export default {
     setup(){
         const signer = ref('')
@@ -59,11 +69,18 @@ import {userAddress} from "../store"
       const signerOrProvider = new ethers.providers.Web3Provider(window.ethereum);
             signer.value = signerOrProvider?.getSigner()
     })
+          const imageRef = ref("")
+          const handleChange =async(values)=>{
+          imageRef.value = values.target.files[0]
+ }
 
              const onSubmit =async()=>{
               try {
+
+                      const imageCid = await storeNFT(imageRef.value)
+                    
                 const contract = getContract(true)
-        const data = [userAddress.value, getDetails.data.handleName, getDetails.data.imageUrl, "0x0000000000000000000000000000000000000000", "0x", 'ipfs://QmbqbUQJkZqt8m1akGMKJBY3FZC94Ec2FMJKsLmp6szMNH']
+        const data = [userAddress.value, getDetails.data.handleName, imageCid, "0x0000000000000000000000000000000000000000", "0x", 'ipfs://QmbqbUQJkZqt8m1akGMKJBY3FZC94Ec2FMJKsLmp6szMNH']
                 const txn =  await contract.proxyCreateProfile(data, {gasLimit: 500000})
                
               const newTxn =  await txn.wait()
@@ -83,7 +100,7 @@ import {userAddress} from "../store"
             return new ethers.Contract(contractAddress, abi, newProvider);
         }
 
-            return {getDetails, onSubmit,}
+            return {getDetails, onSubmit, handleChange}
     }
 
 
