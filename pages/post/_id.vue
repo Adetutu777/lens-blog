@@ -54,8 +54,9 @@
                 <h3>Help</h3>
               </a>
 
-              <label for="create-post" class="btn btn-primary" id="post"
-                ><a href="./publish.html" style="color: white;">Write</a></label
+              <NuxtLink to="/post/create" class="btn btn-primary" id="post">
+                    Write
+                    </NuxtLink>
               >
             </div>
           </div>

@@ -61,7 +61,9 @@
                         <h3>Help</h3>
                     </a>
 
-                    <a href="publish.html" target="_blank" rel="noopener noreferrer"><label for="create-post" class="btn btn-primary" id="post">Write</label></a>
+                    <NuxtLink to="/post/create" class="btn btn-primary" id="post">
+                    Write
+                    </NuxtLink>
                 </div>
 
             </div>
@@ -93,27 +95,30 @@
                         <div>
   <b-tabs content-clss="mt-3">
     <b-tab @click="getValue(0)" title="Post" active></b-tab>
-    <b-tab title="Following"></b-tab>
-    <b-tab title="About"></b-tab>
+    <b-tab @click="getValue(1)" title="Following"></b-tab>
+    <b-tab @click="getValue(2)" title="About"></b-tab>
   </b-tabs>
   
                                 </div>
                     </div>
                 </div>
                           
-                <div class="photo" v-if="currentTab==0">
+                <div class="" v-if="currentTab==0">
                 <div class="" v-if="postsData.length == 0">Nothing here...</div>
-                <div class="" v-for="item in postsData" :key="item.id">
-                       
+                <div class="post-tab mt-2 d-block p-2" v-for="item in postsData" :key="item.id">      
                     <p>{{item?.metadata?.content}}</p>
                 </div>
                 </div>
-                <!-- <div class="photo">
-                    <p>Nothing here yet</p>
+              
+                <div clss="photo" v-if="currentTab==1">
+                    <p>{{userData?.data?.stats?.totalFollowing}} followers</p>
                 </div>
-                <div class="photo">
-                    <p>Nothing here yet</p>
-                </div> -->
+
+                <div clss="photo" v-if="currentTab==2">
+               
+                    <p>{{userData?.data?.bio}} </p>
+                
+                </div>
             </div>
         </div>
 </div>
@@ -170,6 +175,9 @@ import "@/styles/profile.css"
     }
 </script>
 
-<style scoped>
-
+<style>
+.post-tab{
+border: 1.5px solid #0c2acb;
+border-radius: 5px
+}
 </style>

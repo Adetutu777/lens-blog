@@ -65,8 +65,9 @@
                         <span><i class="uil uil-question-circle"></i></span>
                         <h3>Help</h3>
                     </a>
-
-                    <label for="create-post" class="btn btn-primary" id="post">Write</label>
+                        
+                       <button class=" mt-2 mb-3 btn btn-primary" @click.prevent="$router.push('/post/create')">Write</button>
+                        
                 </div>
 
             </div>

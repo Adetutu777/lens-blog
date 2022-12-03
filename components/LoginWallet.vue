@@ -13,7 +13,13 @@ import { clientId, challenge, authenticate, createProfile, defaultProfileQuery} 
 import {userAddress, isConnected, userAccessToken, isConnecting, defaultProfile  } from "../store"
 import { ethers } from "ethers";
     export default {
-        setup(){
+        props:{
+            redirect:{
+                    type:Boolean,
+            default: true
+            },
+        },
+        setup(props){
              const router = useRouter()
               const signerOrProvider = ref('')
                         const address = ref('')
@@ -59,6 +65,9 @@ import { ethers } from "ethers";
       
      token.value= accessToken
    userAccessToken.value = accessToken
+   if (userAccessToken.value && props.redirect){
+       router.push("/blogs")
+   }
         
     } catch (err) {
       console.log('Error signing in: ', err)

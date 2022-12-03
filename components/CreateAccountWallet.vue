@@ -10,7 +10,7 @@
                            <h2>Connect to your wallet</h2>
                         <p>This process connects you to a wallet that is already saved in your browser.</p>
 
-                                        <LoginWallet />
+                                        <LoginWallet :redirect=false />
                                     </div>
                                         <div class="" v-if="isConnected &&  userAccessToken">
                                            

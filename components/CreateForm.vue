@@ -84,7 +84,6 @@ import { storeNFT} from "../upload.js"
                 const txn =  await contract.proxyCreateProfile(data, {gasLimit: 500000})
                
               const newTxn =  await txn.wait()
-               console.log('txn', newTxn)
         if (newTxn.status) {
           router.push("/blogs")
         }

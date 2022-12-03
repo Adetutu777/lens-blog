@@ -201,59 +201,66 @@
              </div>
             </section>
 
+    <!-- footer -->
             <section class="section-seven">
-                <div class="container">     
-                <div class="row">                       
-                    <div class="col-lg-4 col-sm-4 col-xs-12">
-                        <div class="single_footer">
-                            <h4>Services</h4>
-                            <ul>
-                                <li><a href="#">Lorem Ipsum</a></li>
-                                <li><a href="#">Simply dummy text</a></li>
-                                <li><a href="#">The printing and typesetting </a></li>
-                                <li><a href="#">Standard dummy text</a></li>
-                                <li><a href="#">Type specimen book</a></li>
-                            </ul>
-                        </div>
-                    </div><!--- END COL --> 
-                    <div class="col-md-4 col-sm-4 col-xs-12">
-                        <div class="single_footer single_footer_address">
-                            <h4>Page Link</h4>
-                            <ul>
-                                <li><a href="#">Lorem Ipsum</a></li>
-                                <li><a href="#">Simply dummy text</a></li>
-                                <li><a href="#">The printing and typesetting </a></li>
-                                <li><a href="#">Standard dummy text</a></li>
-                                <li><a href="#">Type specimen book</a></li>
-                            </ul>
-                        </div>
-                    </div><!--- END COL -->
-                    <div class="col-md-4 col-sm-4 col-xs-12">
-                        <div class="single_footer single_footer_address">
-                            <h4>Subscribe today</h4>
-                            <div class="signup_form">                           
-                                <form action="#" class="subscribe">
-                                    <input type="text" class="subscribe__input" placeholder="Enter Email Address">
-                                    <button type="button" class="subscribe__btn"><i class="fas fa-paper-plane"></i></button>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="social_profile">
-                            <ul>
-                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                            </ul>
-                        </div>                          
-                    </div><!--- END COL -->         
-                </div><!--- END ROW --> 
+                 <footer>
+        <div class="footer-top">
+            <div class="container">
+                
                 <div class="row">
-                    <div class="col-lg-12 col-sm-12 col-xs-12">
-                        <p class="copyright">Copyright © 2019 <a href="#">Akdesign</a></p>
-                    </div> <!--- END COL -->                 
-                </div> <!--- END ROW -->                 
+                <!-- <div class="col-md-2"></div> -->
+                    <div class="col-lg-4">
+                        
+                        <img src="@/images/storytribe.svg" alt="">
+                        <p>A decentralized blogging experience. Built on the lens protocol </p>
+
+                    </div>
+
+                    <div class="col-md-4">
+                        <h4 class="ml-4">Company</h4>
+                        <ul class="address1">
+                            <li>About Us</li>
+                            <li>Careers</li>
+                            <li>Blog</li>
+                            <li>Pricing</li>
+                            
+                        </ul>
+                    </div>
+
+                    <div class="col-md-4">
+                        <h4 class="ml-4">Resources</h4>
+                        <ul class="address1">
+                            <li>Tutorials</li>
+                            <li>Frequently asked question</li>
+                            <li>Contact us</li>
+                            <li>Other projects</li>
+                            
+                        </ul>
+                    </div>
+              <div class="col-md-1"></div>
+                </div>
+
+                <div class="footer-bottom pt-5 pb-3">
+           <div class="container pt-3">
+           <div class="row">
+           <div class="col-md-3"></div>
+           <div class="col-md-2">
+           <p>Terms and Conditions </p>
+           </div>
+           <div class="col-md-2">
+           <p>2022 copyright</p>
+           </div>
+           <div class="col-md-2">
+           <p>Privacy Policy</p>
+           </div>
+           <div class="col-md-3"></div>
+           </div></div>
+        </div>
             </div>
+        </div>
+        
+    </footer>
+
             </section>
           
     </div>
@@ -423,4 +430,60 @@ border-radius: 10px;
     background: #F0F6FF;
          padding: 7rem 0;
 }
+
+
+ul {
+    padding: 0px;
+}
+ol, ul {
+    margin-bottom: 0px;
+}
+
+.footer-top {
+    padding:50px 0 50px;
+}
+.footer-top h4 {
+    font-size: 19px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+.footer-top p {
+    font-size: 13px;
+    line-height: 2;
+}
+
+footer p {
+  margin-bottom:0;
+}
+.footer-logo {
+    display: block;
+    margin-bottom: 32px;
+}
+.address1 li {
+    list-style: none;
+    position: relative;
+    padding: 0px 0 14px 34px;
+    line-height: 26px;
+}
+ul.address1 span {
+    position: absolute;
+    width: 40px;
+    max-width: 40px;
+    left: 0;
+}
+.address1 li a {
+    color: #fff;
+    text-decoration: none;
+}
+ul.address1 i {
+    width: 20px;
+    position: absolute;
+    left: 0px;
+    text-align: center;
+    font-size: 28px;
+    top: 0;
+}
+
+
+
 </style>
