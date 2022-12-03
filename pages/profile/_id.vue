@@ -104,9 +104,15 @@
                 </div>
                           
                 <div class="" v-if="currentTab==0">
+                
                 <div class="" v-if="postsData.length == 0">Nothing here...</div>
-                <div class="post-tab mt-2 d-block p-2" v-for="item in postsData" :key="item.id">      
-                    <p>{{item?.metadata?.content}}</p>
+                <div class="  " v-for="item in postsData" :key="item.id">      
+                   <div class="post-tab  p-2 mt-2">
+                    <NuxtLink :to="`/post/${item?.id}`">
+                    {{item?.metadata?.content}}
+                    </NuxtLink>
+                    </div>
+                 
                 </div>
                 </div>
               
@@ -177,7 +183,10 @@ import "@/styles/profile.css"
 
 <style>
 .post-tab{
+    display: inline-flex;
+    align-items: center;    
 border: 1.5px solid #0c2acb;
-border-radius: 5px
+border-radius: 5px;
+flex-direction:column;;
 }
 </style>

@@ -242,7 +242,7 @@ nav .search-bar input[type="search"]::placeholder {
   margin-top: 1rem;
   width: 100%;
   text-align: center;
-  padding: 1rem 0;
+  padding: 1rem 2rem;
 }
 
 #post {

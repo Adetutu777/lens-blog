@@ -18,15 +18,23 @@
             <input type="search" placeholder="Find your favourite blogs">
         </div>
 
-        <a class="profile">
+
+        <NuxtLink class="profile" :to="`/profile/${defaultProfile?.data?.ownedBy}`">
+      
             <div class="profile-photo">
-                <img src="@/images/Ellipse 43.png" alt="pix 1" srcset="">
+                <img src="https://w7.pngwing.com/pngs/419/473/png-transparent-computer-icons-user-profile-login-user-heroes-sphere-black-thumbnail.png" alt="pix 1" srcset="">
             </div>
             <div class="handle">
-                <h4>Miss Asake</h4>
-                <p class="text-muted">@nkem_asake.lens</p>
+                <h4>
+                {{defaultProfile.data.id}}
+                </h4>              
+                <h5 class="text-muted ">
+                {{defaultProfile.data.handle}}
+                
+              
+                </h5>
             </div>
-        </a>
+        </NuxtLink>
     </header>
     </nav>
 
@@ -125,9 +133,10 @@
 
 <script>
 import { onMounted, ref, computed, watchEffect, reactive} from '@nuxtjs/composition-api';
-// import {ethereumObj} from "../store"
+import {ethereumObj, defaultProfile}  from "../store"
 // import { ethers } from "ethers";
 import "@/styles/main.css"
+
 export default{
     setup (){
 
@@ -138,6 +147,10 @@ export default{
         // const signerOrProvider = new ethers.providers.Web3Provider(ethereumObj.value);
         // const signer = signerOrProvider.getSigner()
         // return {}
+        
+        return {
+            defaultProfile
+        }
     }
 }
 
@@ -145,5 +158,6 @@ export default{
 </script>
 
 <style>
+
 
 </style>

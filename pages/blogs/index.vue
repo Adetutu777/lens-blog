@@ -11,18 +11,22 @@
                                 <div class="profile-photo">
                                     <img :src="item?.profile?.coverPicture?.original?.url ?? 'https://github.com/DrVickie8/Team-Lens-Developers/blob/main/Lens-folder/images/Frame%202.png?raw=true'">
                                 </div>
+                                <NuxtLink :to="`/profile/${item?.profile?.ownedBy}`">
+                              
                                 <div class="info">
                                     <h3>{{item?.profile?.name}}</h3>
-                                    <small>{{item?.profile?.handle}} .  {{item.createdAt}}</small>
-
+                                    <small>{{item?.profile?.handle}} .  {{item.createdAt}}</small>                                  
                                 </div>
+                                  </NuxtLink>
                             </div>
                             <span class="edit">
                                 <i class="uil uil-book-open"></i> 2mins read
                             </span>
                         </div>
                         <div class="photo">
+
                             <h3 v-if="(item?.mainPost?.metadata?.description)">{{(item?.mainPost?.metadata?.description)?.slice(0,70 )}}...</h3>
+
                             <NuxtLink :to="'/post/' + item.id">
                                 <img :src="item?.metadata?.[0]?.url ?? 'https://github.com/DrVickie8/Team-Lens-Developers/blob/main/Lens-folder/images/Frame%202.png?raw=true'" @error="replaceByDefault">
                                 </NuxtLink>
