@@ -8,8 +8,7 @@
                             <div class="">
                                 <div class="" v-if="!userAccessToken">
                            <h2>Connect to your wallet</h2>
-                           <p>This process connects you to a wallet that is already saved in your browser.</p>
-
+                        <p>This process connects you to a wallet that is already saved in your browser.</p>
 
                                         <LoginWallet />
                                     </div>

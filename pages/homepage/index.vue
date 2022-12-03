@@ -19,7 +19,10 @@
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto ">
         <b-nav-form>
-          <b-button size="sm" class="my-2 my-sm-0 login ">Login</b-button>
+        <LoginWallet />
+          <!-- <b-button size="sm" class="my-2 my-sm-0 login ">
+          Login
+          </b-button> -->
           
           
 
@@ -260,13 +263,13 @@
 import { onMounted, ref, reactive} from '@nuxtjs/composition-api';
 import {publishPost, clientId } from "../../api.js"
 import { storeNFT} from "../../upload.js"
-import { defaultProfile } from "../../store"
+import { defaultProfile , userAccessToken} from "../../store"
 
 
     export default {
           layout: "no-sidebar",
         setup(){
-          console.log("ssdsdsds", {...defaultProfile})
+        
             const showImg = ref('')
             const crudStatus = ref('')
             const imageRef = ref('')
@@ -281,6 +284,7 @@ import { defaultProfile } from "../../store"
             })
 
   
+  console.log(defaultProfile, "default")
 
  const sampleJson ={
 "version": "2.0.0",
@@ -315,6 +319,9 @@ import { defaultProfile } from "../../store"
     const postData =async()=>{
     
         try {
+            console.log("ssdsdsds", {...defaultProfile},)
+          console.log("ssdsdsds token", userAccessToken.value )
+
           crudStatus.value ="image upload in progress..."
           const imageUpload = await storeNFT(imageRef.value)
           const jsonData ={
@@ -347,19 +354,20 @@ import { defaultProfile } from "../../store"
  const file = await storeNFT(jsonData)
  crudStatus.value = "Almost done"
 
+
        
 
    const resp = await clientId.request(publishPost, { 
-    id:"",
-    uri:""
+    id:defaultProfile?.data?.id,
+    uri:`ipfs://${file}`
 
    }, 
-    {
-    headers: {
-      ['x-access-token']: "t",
-    }
-  }
+   {
+  ['x-access-token']: userAccessToken.value,
+},
    )
+
+   console.log(resp, "response post request")
         } catch (error) {
           console.log('error', error)
         }

@@ -11,7 +11,7 @@ const nftImage= await axios.post('https://api.nft.storage/upload', image,  {
     'Accept'       : 'application/json'
    }
 })
-console.log('ffty', nftImage?.data?.value?.cid)
+
 return nftImage.data.value.cid
 }
 
