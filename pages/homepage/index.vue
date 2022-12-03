@@ -19,10 +19,18 @@
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto ">
         <b-nav-form>
-        <LoginWallet />
-          <!-- <b-button size="sm" class="my-2 my-sm-0 login ">
-          Login
-          </b-button> -->
+         <!-- <div> -->
+                    <b-button v-b-modal.modal-1>Login</b-button>
+
+                        <b-modal id="modal-1" title="Login or Signup to storytribe">
+                           <h2>Connect to your wallet</h2>
+                           <p>This process connects you to a wallet that is already saved in your browser.</p>
+
+                                <LoginWallet />
+                           
+                           <p class="text-center">New here? Sign up instead</p>
+                        </b-modal>
+                        <!-- </div> -->
           
           
 
@@ -34,7 +42,7 @@
 </div>
             </div>
 
-            <section class="test-sec container">
+            <!-- <section class="test-sec container">
 
 <form  @submit.prevent="postData">
   <b-form-input
@@ -52,25 +60,25 @@
 
 <button type="submit">submit</button>
 </form>
-            </section>
+            </section> -->
             <!-- second section -->
             <section class="section-two">
             <div class="">
                 <div class="container">
                 <div class="row">
-                    <!-- <div class="col-md-1"></div> -->
-                    <div class="col-lg-6">
+                    <div class="col-md-1"></div>
+                    <div class="col-lg-5">
                     <h1 class="stay-curious"> <b>Stay curious</b> </h1>
                     <p class="mt-3 pb-4 stories">Uncover stories from writers on any topic <br>    	
                             of your choice safely on the blockchain</p>
                                     
                                 <b-button size="sm" class="my-2 my-sm-0 create text-light"> Let’s Get Started</b-button>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-5">
                     <img src="@/images/landing1.png" alt="image">
                     </div>
 
-                    <!-- <div class="col-md-1"></div> -->
+                    <div class="col-md-1"></div>
     
              </div>
 </div>
@@ -271,7 +279,7 @@ import { onMounted, ref, reactive} from '@nuxtjs/composition-api';
 import {publishPost, clientId } from "../../api.js"
 import { storeNFT} from "../../upload.js"
 import { defaultProfile , userAccessToken} from "../../store"
-
+// import "@/styles/homepage.css"
 
     export default {
           layout: "no-sidebar",

@@ -1,181 +1,285 @@
 <template>
-    <div>
+ <div>
+            <div class="navbar-top">
+                <div class="container ">
+  <b-navbar toggleable="lg" type="dark" variant="none">
+    <b-navbar-brand href="#"> 
+        <img src="@/images/storytribe.svg" alt="image">
+    </b-navbar-brand>
 
-    <header class="header-top">
-        <div class="nav-left">
-            <h4 class="logo">
-                <span>story</span>tribe
-            </h4>
-        </div>
+    <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
-        <div class="profile">
-            <!-- login wallet component -->
-                <div>
-                    <b-button v-b-modal.modal-1>Login</b-button>
+    <b-collapse id="nav-collapse" is-nav>
+      <b-navbar-nav>
+        <b-nav-item href="#">Link</b-nav-item>
+        <b-nav-item href="#" disabled>Disabled</b-nav-item>
+      </b-navbar-nav>
 
-                        <b-modal id="modal-1" title="Login or Signup to storytribe">
-                           <h2>Connect to your wallet</h2>
-                           <p>This process connects you to a wallet that is already saved in your browser.</p>
+        
+      <!-- Right aligned nav items -->
+      <b-navbar-nav class="ml-auto ">
+        <b-nav-form>
+         <div>
+                    <b-button class="login-btn" v-b-modal.modal-create>Login</b-button>
+
+                        <b-modal id="modal-create" title="Login or Signup to storytribe">
+                           <h2 class="text-center mb-2">Connect to your wallet</h2>
+                           <p class="text-center pb-3">This process connects you to a wallet that
+                           <br>
+                            is already saved in your browser.</p>
 
                                 <LoginWallet />
                            
-                           <p class="text-center">New here? Sign up instead</p>
+                           <!-- <p class="text-center">New here? Sign up instead</p> -->
+
+                             <template #modal-footer>
+     {{" "}}
+      </template>
                         </b-modal>
                         </div>
-            <!-- create account component -->
-            <div>
+          
+          <div>
             <CreateAccountWallet />
-            </div>
-            </div>
-    </header>
+          </div>
 
-    <!-- ------------Landing page body ------------------ -->
-    <!-- section 1 beegins -->
-    <div class="land1">
-        <div class="land1-left">
-            <h1>Stay curious</h1>
-            <p>Uncover stories from writers on any topicof your choice safely on the blockchain</p>
-            <button>Let's get started</button>
-        </div>
-        <div class="land1-right">
-            <img src="@/images/landing1.png">
-        </div>
+          <!-- <b-button size="sm" class="my-2 my-sm-0 create text-light ml-3">Create account</b-button> -->
+        </b-nav-form>
+      </b-navbar-nav>
+    </b-collapse>
+  </b-navbar>
+</div>
+            </div>
+
+            <!-- <section class="test-sec container">
+
+<form  @submit.prevent="postData">
+  <b-form-input
+         v-model="publishContent.data.content"
+          class="mb-3" 
+           />
+ <b-form-textarea
+          type="text"
+           rows="2"
+          v-model="publishContent.data.description" />
+
+<input type="file" 
+@change="uploadImage"
+ class="form-control" id="customFile" />
+
+<button type="submit">submit</button>
+</form>
+            </section> -->
+            <!-- second section -->
+            <section class="section-two">
+            <div class="">
+                <div class="container">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-lg-5">
+                    <h1 class="stay-curious"> <b>Stay curious</b> </h1>
+                    <p class="mt-3 pb-4 stories">Uncover stories from writers on any topic <br>    	
+                            of your choice safely on the blockchain</p>
+                                    
+                                <b-button size="sm" class="my-2 my-sm-0 create text-light"> Let’s Get Started</b-button>
+                    </div>
+                    <div class="col-lg-5">
+                    <img src="@/images/landing1.png" alt="image">
+                    </div>
+
+                    <div class="col-md-1"></div>
+    
+             </div>
+</div>
+            </div>
+            </section>
+
+            <section class="section-three">
+                <div class="container">
+                 <h3 class="text-center story-header">Storytribe is such a vibe, here’s why</h3>
+                    <div class="row ">                    
+                        <div class="col-md-2"></div>
+  <div class="col-sm-4 ">
+    <div class="card safe-col">
+      <div class="card-body">
+        <img src="@/images/tick.svg" class="tick-icon p-2" alt="image">
+        <h6 class="card-title safe"> <b> SAFE AND SECURE</b></h6>
+        <p class="card-text lorem-text">Lorem Ipsum has been the industry's <br> standard dummy text ever since the <br> 1500s.</p>
+      </div>
     </div>
-    <!-- section 1 ends -->
-
-    <!-- section 2 begins -->
-    <div class="land2">
-        <h2>Storytribe is such a vibe, here's why</h2>
-        <div class="cards">
-            <div class="card">
-                <div class="card-body">
-                    <i class="uil uil-check-circle"></i>
-                    <h6 class="card-sub">SAFE AND SECURE</h6>
-                    <p class="text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-body">
-                    <i class="uil uil-check-circle"></i>
-                    <h6 class="card-sub">used by millions</h6>
-                    <p class="text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                </div>
-            </div>
-        </div>
-        <div class="cards1">
-            <div class="card">
-                <div class="card-body">
-                    <i class="uil uil-check-circle"></i>
-                    <h6 class="card-sub">own your data</h6>
-                    <p class="text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-body">
-                    <i class="uil uil-check-circle"></i>
-                    <h6 class="card-sub">seemless signup</h6>
-                    <p class="text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                </div>
-            </div>
-
-        </div>
+  </div>
+  <div class="col-sm-4 ">
+    <div class="card safe-col">
+      <div class="card-body">
+        <img src="@/images/tick.svg" class="tick-icon p-2" alt="image">
+        <h6 class="card-title safe"> <b> SAFE AND SECURE</b></h6>
+        <p class="card-text lorem-text">Lorem Ipsum has been the industry's <br> standard dummy text ever since the <br> 1500s.</p>
+      </div>
     </div>
+  </div>
+ 
+   <div class="col-md-2"></div>
+                        </div>
 
-    <!-- section 3 begins -->
-    <div class="land3">
-        <div class="land3-left">
-            <img src="@/images/landing2.png">
-        </div>
-        <div class="land3-right">
-            <h1>Write freely</h1>
-            <p>Write about topics that you care about that is securely on the blockchain</p>
-            <button>Let's get started</button>
-        </div>
+                    <div class="row pt-4">                    
+                        <div class="col-md-2"></div>
+  <div class="col-sm-4 ">
+    <div class="card safe-col">
+      <div class="card-body">
+        <img src="@/images/tick.svg" class="tick-icon p-2" alt="image">
+        <h6 class="card-title safe"> <b> SAFE AND SECURE</b></h6>
+        <p class="card-text lorem-text">Lorem Ipsum has been the industry's <br> standard dummy text ever since the <br> 1500s.</p>
+      </div>
     </div>
-    <!-- section 3 ends -->
-
-    <!-- section 4 begins -->
-    <div class="land4">
-        <h2>Featured posts</h2>
-        <div class="display-card">
-            <div class="card" style="width: 24rem;">
-                <img src="@/images/card2.png" class="card-img-top">
-                <div class="card-body">
-                    <h5>Under the night's sky</h5>
-                    <p class="card-text">It is said that bad things happen when the sun goes down. I believe that there are many benefits to exploring nature under the night sky,</p>
-                </div>
-            </div>
-
-            <div class="card" style="width: 24rem;">
-                <img src="@/images/card1.png" class="card-img-top">
-                <div class="card-body">
-                    <h5>Interplanetary exploration</h5>
-                    <p class="card-text">We will explore the unknown, reaching out beyond our world. We are space explorers and we want to share all that we find with you.</p>
-                </div>
-            </div>
-
-            <div class="card" style="width: 24rem;">
-                <img src="@/images/card.png" class="card-img-top">
-                <div class="card-body">
-                    <h5>Plastic bags are harming us</h5>
-                    <p class="card-text">Over 1 million people die prematurely as a result of all toxic substances in the air such as CO2 and air pollution. Let’s do something about it!</p>
-                </div>
-            </div>
-        </div>
+  </div>
+  <div class="col-sm-4 ">
+    <div class="card safe-col">
+      <div class="card-body">
+        <img src="@/images/tick.svg" class="tick-icon p-2" alt="image">
+        <h6 class="card-title safe"> <b> SAFE AND SECURE</b></h6>
+        <p class="card-text lorem-text">Lorem Ipsum has been the industry's <br> standard dummy text ever since the <br> 1500s.</p>
+      </div>
     </div>
+  </div>
+ 
+   <div class="col-md-2"></div>
+                        </div>
+                        </div>
+            </section>
 
-    <!-- section 4 ends -->
+                <section class="section-four">
+                         <div class="row">
+                    <div class="col-lg-6">
+                    <img src="@/images/landing2.png" alt="image">
+                    </div>
 
-    <!-- section 5 starts -->
-    <div class="land5">
-        <h5>Find topics that suit your interest</h5>
+                    <div class="col-lg-6">
+                    <h1 class="stay-curious"> <b>Write freely</b> </h1>
+                    <p class="mt-3 pb-4 stories">Write about topics that you care about that is securely   on the blockchain.</p>
+                                    
+                                <b-button size="sm" class="my-2 my-sm-0 create text-light"> Let’s Get Started</b-button>
+                    </div>
+    
+             </div>
+                </section>
 
-        <button>Let's get started</button>
-
-        <div>
-            <img src="@/images/landing3.png">
-        </div>
+                 <section class="section-five">
+                <div class="container">
+                 <h3 class="text-center story-header">Featured posts</h3>
+                    <div class="row ">                    
+                        <!-- <div class="col-md-2"></div> -->
+  <div class="col-sm-4 ">
+    <div class="card safe-col">
+      <div class="card-body">
+        <img src="@/images/card2.png"  alt="image">
+        <h6 class="card-title safe pt-2"> <b> Under the night’s sky</b></h6>
+        <p class="card-text lorem-text">It is said that bad things happen when the sun goes down. I believe that there are many benefits to exploring nature under the night sky,</p>
+      </div>
     </div>
-    <!-- section 5 ends -->
-    <footer>
+  </div>
+  <div class="col-sm-4 ">
+    <div class="card safe-col">
+      <div class="card-body">
+        <img src="@/images/card1.png" alt="image">
+        <h6 class="card-title safe pt-2"> <b> Interplanetary explorations</b></h6>
+        <p class="card-text lorem-text">We will explore the unknown, reaching out beyond our world. We are space explorers and we want to share all that we find with you.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4 ">
+    <div class="card safe-col">
+      <div class="card-body">
+        <img src="@/images/card.png"  alt="image">
+        <h6 class="card-title safe pt-2"> <b> Plastic bags are harming us</b></h6>
+        <p class="card-text lorem-text">Over 1 million people die prematurely as a result of all toxic substances in the air such as CO2 and air pollution. Let’s do something about it!</p>
+      </div>
+    </div>
+  </div>
+           </div>
+                        </div>
+            </section>
+
+            <section class="section-six">
+                         <div class="row">
+                    
+
+                    <div class="col-lg-12 text-center">
+                    <h1 class="stay-curious"> <b>Write freely</b> </h1>
+                    <p class="mt-3 pb-4 stories">Write about topics that you care about that is securely   on the blockchain.</p>
+
+                        <b-button size="sm" class="my-2 my-sm-0 create text-light"> Let’s Get Started</b-button>
+
+                        <div class="">
+                    <img class="w-25 mx-auto pt-5" src="@/images/landing3.png" alt="image">
+                    </div>
+                    </div>
+                    
+    
+             </div>
+            </section>
+
+    <!-- footer -->
+            <section class="section-seven">
+                 <footer>
         <div class="footer-top">
-            <div class="footer-left">
-                <h4 class="logo">
-                    <span>story</span>tribe
-                </h4>
-                <p>A decentralized blogging experience. Built on the lens protocol</p>
-            </div>
-            <div class="footer-middle">
-                <h2>Company</h2>
-                <a href="#">About us</a>
-                <a href="#">Career</a>
-                <a href="#">Blog</a>
-                <a href="#">Pricing</a>
-            </div>
-            <div class="footer-right">
-                <h2>Resources</h2>
-                <a href="#">Tutorials</a>
-                <a href="#">Frequently asked questions</a>
-                <a href="#">Contact us</a>
-                <a href="#">Other projects</a>
+            <div class="container">
+                
+                <div class="row">
+                <!-- <div class="col-md-2"></div> -->
+                    <div class="col-lg-4">
+                        
+                        <img src="@/images/storytribe.svg" alt="">
+                        <p>A decentralized blogging experience. Built on the lens protocol </p>
+
+                    </div>
+
+                    <div class="col-md-4">
+                        <h4 class="ml-4">Company</h4>
+                        <ul class="address1">
+                            <li>About Us</li>
+                            <li>Careers</li>
+                            <li>Blog</li>
+                            <li>Pricing</li>
+                            
+                        </ul>
+                    </div>
+
+                    <div class="col-md-4">
+                        <h4 class="ml-4">Resources</h4>
+                        <ul class="address1">
+                            <li>Tutorials</li>
+                            <li>Frequently asked question</li>
+                            <li>Contact us</li>
+                            <li>Other projects</li>
+                            
+                        </ul>
+                    </div>
+              <div class="col-md-1"></div>
+                </div>
+
+                <div class="footer-bottom pt-5 pb-3">
+           <div class="container pt-3">
+           <div class="row">
+           <div class="col-md-3"></div>
+           <div class="col-md-2">
+           <p>Terms and Conditions </p>
+           </div>
+           <div class="col-md-2">
+           <p>2022 copyright</p>
+           </div>
+           <div class="col-md-2">
+           <p>Privacy Policy</p>
+           </div>
+           <div class="col-md-3"></div>
+           </div></div>
+        </div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <a href="#">Terms and conditions</a>
-            <a href="#">2022 copyright</a>
-            <a href="#">Privacy policy</a>
-        </div>
+        
     </footer>
 
-
-
-    <!-- ------------Landing page body ends-------------------- -->
-
-</div>
+            </section>
+          
+    </div>
 
 </template>
 <script>
@@ -183,7 +287,7 @@ import { onMounted, ref, computed, watchEffect, reactive, useRouter} from '@nuxt
 import {ethereumObj} from "../store"
 import { clientId, challenge, authenticate, createProfile } from "../api.js"
 import { ethers } from "ethers";
-import "@/styles/homepage.css"
+// import "@/styles/homepage.css"
     export default {
         layout: "no-sidebar",
         setup(){
@@ -243,6 +347,109 @@ import "@/styles/homepage.css"
     }
 </script>
 
-<style scoped>
+<style >
+.login {
+   background: #CCDFFB;
+   border: 1px solid #CCDFFB;
+   color: #05177B;;
+}
+
+.create, .btn-login {
+    background: #0C2ACB;
+    border: 1px solid #0C2ACB;
+}
+.section-two, .section-four, .section-six{
+    background: #CCE1FF;
+    padding: 7rem 0;
+}
+.stay-curious{
+    color: #0723B4;
+    padding-top: 10rem;
+}
+.stories {
+    color: #0D2DA9;
+}
+.story-header {
+    color: #0723B4;
+   padding-bottom: 3rem;
+}
+.tick-icon{
+    width: 3.2rem;
+}
+.safe{
+    color: #331B3B;
+}
+.lorem-text{
+    color: #331B3B;
+}
+.safe-col {
+    background: #FFFFFF;
+box-shadow: 0px 0px 9px 2px rgba(0, 0, 0, 0.05);
+border-radius: 10px;
+}
+
+.section-three, .section-five{
+    background: #F0F6FF;
+         padding: 7rem 0;
+}
+
+
+ul {
+    padding: 0px;
+}
+ol, ul {
+    margin-bottom: 0px;
+}
+
+.footer-top {
+    padding:50px 0 50px;
+}
+.footer-top h4 {
+    font-size: 19px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+.footer-top p {
+    font-size: 13px;
+    line-height: 2;
+}
+
+footer p {
+  margin-bottom:0;
+}
+.footer-logo {
+    display: block;
+    margin-bottom: 32px;
+}
+.address1 li {
+    list-style: none;
+    position: relative;
+    padding: 0px 0 14px 34px;
+    line-height: 26px;
+}
+ul.address1 span {
+    position: absolute;
+    width: 40px;
+    max-width: 40px;
+    left: 0;
+}
+.address1 li a {
+    color: #fff;
+    text-decoration: none;
+}
+ul.address1 i {
+    width: 20px;
+    position: absolute;
+    left: 0px;
+    text-align: center;
+    font-size: 28px;
+    top: 0;
+}
+
+.login-btn{
+    border:0;
+    color:#05177B;
+      background: #CCDFFB;
+}
 
 </style>

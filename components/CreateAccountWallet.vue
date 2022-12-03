@@ -1,15 +1,16 @@
 <template>
  <div class="" >
 
-<div class="btn-secondary" >
-                <b-button v-b-modal.modal-2>Create account</b-button>
+<div class="" >
+                <b-button v-b-modal.modal-2 class="create-btn"> Create account</b-button>
                             
                         <b-modal id="modal-2" title="Login or Signup to storytribe">
                             <div class="">
                                 <div class="" v-if="!userAccessToken">
-                           <h2>Connect to your wallet</h2>
-                        <p>This process connects you to a wallet that is already saved in your browser.</p>
-
+                            <h2 class="text-center mb-2">Connect to your wallet</h2>
+                           <p class="text-center pb-3">This process connects you to a wallet that
+                           <br>
+                            is already saved in your browser.</p>
                                         <LoginWallet :redirect=false />
                                     </div>
                                         <div class="" v-if="isConnected &&  userAccessToken">
@@ -25,6 +26,9 @@
                            <!-- <p class="text-center">New here? Sign up instead</p> -->
                            </div>
 
+                             <template #modal-footer>
+     {{" "}}
+      </template>
                            
                         </b-modal>
 
@@ -45,5 +49,15 @@ setup(){
 }
 }
 </script>
+
+<style>
+.create-btn{
+    border-radius: 20px;
+    color: white;
+    background: #0C2ACB;
+    margin-left:1rem;
+
+}
+</style>
 
 

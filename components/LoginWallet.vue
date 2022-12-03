@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="d-flex justify-content-center my-2">
             
             <button type="button" :class="`${isConnecting ? 'disabled' : ''} btn btn-lg btn-connect text-light`" @click="login">
               {{isConnecting ? 'connecting' : 'Connect Wallet'}}  
@@ -80,4 +80,8 @@ import { ethers } from "ethers";
 
 <style >
 
+.btn-connect {
+   background:#0c2acb;
+   padding: 1rem 8rem;
+}
 </style>
