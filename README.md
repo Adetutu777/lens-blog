@@ -5,8 +5,6 @@
 
 #### Tech Stack : NuxtJs, VueJs, Ethers, GraphQl, Html, Css, BootstrapVue
 
-#### Screenshot of homepage, registration page & blog page shown below
-
 #### Available Features
         - Link: Registration on the lens profile
         - Link:Logging in to your profile
@@ -20,6 +18,7 @@
         - Link: Seaching through blogs
         - Link:Reaction to post
         
+#### Screenshot of homepage, registration page & blog page shown below
 
 ![image](./images/homepage.JPG "Optional Title")
 ![image](./images/login-screen.JPG "Optional Title")
