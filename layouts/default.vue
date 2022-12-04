@@ -6,11 +6,15 @@
     <nav>
         
        <header class="navbar-header">
-        <div class="nav-left">
+        <!-- <div class="nav-left">
             <h4 class="logo">
                 <span>story</span>tribe
             </h4>
-        </div>
+        </div> -->
+        <!-- https://storybite.netlify.app/blogs -->
+        <NuxtLink to="/blogs">
+        <img src="@/images/storytribe.svg"  alt="image">
+        </NuxtLink>
 
 
         <div class="search-bar">
@@ -44,35 +48,33 @@
             <!----------left--------->
             <div class="left">
                 <div class="sidebar">
-                    <a class="menu-item active">
+                    <NuxtLink to="/blogs" class="menu-item active">
                         <span><i class="uil uil-estate"></i></span>
                         <h3>Home</h3>
-                    </a>
+                    </NuxtLink>
 
-                    <a class="menu-item">
-                        <span><i class="uil uil-bookmark"></i></span>
-                        <h3>Saved</h3>
-                    </a>
+                   
 
                     <a class="menu-item">
                         <span><i class="uil uil-envelope-add"></i></span>
                         <h3>Notifications</h3>
                     </a>
 
-                    <a class="menu-item">
+                    <NuxtLink class="menu-item" to="/help">
                         <span><i class="uil uil-setting"></i></span>
                         <h3>Settings</h3>
-                    </a>
+                   </NuxtLink>
 
-                    <a class="menu-item">
+                  
+                    <NuxtLink class=" menu-item" :to="`/profile/${defaultProfile?.data?.ownedBy}`">
                         <span><i class="uil uil-user-circle"></i></span>
                         <h3>Profile</h3>
-                    </a>
+                    </NuxtLink>
 
-                    <a class="menu-item">
+                    <NuxtLink class="menu-item" to="/help">
                         <span><i class="uil uil-question-circle"></i></span>
                         <h3>Help</h3>
-                    </a>
+                    </NuxtLink>
                         
                        <button class=" mt-2 mb-3 btn btn-primary" @click.prevent="$router.push('/post/create')">Write</button>
                         
@@ -158,6 +160,8 @@ export default{
 </script>
 
 <style>
-
+.profile2{
+    background: 1px solid red;
+}
 
 </style>

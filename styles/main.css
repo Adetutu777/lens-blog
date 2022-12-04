@@ -396,4 +396,8 @@ img {
   .left #post {
       display: none;
   }
+  
+  .navbar-toggler-icon {
+    background: rgb(181, 181, 234);
+  }
 }

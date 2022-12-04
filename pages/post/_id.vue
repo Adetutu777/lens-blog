@@ -33,10 +33,10 @@
                 <h3>Home</h3>
               </a> -->
               <NuxtLink to="/blogs">Home</NuxtLink>
-              <a class="menu-item">
+              <!-- <a class="menu-item">
                 <span><i class="uil uil-bookmark"></i></span>
                 <h3>Saved</h3>
-              </a>
+              </a> -->
               <a class="menu-item">
                 <span><i class="uil uil-envelope"></i></span>
                 <h3>Notifications</h3>
@@ -54,9 +54,7 @@
                 <h3>Help</h3>
               </a>
 
-              <NuxtLink to="/post/create" class="btn btn-primary" id="post">
-                    Write
-                    </NuxtLink>
+              <button class=" mt-2 mb-3 btn btn-primary" @click.prevent="$router.push('/post/create')">Write</button>
               >
             </div>
           </div>
@@ -92,7 +90,7 @@
 
                   {{JSON.stringify(viewBlog?.data?.mainPost?.metadata?.description)}}
                 <div class="blog">
-                  <p>hello world</p>
+                  <!-- <p class="bg-danger">hello world</p> -->
                   <p>{{viewBlog?.data?.mainPost?.metadata?.description}}</p>
                 </div>
               </div>

@@ -36,10 +36,10 @@
                         <h3>Home</h3>
                     </a>
 
-                    <a class="menu-item">
+                    <!-- <a class="menu-item">
                         <span><i class="uil uil-bookmark"></i></span>
                         <h3>Saved</h3>
-                    </a>
+                    </a> -->
 
                     <a class="menu-item">
                         <span><i class="uil uil-envelope-add"></i></span>

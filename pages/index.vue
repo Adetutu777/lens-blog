@@ -50,46 +50,25 @@
 </div>
             </div>
 
-            <!-- <section class="test-sec container">
-
-<form  @submit.prevent="postData">
-  <b-form-input
-         v-model="publishContent.data.content"
-          class="mb-3" 
-           />
- <b-form-textarea
-          type="text"
-           rows="2"
-          v-model="publishContent.data.description" />
-
-<input type="file" 
-@change="uploadImage"
- class="form-control" id="customFile" />
-
-<button type="submit">submit</button>
-</form>
-            </section> -->
             <!-- second section -->
             <section class="section-two">
             <div class="">
                 <div class="container">
                 <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="col-lg-5">
+                    <!-- <div class="col-md-1"></div> -->
+                    <div class="col-lg-6">
                     <h1 class="stay-curious"> <b>Stay curious</b> </h1>
                     <p class="mt-3 pb-4 stories">Uncover stories from writers on any topic <br>    	
                             of your choice safely on the blockchain</p>
                                     
                                 <b-button size="sm" class="my-2 my-sm-0 create text-light"> Let’s Get Started</b-button>
                     </div>
-                    <div class="col-lg-5">
-                    <img src="@/images/landing1.png" alt="image">
+                    <div class="col-lg-6">
+                    <img src="@/images/img-man2.svg" alt="image">
                     </div>
-
-                    <div class="col-md-1"></div>
     
              </div>
-</div>
+            </div>
             </div>
             </section>
 
@@ -147,30 +126,33 @@
             </section>
 
                 <section class="section-four">
-                         <div class="row">
+                <div class="container">
+                <div class="row">
                     <div class="col-lg-6">
-                    <img src="@/images/landing2.png" alt="image">
+                    <img src="@/images/note-book.svg" alt="image">
                     </div>
 
                     <div class="col-lg-6">
-                    <h1 class="stay-curious"> <b>Write freely</b> </h1>
-                    <p class="mt-3 pb-4 stories">Write about topics that you care about that is securely   on the blockchain.</p>
+                    <h1 class="stay-curious3"> <b>Stay curious</b> </h1>
+                    <p class="mt-3 pb-4 stories">Uncover stories from writers on any topic <br>    	
+                            of your choice safely on the blockchain</p>
                                     
                                 <b-button size="sm" class="my-2 my-sm-0 create text-light"> Let’s Get Started</b-button>
                     </div>
+                    
     
              </div>
+            </div>
                 </section>
 
                  <section class="section-five">
                 <div class="container">
                  <h3 class="text-center story-header">Featured posts</h3>
                     <div class="row ">                    
-                        <!-- <div class="col-md-2"></div> -->
   <div class="col-sm-4 ">
     <div class="card safe-col">
       <div class="card-body">
-        <img src="@/images/card2.png"  alt="image">
+        <img src="@/images/sky-one.svg"  alt="image">
         <h6 class="card-title safe pt-2"> <b> Under the night’s sky</b></h6>
         <p class="card-text lorem-text">It is said that bad things happen when the sun goes down. I believe that there are many benefits to exploring nature under the night sky,</p>
       </div>
@@ -179,7 +161,7 @@
   <div class="col-sm-4 ">
     <div class="card safe-col">
       <div class="card-body">
-        <img src="@/images/card1.png" alt="image">
+        <img src="@/images/sky2.svg" alt="image">
         <h6 class="card-title safe pt-2"> <b> Interplanetary explorations</b></h6>
         <p class="card-text lorem-text">We will explore the unknown, reaching out beyond our world. We are space explorers and we want to share all that we find with you.</p>
       </div>
@@ -188,7 +170,7 @@
   <div class="col-sm-4 ">
     <div class="card safe-col">
       <div class="card-body">
-        <img src="@/images/card.png"  alt="image">
+        <img src="@/images/sky3.svg"  alt="image">
         <h6 class="card-title safe pt-2"> <b> Plastic bags are harming us</b></h6>
         <p class="card-text lorem-text">Over 1 million people die prematurely as a result of all toxic substances in the air such as CO2 and air pollution. Let’s do something about it!</p>
       </div>
@@ -199,17 +181,15 @@
             </section>
 
             <section class="section-six">
-                         <div class="row">
-                    
-
-                    <div class="col-lg-12 text-center">
+                         <div clss="row">
+                    <div class=" text-center">
                     <h1 class="stay-curious"> <b>Write freely</b> </h1>
                     <p class="mt-3 pb-4 stories">Write about topics that you care about that is securely   on the blockchain.</p>
 
                         <b-button size="sm" class="my-2 my-sm-0 create text-light"> Let’s Get Started</b-button>
 
                         <div class="">
-                    <img class="w-25 mx-auto pt-5" src="@/images/landing3.png" alt="image">
+                    <img class="w-25 mx-auto pt-5" src="@/images/woman-pc.svg" alt="image">
                     </div>
                     </div>
                     
@@ -220,8 +200,9 @@
     <!-- footer -->
             <section class="section-seven">
                  <footer>
+                 <div class="container">
         <div class="footer-top">
-            <div class="container">
+            
                 
                 <div class="row">
                 <!-- <div class="col-md-2"></div> -->
@@ -283,11 +264,9 @@
 
 </template>
 <script>
-import { onMounted, ref, computed, watchEffect, reactive, useRouter} from '@nuxtjs/composition-api';
-import {ethereumObj} from "../store"
-import { clientId, challenge, authenticate, createProfile } from "../api.js"
+import { onMounted, ref, useRouter} from '@nuxtjs/composition-api';
+import { clientId, createProfile } from "../api.js"
 import { ethers } from "ethers";
-// import "@/styles/homepage.css"
     export default {
         layout: "no-sidebar",
         setup(){
@@ -364,7 +343,7 @@ import { ethers } from "ethers";
 }
 .stay-curious{
     color: #0723B4;
-    padding-top: 10rem;
+    margin-top: 4rem;
 }
 .stories {
     color: #0D2DA9;
@@ -372,6 +351,7 @@ import { ethers } from "ethers";
 .story-header {
     color: #0723B4;
    padding-bottom: 3rem;
+ 
 }
 .tick-icon{
     width: 3.2rem;
@@ -451,5 +431,11 @@ ul.address1 i {
     color:#05177B;
       background: #CCDFFB;
 }
+.stay-curious3{
+  margin-top: 12rem;
+}
 
+.section-seven{
+  padding-top: 3rem;
+}
 </style>

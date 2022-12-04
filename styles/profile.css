@@ -301,7 +301,7 @@ header .search-bar input[type="search"]::placeholder {
 
 .middle .photo {
     background-color: #fff;
-    height: 500px;
+    /* height: 500px; */
     border-radius: 0 0 2rem 2rem;
 }
 

@@ -4,12 +4,21 @@
       <form action="" @submit.prevent="onSubmit">
               <!-- <ValidationProvider rules="required" v-slot="{ errors }"> -->
                 <div class="">
-         <b-form-input
+         <!-- <b-form-input
          v-model="getDetails.data.handleName"
-         placeholder="Enter your handle"
+         placeholder="Enter your handle e.g adetutu"
           class="mb-3" 
           type="text"
-           />
+           /> -->
+           <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1">@</span>
+  </div>
+  <input
+  v-model="getDetails.data.handleName" 
+          type="text"
+    class="form-control" placeholder="e.g adetutu" aria-label="Username" aria-describedby="basic-addon1">
+</div>
            </div>
             <!-- <span class="" style="color:red">{{ errors[0] }}</span>
            </ValidationProvider>  -->
@@ -33,7 +42,7 @@
            </div>
            
            <b-button
-                class="py-2"
+                class="py-2 submit-btn"
           type="submit">
           Submit
           </b-button>
@@ -105,3 +114,9 @@ import { storeNFT} from "../upload.js"
 
   }
 </script>
+
+<style>
+.submit-btn{
+  background: #0C2ACB;
+}
+</style>
