@@ -21,6 +21,6 @@
         - Link:Reaction to post
         
 
-![image](./image/homepage.JPG "Optional Title")
-![image](./image/login-screen.JPG "Optional Title")
-![image](./image/blogpage.JPG "Optional Title")
+![image](./images/homepage.JPG "Optional Title")
+![image](./images/login-screen.JPG "Optional Title")
+![image](./images/blogpage.JPG "Optional Title")
