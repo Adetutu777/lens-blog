@@ -1,16 +1,10 @@
 <template>
   <div>
-    <!-- <b-form @submit="onSubmit" @reset="onReset" v-if="show"> -->
+  <ValidationObserver v-slot="{ invalid }">
       <form action="" @submit.prevent="onSubmit">
-              <!-- <ValidationProvider rules="required" v-slot="{ errors }"> -->
                 <div class="">
-         <!-- <b-form-input
-         v-model="getDetails.data.handleName"
-         placeholder="Enter your handle e.g adetutu"
-          class="mb-3" 
-          type="text"
-           /> -->
-           <div class="input-group mb-3">
+                <ValidationProvider rules="required" v-slot="{ errors }">
+           <div class="input-group mt-4">
   <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1">@</span>
   </div>
@@ -18,53 +12,51 @@
   v-model="getDetails.data.handleName" 
           type="text"
     class="form-control" placeholder="e.g adetutu" aria-label="Username" aria-describedby="basic-addon1">
-</div>
+  </div>
+<span class="" style="color:red">{{ errors[0] }}</span>
+           </ValidationProvider> <br> 
            </div>
-            <!-- <span class="" style="color:red">{{ errors[0] }}</span>
-           </ValidationProvider>  -->
-              <!-- <ValidationProvider rules="required" v-slot="{ errors }"> -->
-                <!-- <div class="">
 
-         <b-form-input
-         v-model="getDetails.data.imageUrl"
-          class="mb-3" 
-          type="text"
-          placeholder="Enter profile image url"
-           />
-           </div> -->
 
+<!-- <ValidationProvider rules="image" v-slot="{ errors, validate }">
+  <input type="file" @change="validate">
+  <span>{{ errors[0] }}</span>
+</ValidationProvider> -->
             <div class="">
-
+             <!-- <ValidationProvider rules="image" v-slot="{ errors, validate }"> -->
            <input type="file" 
- @change="handleChange"
- class="form-control mb-3" id="customFile" />
-
+            @change="validate"
+            class="form-control" id="customFile" />
+            <!-- <span class="" style="color:red">{{ errors[0] }}</span> -->
+           <!-- </ValidationProvider> <br>  -->
            </div>
            
            <b-button
-                class="py-2 submit-btn"
+                class="py-2 mt-4 submit-btn"
+                 :disabled="invalid || sendingBtn"
           type="submit">
-          Submit
+          {{ sendingBtn ? "sending.....": "Submit" }}
           </b-button>
-            <!-- <span class="" style="color:red">{{ errors[0] }}</span>
-           </ValidationProvider>  -->
            
       </form>
-       
+  </ValidationObserver>
       
   </div>
 </template>
 
 <script>
 import { useRoute, computed, ref, watchEffect, onMounted, watch, reactive, useRouter} from '@nuxtjs/composition-api';
+import { ValidationProvider, ValidationObserver } from 'vee-validate';
 import {createProfileAddress} from "../config/constant"
 import profileAbi from "../config/createProfileAbi.json"
 import {ethers} from "ethers"
 import {userAddress} from "../store"
 import { storeNFT} from "../upload.js"
   export default {
+    components: { ValidationProvider, ValidationObserver },
     setup(){
         const signer = ref('')
+        const sendingBtn = ref(false)
         const router = useRouter()
        const getDetails =reactive({
         data: {
@@ -79,11 +71,12 @@ import { storeNFT} from "../upload.js"
             signer.value = signerOrProvider?.getSigner()
     })
           const imageRef = ref("")
-          const handleChange =async(values)=>{
+          const validate =async(values)=>{
           imageRef.value = values.target.files[0]
  }
 
              const onSubmit =async()=>{
+              sendingBtn.value = true;
               try {
 
                       const imageCid = await storeNFT(imageRef.value)
@@ -93,11 +86,13 @@ import { storeNFT} from "../upload.js"
                 const txn =  await contract.proxyCreateProfile(data, {gasLimit: 500000})
                
               const newTxn =  await txn.wait()
+              sendingBtn.value= false
         if (newTxn.status) {
           router.push("/blogs")
         }
               } catch (error) {
                 console.log(error)
+                sendingBtn.value= false
               }
         
 
@@ -108,7 +103,7 @@ import { storeNFT} from "../upload.js"
             return new ethers.Contract(contractAddress, abi, newProvider);
         }
 
-            return {getDetails, onSubmit, handleChange}
+            return {getDetails, onSubmit, validate, sendingBtn}
     }
 
 

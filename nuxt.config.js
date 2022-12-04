@@ -26,6 +26,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    "~/plugins/vee-validate.js",
     //  {src: '~/plugins/chart.js', mode: 'client'},
     // { src: "~/plugins/vue.plugin.js",  mode: 'client' },
   
@@ -45,6 +46,19 @@ export default {
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
   ],
+
+   build: {
+  // Add exception
+  transpile: [
+    "vee-validate/dist/rules"
+  ],
+  /*
+    ** You can extend webpack config here
+    */
+  extend(config, ctx) {
+    // ...
+  }
+}
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   // build: {

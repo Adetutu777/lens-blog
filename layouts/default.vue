@@ -30,10 +30,10 @@
             </div>
             <div class="handle">
                 <h4>
-                {{defaultProfile.data.id}}
+                {{defaultProfile?.data?.id}}
                 </h4>              
                 <h5 class="text-muted ">
-                {{defaultProfile.data.handle}}
+                {{defaultProfile?.data?.handle}}
                 
               
                 </h5>

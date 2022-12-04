@@ -27,7 +27,7 @@
 
                             <h3 v-if="(item?.mainPost?.metadata?.description)">{{(item?.mainPost?.metadata?.description)?.slice(0,70 )}}...</h3>
 
-                            <NuxtLink :to="'/post/' + item.id">
+                            <NuxtLink :to="'/post/' + item?.id">
                                 <img :src="item?.metadata?.[0]?.url ?? 'https://github.com/DrVickie8/Team-Lens-Developers/blob/main/Lens-folder/images/Frame%202.png?raw=true'" @error="replaceByDefault">
                                 </NuxtLink>
                         </div>
@@ -135,7 +135,7 @@ import {formatIpfdImg} from "@/util"
       const userQuery =async()=>{
             try {
               const getProfilesId = await clientId.request(recommendProfiles)
-              const ids= getProfilesId?.recommendedProfiles?.map((i)=> i.id)
+              const ids= getProfilesId?.recommendedProfiles?.map((i)=> i?.id)
                  const publicationsPost = await clientId?.request( publicationsQuery, {ids} )
                  console.log('gety', publicationsPost)
                     const mappedData = publicationsPost?.publications?.items.filter((i)=>i.__typename=='Post')?.map((i)=>{

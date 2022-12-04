@@ -57,7 +57,7 @@
                 <div class="row">
                     <!-- <div class="col-md-1"></div> -->
                     <div class="col-lg-6">
-                    <h1 class="stay-curious"> <b>Stay curious</b> </h1>
+                    <h1 class="stay-curious-one"> <b>Stay curious</b> </h1>
                     <p class="mt-3 pb-4 stories">Uncover stories from writers on any topic <br>    	
                             of your choice safely on the blockchain</p>
                                     
@@ -128,14 +128,15 @@
                 <section class="section-four">
                 <div class="container">
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-7">
                     <img src="@/images/note-book.svg" alt="image">
                     </div>
+                    <!-- <div class="col-lg-1"></div> -->
 
-                    <div class="col-lg-6">
+                    <div class="col-lg-5">
                     <h1 class="stay-curious3"> <b>Stay curious</b> </h1>
-                    <p class="mt-3 pb-4 stories">Uncover stories from writers on any topic <br>    	
-                            of your choice safely on the blockchain</p>
+                    <p class="mt-3 pb-4 stories">Uncover stories from writers on any topic  	
+                            of your choice  <br>   safely on the blockchain</p>
                                     
                                 <b-button size="sm" class="my-2 my-sm-0 create text-light"> Let’s Get Started</b-button>
                     </div>
@@ -183,7 +184,7 @@
             <section class="section-six">
                          <div clss="row">
                     <div class=" text-center">
-                    <h1 class="stay-curious"> <b>Write freely</b> </h1>
+                    <h1 class="stay-curious4"> <b>Write freely</b> </h1>
                     <p class="mt-3 pb-4 stories">Write about topics that you care about that is securely   on the blockchain.</p>
 
                         <b-button size="sm" class="my-2 my-sm-0 create text-light"> Let’s Get Started</b-button>
@@ -214,7 +215,7 @@
                     </div>
 
                     <div class="col-md-4">
-                        <h4 class="ml-4">Company</h4>
+                        <h4 class="company">Company</h4>
                         <ul class="address1">
                             <li>About Us</li>
                             <li>Careers</li>
@@ -225,7 +226,7 @@
                     </div>
 
                     <div class="col-md-4">
-                        <h4 class="ml-4">Resources</h4>
+                        <h4 class="company">Resources</h4>
                         <ul class="address1">
                             <li>Tutorials</li>
                             <li>Frequently asked question</li>
@@ -339,11 +340,18 @@ import { ethers } from "ethers";
 }
 .section-two, .section-four, .section-six{
     background: #CCE1FF;
-    padding: 7rem 0;
+    padding: 5rem 0;
 }
 .stay-curious{
     color: #0723B4;
     margin-top: 4rem;
+}
+.stay-curious-one{
+    color: #0723B4;
+    margin-top: 5rem;
+}
+.stay-curious4{
+    color: #0723B4;
 }
 .stories {
     color: #0D2DA9;
@@ -370,7 +378,7 @@ border-radius: 10px;
 
 .section-three, .section-five{
     background: #F0F6FF;
-         padding: 7rem 0;
+         padding: 5rem 0;
 }
 
 
@@ -437,5 +445,8 @@ ul.address1 i {
 
 .section-seven{
   padding-top: 3rem;
+}
+.company{
+  margin-left: 2rem;
 }
 </style>
