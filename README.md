@@ -1,4 +1,4 @@
-### A Blog Dapp integrated with lens protocol[Lens Protocol](https://www.lens.dev/),It is deployed on Mumbai testnet. To create an account please ensure you have a matic testnet token to complete transaction
+### A Blog Dapp integrated with lens protocol [Lens Protocol](https://www.lens.dev/), It is deployed on Mumbai testnet. To create an account please ensure you have a matic testnet token to complete transaction
 
 - Link: https://storybite.netlify.app/
 
