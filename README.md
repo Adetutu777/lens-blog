@@ -11,8 +11,8 @@
 ### Tech Stack : NuxtJs, VueJs, Ethers, GraphQl, Html, Css, BootstrapVue
 
 #### Available Features
-        * Registration on the lens profile
-        * Logging in to your profile
+        * Craeting account for new users
+        * Logging in/viewing user profile
         * Link:Logging in to blog page to read blogs
         * Link:connecting to metamask
 
