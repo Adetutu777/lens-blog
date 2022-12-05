@@ -1,6 +1,6 @@
-### A Blog Dapp integrated with lens protocol [Lens Protocol](https://www.lens.dev/),  
+## A Blog Dapp integrated with lens protocol [Lens Protocol](https://www.lens.dev/),  
 
-## Deployed network : Mumbai
+### Deployed network : Mumbai
 
 
 - To create an account please ensure you have a matic testnet token to complete transaction
