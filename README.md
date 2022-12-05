@@ -8,7 +8,7 @@
 - Link: https://storybite.netlify.app/
 
 
-#### Tech Stack : NuxtJs, VueJs, Ethers, GraphQl, Html, Css, BootstrapVue
+### Tech Stack : NuxtJs, VueJs, Ethers, GraphQl, Html, Css, BootstrapVue
 
 #### Available Features
         * Registration on the lens profile
