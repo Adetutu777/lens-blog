@@ -51,7 +51,7 @@ extend('min_value', {
 });
 extend('image', {
   ...image,
-  message: 'Please uplaod an image',
+  message: 'Please upload an image',
   
 });
 extend('alpha_dash', {

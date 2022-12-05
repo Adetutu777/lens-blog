@@ -15,7 +15,7 @@
                               
                                 <div class="info">
                                     <h3>{{item?.profile?.name}}</h3>
-                                    <small>{{item?.profile?.handle}} .  {{item.createdAt}}</small>                                  
+                                    <small>{{item?.profile?.handle}} .  {{dateFormatter(item?.createdAt)}}</small>                                 
                                 </div>
                                   </NuxtLink>
                             </div>
@@ -24,8 +24,8 @@
                             </span>
                         </div>
                         <div class="photo">
-
-                            <h3 v-if="(item?.mainPost?.metadata?.description)">{{(item?.mainPost?.metadata?.description)?.slice(0,70 )}}...</h3>
+                    <!-- {{item}} -->
+                           <h3 v-if="(item?.mainPost?.metadata?.description)">{{(item?.mainPost?.metadata?.description)?.slice(0,70 )}}...</h3>
 
                             <NuxtLink :to="'/post/' + item?.id">
                                 <img :src="item?.metadata?.[0]?.url ?? 'https://github.com/DrVickie8/Team-Lens-Developers/blob/main/Lens-folder/images/Frame%202.png?raw=true'" @error="replaceByDefault">
@@ -35,7 +35,7 @@
                         <div class="action-button" >
                             <div class="interaction-button">
                                 <span><i class="uil uil-bookmark"></i></span>
-                                <h5 v-for="val in item?.mainPost?.metadata?.attribute" :key="val.value">{{val.value}}</h5>
+                                <h5 class="bg-danger" v-for="val in item?.mainPost?.metadata?.attribute" :key="val.value">{{val.value}}</h5>
                                 
                             </div>
                             <div class="bookmark">
@@ -61,7 +61,7 @@
 <script>
 import { onMounted, ref, computed, watchEffect, reactive} from '@nuxtjs/composition-api';
 import {client, recommendProfiles, clientId, publicationsQuery} from '../../api'
-import {formatIpfdImg} from "@/util"
+import {formatIpfdImg, dateFormatter} from "@/util"
 
     export default {
         setup(){
@@ -78,7 +78,7 @@ import {formatIpfdImg} from "@/util"
             data:{
             }
           })
-
+        
      const fetchProfiles = async() =>{
               try {
                 const resp = await client.query(recommendProfiles).toPromise()
@@ -124,14 +124,6 @@ import {formatIpfdImg} from "@/util"
         }
     }
 
-    // const formatIpfdImg =(ipfs)=>{
-    //     const CID = ipfs
-    //      const getCid =  CID? CID.split('').slice(7).join('') : 'bafkreigfkue3cdeve7pa23vvsmp2lcmj32flksdvlrllt44gpl25bqhp6m'
-    //    const url =  CID?.length === (66 || 53)? 'https://ipfs.io/ipfs/'+ getCid : !CID?.length ?  'https://ipfs.io/ipfs/bafkreigfkue3cdeve7pa23vvsmp2lcmj32flksdvlrllt44gpl25bqhp6m' : CID
-
-    //    return url
-    // }
-
       const userQuery =async()=>{
             try {
               const getProfilesId = await clientId.request(recommendProfiles)
@@ -159,7 +151,7 @@ import {formatIpfdImg} from "@/util"
         const replaceByDefault=(e)=>{
                   e.target.src = "https://github.com/DrVickie8/Team-Lens-Developers/blob/main/Lens-folder/images/Frame%206.png?raw=true"
         }
-          return{loading, getProfiles, onClickConnect , isConnected, userAddress, publications, replaceByDefault}
+          return{loading, getProfiles, onClickConnect , isConnected, userAddress, publications, replaceByDefault, dateFormatter}
         }
     }
 </script>

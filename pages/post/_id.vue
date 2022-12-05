@@ -28,34 +28,30 @@
           <!-- LEFT--------------------------- -->
           <div class="left">
             <div class="sidebar">
-              <!-- <a class="menu-item active">
-                <span><i class="uil uil-home"></i></span>
-                <h3>Home</h3>
-              </a> -->
-              <NuxtLink to="/blogs">Home</NuxtLink>
-              <!-- <a class="menu-item">
-                <span><i class="uil uil-bookmark"></i></span>
-                <h3>Saved</h3>
-              </a> -->
-              <a class="menu-item">
+
+              <NuxtLink to="/blogs" class="menu-item">
                 <span><i class="uil uil-envelope"></i></span>
-                <h3>Notifications</h3>
-              </a>
-              <a class="menu-item">
-                <span><i class="uil uil-setting"></i></span>
-                <h3>Settings</h3>
-              </a>
+                <h3>Home</h3>
+              </NuxtLink>
+              <NuxtLink class="menu-item" to="/help">
+                        <span><i class="uil uil-question-circle"></i></span>
+                        <h3>Notification</h3>
+                    </NuxtLink>
+              <NuxtLink class="menu-item" to="/help">
+                        <span><i class="uil uil-question-circle"></i></span>
+                        <h3>Settings</h3>
+                    </NuxtLink>
               <a class="menu-item">
                 <span><i class="uil uil-user-circle"></i></span>
                 <h3>Profile</h3>
               </a>
-              <a class="menu-item">
-                <span><i class="uil uil-question-circle"></i></span>
-                <h3>Help</h3>
-              </a>
+              <NuxtLink class="menu-item" to="/help">
+                        <span><i class="uil uil-question-circle"></i></span>
+                        <h3>Help</h3>
+                    </NuxtLink>
 
               <button class=" mt-2 mb-3 btn btn-primary" @click.prevent="$router.push('/post/create')">Write</button>
-              >
+              <!-- > -->
             </div>
           </div>
 
@@ -71,7 +67,8 @@
                     </div>
                     <div class="details">
                       <h5>{{viewBlog?.data?.profile?.name}}</h5>
-                      <small>{{viewBlog?.profile?.handle}} .  {{viewBlog?.createdAt}}</small>
+                    
+                      <small>{{viewBlog?.data?.profile?.handle}} .  {{dateFormatter(viewBlog?.data?.createdAt)}}</small>
                     </div>
                   </div>
                   <div class="info">
@@ -81,17 +78,14 @@
                   </div>
                 </div>
                 <div class="title ">
-                  <h4 class="mb-4">{{viewBlog?.data?.mainPost?.metadata?.description}}</h4>
+                  <h4 class="mb-4">{{viewBlog?.data?.metadata?.description}}</h4>
                 </div>
-                {{viewBlog?.data?.media?.[0]?.original?.url}}
+                <!-- {{viewBlog?.data?.media?.[0]?.original?.url}} -->
                 <div class="photo">
                   <img :src="viewBlog?.data?.blogUrl ?? 'https://github.com/DrVickie8/Team-Lens-Developers/blob/main/Lens-folder/images/Frame%202.png?raw=true'" @error="replaceByDefault">
-                </div>
-
-                  {{JSON.stringify(viewBlog?.data?.mainPost?.metadata?.description)}}
-                <div class="blog">
-                  <!-- <p class="bg-danger">hello world</p> -->
-                  <p>{{viewBlog?.data?.mainPost?.metadata?.description}}</p>
+                </div>                
+                <div class="blog">                  
+                  <p>{{viewBlog?.data?.metadata?.content}}</p>
                 </div>
               </div>
               <div class="feed">
@@ -158,187 +152,7 @@
                         </div>
                       </div>
 
-                      <div class="ellipses">
-                        <div class="pro1">
-                          <div class="sub">
-                            <img
-                              src="@/images/Ellipse 54.png"
-                              alt=""
-                              class="profile-photo1"
-                            />
-                          </div>
-                          <div class="sub2">
-                            <small id="br">@milkway.lens</small><br />
-                            <small>God when will I be a billionaire ooo</small>
-                            <div class="sub2a">
-                              <span><i class="uil uil-heart"></i>20</span> <p>Reply</p>
-                            </div>
-                            <div class="sub2b">
-                              <span><i class="uil uil-triangle"></i></span><p>20
-                                replies</p>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="ellipses-main">
-                          <span><i class="uil uil-ellipsis-v"></i></span>
-                        </div>
-                      </div>
-
-                      <div class="ellipses">
-                        <div class="pro1">
-                          <div class="sub">
-                            <img
-                              src="@/images/Ellipse 55.png"
-                              alt=""
-                              class="profile-photo1"
-                            />
-                          </div>
-                          <div class="sub2">
-                            <small id="br">@milkway.lens</small><br />
-                            <small>God when will I be a billionaire ooo</small>
-                            <div class="sub2a">
-                              <span><i class="uil uil-heart"></i>20</span> <p>Reply</p>
-                            </div>
-                            <div class="sub2b">
-                              <span><i class="uil uil-triangle"></i></span><p>20
-                                replies</p>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="ellipses-main">
-                          <span><i class="uil uil-ellipsis-v"></i></span>
-                        </div>
-                      </div>
-
-                      <div class="ellipses">
-                        <div class="pro1">
-                          <div class="sub">
-                            <img
-                              src="@/images/Ellipse 56.png"
-                              alt=""
-                              class="profile-photo1"
-                            />
-                          </div>
-                          <div class="sub2">
-                            <small id="br">@milkway.lens</small><br />
-                            <small>God when will I be a billionaire ooo</small>
-                            <div class="sub2a">
-                              <span><i class="uil uil-heart"></i>20</span> <p>Reply</p>
-                            </div>
-                            <div class="sub2b">
-                              <span><i class="uil uil-triangle"></i></span><p>20
-                                replies</p>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="ellipses-main">
-                          <span><i class="uil uil-ellipsis-v"></i></span>
-                        </div>
-                      </div>
-
-                      <div class="ellipses">
-                        <div class="pro1">
-                          <div class="sub">
-                            <img
-                              src="@/images/Ellipse 57.png"
-                              alt=""
-                              class="profile-photo1"
-                            />
-                          </div>
-                          <div class="sub2">
-                            <small id="br">@milkway.lens</small><br />
-                            <small>God when will I be a billionaire ooo</small>
-                            <div class="sub2a">
-                              <span><i class="uil uil-heart"></i>20</span> <p>Reply</p>
-                            </div>
-                            <div class="sub2b">
-                              <span><i class="uil uil-triangle"></i></span><p>20
-                                replies</p>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="ellipses-main">
-                          <span><i class="uil uil-ellipsis-v"></i></span>
-                        </div>
-                      </div>
-
-                      <div class="ellipses">
-                        <div class="pro1">
-                          <div class="sub">
-                            <img
-                              src="@/images/Ellipse 58.png"
-                              alt=""
-                              class="profile-photo1"
-                            />
-                          </div>
-                          <div class="sub2">
-                            <small id="br">@milkway.lens</small><br />
-                            <small>God when will I be a billionaire ooo</small>
-                            <div class="sub2a">
-                              <span><i class="uil uil-heart"></i>20</span> <p>Reply</p>
-                            </div>
-                            <div class="sub2b">
-                              <span><i class="uil uil-triangle"></i></span><p>20
-                                replies</p>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="ellipses-main">
-                          <span><i class="uil uil-ellipsis-v"></i></span>
-                        </div>
-                      </div>
-
-                      <div class="ellipses">
-                        <div class="pro1">
-                          <div class="sub">
-                            <img
-                              src="@/images/Ellipse 59.png"
-                              alt=""
-                              class="profile-photo1"
-                            />
-                          </div>
-                          <div class="sub2">
-                            <small id="br">@milkway.lens</small><br />
-                            <small>God when will I be a billionaire ooo</small>
-                            <div class="sub2a">
-                              <span><i class="uil uil-heart"></i>20</span> <p>Reply</p>
-                            </div>
-                            <div class="sub2b">
-                              <span><i class="uil uil-triangle"></i></span><p>20
-                                replies</p>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="ellipses-main">
-                          <span><i class="uil uil-ellipsis-v"></i></span>
-                        </div>
-                      </div>
-
-                      <div class="ellipses">
-                        <div class="pro1">
-                          <div class="sub">
-                            <img
-                              src="@/images/Ellipse 60.png"
-                              alt=""
-                              class="profile-photo1"
-                            />
-                          </div>
-                          <div class="sub2">
-                            <small id="br">@milkway.lens</small><br />
-                            <small>God when will I be a billionaire ooo</small>
-                            <div class="sub2a">
-                              <span><i class="uil uil-heart"></i>20</span> <p>Reply</p>
-                            </div>
-                            <div class="sub2b">
-                              <span><i class="uil uil-triangle"></i></span><p>20
-                                replies</p>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="ellipses-main">
-                          <span><i class="uil uil-ellipsis-v"></i></span>
-                        </div>
-                      </div>
+               
                     </div>
                   </div>
                 </div>
@@ -354,32 +168,36 @@
                       <img src="@/images/Ellipse 46.png" alt="" />
                     </div>
                     <div class="funds">
-                      <h5>Esco Funds</h5>
-                      <small>@esco_funds.lens - Nov. 26, 2022</small>
+                      <h5>{{viewBlog?.data?.profile?.name}}</h5>
+                      <small>
+                    {{viewBlog?.data?.profile?.handle}}
+                    
+                      </small>
                     </div>
                   </div>
                   <div class="second">
                     <p>
-                      Esco Funds, aka me, is all about helping people unlock
-                      their potential. I work with a wide range of clients, from
-                      small businesses to Fortune 50 companies, and I'm always
-                      on the lookout for new projects that will help me grow my
-                      network and get more exposure.
+                   {{viewBlog?.data?.profile?.bio}}
                     </p>
                   </div>
                   <div class="third">
-                    <div class="fig1">
-                      <h5>50k</h5>
+                    <div class="fig1 mr-3">
+                      <h5>
+                
+                      {{viewBlog?.data?.profile?.stats?.totalFollowers}}
+                      </h5>
                       <p>Followers</p>
                     </div>
                     <div class="fig2">
-                      <h5>5k</h5>
-                      <p>Blog Posts</p>
+                      <h5>
+                     {{viewBlog?.data?.profile?.stats?.totalPublications}}
+                      </h5>
+                      <p>Publications</p>
                     </div>
                   </div>
-                  <label for="create-post" class="btn btn-primary" id="post"
+                  <!-- <label for="create-post" class="btn btn-primary" id="post"
                     >Follow</label
-                  >
+                  > -->
                 </div>
               </div>
             </div>
@@ -395,7 +213,7 @@ import { useRoute, computed, ref, watchEffect, onMounted, watch, reactive} from 
 import {viewPublicationQuery, clientId} from "../../api"
 import "@/styles/readpost.css"
 // import "@/styles/main.css"
-import {formatIpfdImg} from "@/util"
+import {formatIpfdImg, dateFormatter} from "@/util"
     export default {
        layout: "no-sidebar",
         setup(){
@@ -428,7 +246,7 @@ import {formatIpfdImg} from "@/util"
      const replaceByDefault=(e)=>{
                   e.target.src = "https://github.com/DrVickie8/Team-Lens-Developers/blob/main/Lens-folder/images/Frame%206.png?raw=true"
         }
-            return {viewBlog, id, replaceByDefault}
+            return {viewBlog, id, replaceByDefault, dateFormatter}
         }
     }
 </script>"

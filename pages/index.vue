@@ -1,5 +1,8 @@
 <template>
  <div>
+     <!-- <div class="bg-danger">
+    <h6>{{Mumbai}}</h6>
+    </div> -->
             <div class="navbar-top">
                 <div class="container ">
   <b-navbar toggleable="lg" type="dark" variant="none">

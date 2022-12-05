@@ -23,15 +23,17 @@
   <span>{{ errors[0] }}</span>
 </ValidationProvider> -->
             <div class="">
-             <!-- <ValidationProvider rules="image" v-slot="{ errors, validate }"> -->
+             <ValidationProvider rules="image" v-slot="{ errors, validate }">
            <input type="file" 
+           required
             @change="validate"
             class="form-control" id="customFile" />
-            <!-- <span class="" style="color:red">{{ errors[0] }}</span> -->
-           <!-- </ValidationProvider> <br>  -->
+            <span class="" style="color:red">{{ errors[0] }}</span>
+           </ValidationProvider> <br> 
            </div>
            
            <b-button
+                
                 class="py-2 mt-4 submit-btn"
                  :disabled="invalid || sendingBtn"
           type="submit">

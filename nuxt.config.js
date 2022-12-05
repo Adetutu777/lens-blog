@@ -13,7 +13,8 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/png', href: '/favicon.png' },
+      // { rel: 'icon', type: 'image/png', href: '/favicon.png' },
+      
       { rel:"stylesheet", type:"text/css", href:'https://unicons.iconscout.com/release/v4.0.0/css/line.css' },
       { rel:"stylesheet", type:"text/css", href:"https://api.fontshare.com/v2/css?f[]=satoshi@1,900,700,500,301,701,300,501,401,901,400&display=swap"}
       

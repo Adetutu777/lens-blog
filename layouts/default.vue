@@ -1,9 +1,12 @@
 <template>
     <div>
     <!-- <ConnectWallet /> -->
+    
     <div class="mt-4">
+    <!-- <div class=""><h6>{{Please you are on Mumbai network}}</h6></div> -->
 <div class="homepage">
     <nav>
+    
         
        <header class="navbar-header">
         <!-- <div class="nav-left">

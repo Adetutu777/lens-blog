@@ -19,8 +19,8 @@
                 <img src="@/images/Ellipse 43.png" alt="pix 1" srcset="">
             </div>
             <div class="handle">
-                <h4>Miss Asake</h4>
-                <p class="text-muted">@nkem_asake.lens</p>
+                <h4>{{userData.data.handle}}</h4>
+                <p class="text-muted">{{userData.data.id}}</p>
             </div>
         </a>
     </header>
@@ -31,35 +31,31 @@
             <!----------left--------->
             <div class="left">
                 <div class="sidebar">
-                    <a class="menu-item">
-                        <span><i class="uil uil-estate"></i></span>
-                        <h3>Home</h3>
-                    </a>
 
-                    <!-- <a class="menu-item">
-                        <span><i class="uil uil-bookmark"></i></span>
-                        <h3>Saved</h3>
-                    </a> -->
+                    <NuxtLink to="/blogs" class="menu-item">
+                <span><i class="uil uil-envelope"></i></span>
+                <h3>Home</h3>
+              </NuxtLink>
 
-                    <a class="menu-item">
-                        <span><i class="uil uil-envelope-add"></i></span>
+                    <NuxtLink class="menu-item" to="/help">
+                        <span><i class="uil uil-question-circle"></i></span>
                         <h3>Notifications</h3>
-                    </a>
+                    </NuxtLink>
 
-                    <a class="menu-item">
-                        <span><i class="uil uil-setting"></i></span>
+                    <NuxtLink class="menu-item" to="/help">
+                        <span><i class="uil uil-question-circle"></i></span>
                         <h3>Settings</h3>
-                    </a>
+                    </NuxtLink>
 
                     <a class="menu-item">
                         <span><i class="uil uil-user-circle"></i></span>
                         <h3>Profile</h3>
                     </a>
 
-                    <a class="menu-item">
+                    <NuxtLink class="menu-item" to="/help">
                         <span><i class="uil uil-question-circle"></i></span>
                         <h3>Help</h3>
-                    </a>
+                    </NuxtLink>
 
                     <NuxtLink to="/post/create" class="btn btn-primary" id="post">
                     Write
