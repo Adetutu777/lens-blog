@@ -233,11 +233,9 @@ import {formatIpfdImg, dateFormatter} from "@/util"
                 try {
                 const userPublication= await clientId.request(viewPublicationQuery, {id:id.value})
                 viewBlog.data = userPublication.publication
-                console.log('vewy', viewBlog.data)
                 const blogPicture = viewBlog?.data?.metadata?.media?.[0]?.original?.url
                 const blogUrl = blogPicture.startsWith('ipfs') ? formatIpfdImg(blogPicture) : blogPicture
                 viewBlog.data.blogUrl= blogUrl
-                console.log('tyt', viewBlog.data)
                 // viewBlog?.data?.metadata?.media?.[0]?.original?.url = formatIpfdImg(viewBlog.data.profile.picture.original.url)
                 } catch (error) {
                     

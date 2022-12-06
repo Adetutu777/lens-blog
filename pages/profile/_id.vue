@@ -160,9 +160,6 @@ import "@/styles/profile.css"
          
             postsData.value = filtered
 
-        console.log(filtered) 
-            console.log(posts)
-
         })
 
         const getValue =(val)=>{

@@ -55,7 +55,6 @@ import { ethers } from "ethers";
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner()
            const challengeInfo = await clientId.request(challenge, { address:address.value })
-           console.log('info', challengeInfo)
       /* ask the user to sign a message with the challenge info returned from the server */
       const signature = await signer.signMessage(challengeInfo.challenge.text)
       /* authenticate the user */

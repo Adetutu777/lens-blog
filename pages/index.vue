@@ -319,8 +319,6 @@ import { ethers } from "ethers";
     }
   }
   )
-
-   console.log('creaty', createUserAcct)
     } catch (error) {
         console.log('an error occured', error)
     }

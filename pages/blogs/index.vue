@@ -129,7 +129,7 @@ import {formatIpfdImg, dateFormatter} from "@/util"
               const getProfilesId = await clientId.request(recommendProfiles)
               const ids= getProfilesId?.recommendedProfiles?.map((i)=> i?.id)
                  const publicationsPost = await clientId?.request( publicationsQuery, {ids} )
-                 console.log('gety', publicationsPost)
+                //  console.log('gety', publicationsPost)
                     const mappedData = publicationsPost?.publications?.items.filter((i)=>i.__typename=='Post')?.map((i)=>{
                         const dataMap = i?.metadata?.media?.map((j)=>{
                              return {...j, 
@@ -142,7 +142,7 @@ import {formatIpfdImg, dateFormatter} from "@/util"
                             }
               })
                  publications.data = mappedData ?? publications.data
-                 console.log('ýat', publications.data)
+                //  console.log('ýat', publications.data)
             } catch (error) {
                  console.log('error', error)
             }

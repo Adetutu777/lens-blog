@@ -5,6 +5,7 @@
                 <b-button v-b-modal.modal-2 class="create-btn"> Create account</b-button>
                             
                         <b-modal id="modal-2" title="Login or Signup to storytribe">
+                        
                             <div class="">
                                 <div class="" v-if="!userAccessToken">
                             <h2 class="text-center mb-2">Connect to your wallet</h2>
@@ -27,7 +28,7 @@
                            </div>
 
                              <template #modal-footer>
-     {{" "}}
+   <h6 class="mx-auto network" >Please ensure you are on Mumbai Network</h6>  
       </template>
                            
                         </b-modal>
@@ -56,7 +57,10 @@ setup(){
     color: white;
     background: #0C2ACB;
     margin-left:1rem;
+}
 
+.network {
+    color:#0c2acb;
 }
 </style>
 

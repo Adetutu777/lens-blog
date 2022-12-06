@@ -298,9 +298,6 @@ import { defaultProfile , userAccessToken} from "../../store"
                 }
             })
 
-  
-  console.log(defaultProfile, "default")
-
  const sampleJson ={
 "version": "2.0.0",
 "metadata_id": "1c71292d-b9a9-499c-9da6-08394572067d",
@@ -334,8 +331,8 @@ import { defaultProfile , userAccessToken} from "../../store"
     const postData =async()=>{
     
         try {
-            console.log("ssdsdsds", {...defaultProfile},)
-          console.log("ssdsdsds token", userAccessToken.value )
+          //   console.log("ssdsdsds", {...defaultProfile},)
+          // console.log("ssdsdsds token", userAccessToken.value )
 
           crudStatus.value ="image upload in progress..."
           const imageUpload = await storeNFT(imageRef.value)
@@ -381,8 +378,6 @@ import { defaultProfile , userAccessToken} from "../../store"
   ['x-access-token']: userAccessToken.value,
 },
    )
-
-   console.log(resp, "response post request")
         } catch (error) {
           console.log('error', error)
         }
