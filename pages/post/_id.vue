@@ -57,7 +57,7 @@
                     <div class="profile-photo">
                       <img src="@/images/Ellipse 44.png" alt="" />
                     </div>
-
+                      <!-- {{viewBlog?.data?.profile}} -->
                     <NuxtLink :to="`/profile/${viewBlog?.data?.profile?.ownedBy}`">
                     <div class="details">
                       <h5>{{viewBlog?.data?.profile?.name}}</h5>
