@@ -2,11 +2,9 @@ import { createClient } from "@urql/vue"
 
 import { request, gql, GraphQLClient } from 'graphql-request'
 
-// const API_URL = "https://api.lens.dev"
 const API_URL = "https://api-mumbai.lens.dev"
 
 export const clientId = new GraphQLClient(API_URL)
-// const data = await client.request(query, variables)
 
 export const client = createClient({
     url: API_URL,
@@ -1508,6 +1506,51 @@ mutation CreatePostTypedData($id: ProfileId!, $uri:Url!) {
     }
   }
 }`
+export const publishComment = `
+mutation CreateCommentTypedData($id: ProfileId!, $uri:Url!, $publishId: InternalPublicationId!) {
+  createCommentTypedData(request: {
+    profileId: $id,
+    contentURI: $uri,
+    publicationId: $publishId
+    collectModule: {
+      revertCollectModule: true
+    },
+    referenceModule: {
+      followerOnlyReferenceModule: false
+    }
+  }) {
+    id
+    expiresAt
+    typedData {
+      types {
+        CommentWithSig {
+          name
+          type
+        }
+      }
+      domain {
+        name
+        chainId
+        version
+        verifyingContract
+      }
+      value {
+        nonce
+        deadline
+        profileId
+        profileIdPointed
+        pubIdPointed
+        contentURI
+        referenceModuleData
+        collectModule
+        collectModuleInitData
+        referenceModule
+        referenceModuleInitData
+      }
+    }
+  }
+}
+`
 
 
 export const defaultProfileQuery = `

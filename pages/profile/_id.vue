@@ -14,15 +14,7 @@
             <input type="search" placeholder="Find your favourite blogs">
         </div>
 
-        <a class="profile">
-            <div class="profile-photo">
-                <img src="@/images/Ellipse 43.png" alt="pix 1" srcset="">
-            </div>
-            <div class="handle">
-                <h4>{{userData.data.handle}}</h4>
-                <p class="text-muted">{{userData.data.id}}</p>
-            </div>
-        </a>
+      <profileId />
     </header>
 
     <!----------hero section--------->
@@ -159,6 +151,9 @@ import "@/styles/profile.css"
             const filtered = posts.publications.items.filter(post => post.__typename==='Post')
          
             postsData.value = filtered
+
+        console.log(filtered) 
+            console.log(posts)
 
         })
 

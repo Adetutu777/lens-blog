@@ -9,15 +9,7 @@
           <input type="search" placeholder="Find your favourite blogs" />
         </div>
 
-        <a class="profile">
-          <div class="profile-photo">
-            <img src="@/images/Ellipse 43.png" alt="pix 1" srcset="" />
-          </div>
-          <div class="handle">
-            <h4>Miss Asake</h4>
-            <p class="text-muted">@nkem_asake.lens</p>
-          </div>
-        </a>
+        <profileId />
       </div>
     </nav>
 
@@ -65,11 +57,13 @@
                     <div class="profile-photo">
                       <img src="@/images/Ellipse 44.png" alt="" />
                     </div>
+
+                    <NuxtLink :to="`/profile/${viewBlog?.data?.profile?.ownedBy}`">
                     <div class="details">
                       <h5>{{viewBlog?.data?.profile?.name}}</h5>
-                    
                       <small>{{viewBlog?.data?.profile?.handle}} .  {{dateFormatter(viewBlog?.data?.createdAt)}}</small>
                     </div>
+                    </NuxtLink>
                   </div>
                   <div class="info">
                     <span><i class="uil uil-book-open"></i></span
@@ -233,9 +227,11 @@ import {formatIpfdImg, dateFormatter} from "@/util"
                 try {
                 const userPublication= await clientId.request(viewPublicationQuery, {id:id.value})
                 viewBlog.data = userPublication.publication
+                console.log('vewy', viewBlog.data)
                 const blogPicture = viewBlog?.data?.metadata?.media?.[0]?.original?.url
                 const blogUrl = blogPicture.startsWith('ipfs') ? formatIpfdImg(blogPicture) : blogPicture
                 viewBlog.data.blogUrl= blogUrl
+                console.log('tyt', viewBlog.data)
                 // viewBlog?.data?.metadata?.media?.[0]?.original?.url = formatIpfdImg(viewBlog.data.profile.picture.original.url)
                 } catch (error) {
                     
