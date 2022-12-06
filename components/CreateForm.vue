@@ -26,7 +26,7 @@
              <ValidationProvider rules="image" v-slot="{ errors, validate }">
            <input type="file" 
            required
-            @change="validate"
+            @change="(e)=>handleChange(e, validate)"
             class="form-control" id="customFile" />
             <span class="" style="color:red">{{ errors[0] }}</span>
            </ValidationProvider> <br> 
@@ -35,7 +35,7 @@
            <b-button
                 
                 class="py-2 mt-4 submit-btn"
-                 :disabled="invalid || sendingBtn"
+                 :disabled="!!!imageRef || invalid || sendingBtn"
           type="submit">
           {{ sendingBtn ? "sending.....": "Submit" }}
           </b-button>
@@ -73,7 +73,8 @@ import { storeNFT} from "../upload.js"
             signer.value = signerOrProvider?.getSigner()
     })
           const imageRef = ref("")
-          const validate =async(values)=>{
+          const handleChange =async(values, validate)=>{
+          const valid =  await validate(values)
           imageRef.value = values.target.files[0]
  }
 
@@ -86,7 +87,6 @@ import { storeNFT} from "../upload.js"
                 const contract = getContract(true)
         const data = [userAddress.value, getDetails.data.handleName, imageCid, "0x0000000000000000000000000000000000000000", "0x", 'ipfs://QmbqbUQJkZqt8m1akGMKJBY3FZC94Ec2FMJKsLmp6szMNH']
                 const txn =  await contract.proxyCreateProfile(data, {gasLimit: 500000})
-               
               const newTxn =  await txn.wait()
               sendingBtn.value= false
         if (newTxn.status) {
@@ -105,7 +105,7 @@ import { storeNFT} from "../upload.js"
             return new ethers.Contract(contractAddress, abi, newProvider);
         }
 
-            return {getDetails, onSubmit, validate, sendingBtn}
+            return {getDetails, onSubmit,  sendingBtn, imageRef, handleChange}
     }
 
 
