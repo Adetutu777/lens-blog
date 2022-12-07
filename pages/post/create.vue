@@ -7,19 +7,66 @@
     <main>
 
   
-<form  @submit.prevent="postData">
-  <nav>
-      <div class="navbar" id="topnav">
+<form  >
+
+
+<div class="d-flex justify-content-between container mt-5">
+<div>
+<img src="@/images/storytribe.svg" alt="sotry logo" />
+</div>
+
+<div class="d-flex">
+    <NuxtLink to="/blogs">
+       <button type="button" class="btn btn-primary" id="post1">
+            Cancel           
+            </button>
+        </NuxtLink>
+
+          <!-- <button  class="btn btn-primary ml-2" id="post3"
+          type="submit"
+            >
+          
+              Publish
+            
+            </button> -->
+
+            <b-button v-b-modal.modal-3 class="create-btn"> Publish</b-button>
+                            
+                        <b-modal id="modal-3" title="You’re now publishing">
+                      
+                                <div v-if="errorPublishing" class="text-center">
+                                Error try again
+                                </div>
+                              
+                                <div class="text-center">
+                           <b-button  class=" create-btn text-center" @click="postData">
+                           {{
+                            isPublishing ? "Publishing" : "Publish"
+                           }}
+                           </b-button>
+                                </div>
+                           <!-- <b-button  class="create-btn text-center" @click="postData"> Publish</b-button> -->
+
+                             <template #modal-footer>
+   {{''}} 
+      </template>
+                           
+                        </b-modal>
+       
+</div>
+</div>
+  <!-- <nav class="nav-header-top">
+      <div class="navbar nav-top" id="topnav">
         <h4 class="logo"><span>story</span>tribe</h4>
 
         <div class="labels">
-          <button type="button" class="btn btn-primary" id="post1"
-           
-            >
-            Cancel           
-            </button
-          >
 
+         <NuxtLink to="/blogs">
+       <button type="button" class="btn btn-primary" id="post1">
+            Cancel           
+            </button>
+        </NuxtLink>
+       
          
 
           <button  class="btn btn-primary" id="post3"
@@ -36,7 +83,7 @@
           </a>
         </div>
       </div>
-    </nav>
+    </nav> -->
     
       <div class="container first-class">
         <button class="gallery">
@@ -81,7 +128,7 @@
      
 
 <script>
-import { onMounted, ref, reactive} from '@nuxtjs/composition-api';
+import { onMounted, ref, reactive, useRouter} from '@nuxtjs/composition-api';
 import {publishPost, clientId } from "../../api.js"
 import { storeNFT} from "../../upload.js"
 import { defaultProfile , userAccessToken} from "../../store"
@@ -103,7 +150,11 @@ import "@/styles/create.css"
             const crudStatus = ref('')
             const imageRef = ref('')
              const signer = ref('')
+             const errorPublishing =ref(false)
+             const isPublishing = ref(false)
 
+
+const router = useRouter()
           onMounted(()=>{
       const signerOrProvider = new ethers.providers.Web3Provider(window.ethereum);
             signer.value = signerOrProvider?.getSigner()
@@ -140,30 +191,14 @@ import "@/styles/create.css"
   );
 };
 
+errorPublishing.value =false
+
+isPublishing.value = true
     
         try {
           crudStatus.value ="image upload in progress..."
           const imageUpload = await storeNFT(imageRef.value)
 
-const data = {
-  version: "2.0.0",
-  mainContentFocus: "TEXT_ONLY",
- metadata_id: uuidv4(),
-  description: publishContent.data.description,
-  locale: "en-US",
-  // ${https://bafkreift45aowdxpojq7px42ytugpjr4by5ui3w3n6zkciup5yw75plrmm.ipfs.nftstorage.link/}
-  conte:``,
-  content: "ipfs://bafkreib77svyjz3amgqdfbpiguizjkzmo6u7j52jzopjpmwejyzlihwcdq",
-  external_url: null,
-    image: "ipfs//:"+imageUpload,
-  imageMimeType: "text/html",
-  name: "Name",
-  attributes: [],
-  tags: [
-    "using_api_examples"
-  ],
-  appId: "api_examples_github"
-}
 
 
           const jsonData = {
@@ -191,7 +226,8 @@ const data = {
 
        
    const refreshToken = localStorage.getItem("storybiteRefreshToken")
-   const {id} =JSON.parse(localStorage.getItem("storyDefaultProfile"))
+   const {id, ownedBy, ...others} =JSON.parse(localStorage.getItem("storyDefaultProfile"))
+   console.log("rello", others)
  
    const resp = await clientId.request(publishPost, { 
     id,
@@ -203,9 +239,11 @@ const data = {
 },
    )
 
-// console.log(resp, 'respo')
+console.log(resp, 'respo')
 
      const typedData =resp.createPostTypedData.typedData
+
+    //  console.log(typedData, 'typedData')
 
       const contract = new ethers.Contract(
         LENS_HUB_CONTRACT_ADDRESS,
@@ -220,44 +258,28 @@ const data = {
       console.log("dataAvailable", dataAvailable)
       const tx = await contract.post({
         profileId: typedData.value.profileId,
-        // contentURI: `https://${file}.ipfs.nftstorage.link/
-        // `,
-           contentURI: `ipfs://${file}`,
+        contentURI: `ipfs://${file}`,
         collectModule: typedData.value.collectModule,
         collectModuleInitData: typedData.value.collectModuleInitData,
         referenceModule: typedData.value.referenceModule,
         referenceModuleInitData: typedData.value.referenceModuleInitData,
      
       })
-
-      console.log({
-        profileId: typedData.value.profileId,
-        contentURI: typedData.value.contentURI,
-        collectModule: typedData.value.collectModule,
-        collectModuleInitData: typedData.value.collectModuleInitData,
-        referenceModule: typedData.value.referenceModule,
-        referenceModuleInitData: typedData.value.referenceModuleInitData,     
-      })
-
-  // const tx = await contract.post({
-  //       profileId: id,
-  //       contentURI: "ipfs://QmfEPiVnr7iTs8JQ4BJqkuUWgktmBPH2CFJvCkwUFWEEB6",
-  //       collectModule: "0x0BE6bD7092ee83D44a6eC1D949626FeE48caB30c",
-  //       collectModuleInitData:"0x0000000000000000000000000000000000000000000000000000000000000001",
-  //       referenceModule: "0x0000000000000000000000000000000000000000",
-  //       referenceModuleInitData: "0x",
-     
-  //     })
-
       await tx.wait()
-      console.log('successfully created post: tx hash', tx.hash)
+      console.log('successfully created post: tx hash', tx)
+
+    router.push(`/profile/${ownedBy}`)
      
          } catch (error) {
           console.log('error', error)
         }
+
+        finally{
+          isPublishing.value=false
+        }
     }
 
-        return {showImg, uploadImage, publishContent, postData, crudStatus, imageRef}
+        return {showImg, uploadImage, publishContent, postData, crudStatus, imageRef, isPublishing, errorPublishing}
         }
     }
 </script>
