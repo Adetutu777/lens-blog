@@ -1,14 +1,12 @@
-## A Blog Dapp integrated with lens protocol [Lens Protocol](https://www.lens.dev/),  
+## A Blog Dapp integrated with lens protocol [Lens Protocol](https://www.lens.dev/), 
+
+### Tech Stack : NuxtJs, VueJs, Ethers, GraphQl, Html, Css, BootstrapVue
 
 ### Deployed network : Mumbai
-
 
 - To create an account please ensure you have a matic testnet token to complete transaction
 
 - Link: https://storybite.netlify.app/
-
-
-### Tech Stack : NuxtJs, VueJs, Ethers, GraphQl, Html, Css, BootstrapVue
 
 #### Available Features
         * Creating account for new users
