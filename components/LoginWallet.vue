@@ -39,7 +39,6 @@ import { ethers } from "ethers";
                                                                                      
                                                const defaultId = await clientId.request(defaultProfileQuery, { address:address.value})   
                                                
-                                               console.log("profile",defaultId)
                                                defaultProfile.data = defaultId.defaultProfile
                                                localStorage.setItem("storyDefaultProfile", JSON.stringify(defaultId.defaultProfile))
                                          

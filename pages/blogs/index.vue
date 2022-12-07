@@ -141,7 +141,7 @@ import {formatIpfdImg, dateFormatter} from "@/util"
                             }
               })
                  publications.data = mappedData ?? publications.data
-                 console.log('ýat', publications.data)
+
             } catch (error) {
                  console.log('error', error)
             }

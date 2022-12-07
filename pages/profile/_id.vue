@@ -147,13 +147,10 @@ import "@/styles/profile.css"
 
 
             userData.data = data.defaultProfile
-            console.log('tt', posts.publications.items)
             const filtered = posts.publications.items.filter(post => post.__typename==='Post')
          
             postsData.value = filtered
 
-        console.log(filtered) 
-            console.log(posts)
 
         })
 

@@ -239,7 +239,6 @@ isPublishing.value = true
 },
    )
 
-console.log(resp, 'respo')
 
      const typedData =resp.createPostTypedData.typedData
 
@@ -255,7 +254,7 @@ console.log(resp, 'respo')
       await wait(10000)
       const dataAvailable = await axios.get(`
       https://ipfs.io/ipfs/${file}`)
-      console.log("dataAvailable", dataAvailable)
+      // console.log("dataAvailable", dataAvailable)
       const tx = await contract.post({
         profileId: typedData.value.profileId,
         contentURI: `ipfs://${file}`,
@@ -266,7 +265,6 @@ console.log(resp, 'respo')
      
       })
       await tx.wait()
-      console.log('successfully created post: tx hash', tx)
 
     router.push(`/profile/${ownedBy}`)
      
@@ -285,6 +283,8 @@ console.log(resp, 'respo')
 </script>
 
 
-<style  scoped>
-
+<style>
+.create-btn{
+background: #0C2ACB;
+}
 </style>
