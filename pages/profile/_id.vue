@@ -49,7 +49,7 @@
                         <h3>Help</h3>
                     </NuxtLink>
 
-                    <NuxtLink to="/post/create" class="btn btn-primary" id="post">
+                    <NuxtLink to="/post/create" class="btn btn-primary" id="post" >
                     Write
                     </NuxtLink>
                 </div>

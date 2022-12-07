@@ -63,7 +63,10 @@
                         <h3>Help</h3>
                     </NuxtLink>
                         
-                       <button class=" mt-2 mb-3 btn btn-primary" @click.prevent="$router.push('/post/create')">Write</button>
+                       <button class=" mt-2 mb-3 btn btn-primary"
+                        @click="gotoCreate"
+            
+                        >Write</button>
                         
                 </div>
 
@@ -128,6 +131,10 @@ import "@/styles/main.css"
 export default{
     setup (){
 
+        const gotoCreate=()=>{
+            window.location.replace("/post/create")
+        }
+
         // onMounted(()=>{
         //     ethereumObj.value = window.ethereum
         // })
@@ -137,7 +144,8 @@ export default{
         // return {}
         
         return {
-            defaultProfile
+            defaultProfile,
+            gotoCreate
         }
     }
 }
