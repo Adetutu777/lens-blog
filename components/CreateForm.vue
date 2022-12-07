@@ -85,7 +85,7 @@ import { storeNFT} from "../upload.js"
                       const imageCid = await storeNFT(imageRef.value)
                     
                 const contract = getContract(true)
-        const data = [userAddress.value, getDetails.data.handleName, "ipfs://"+imageCid, "0x0000000000000000000000000000000000000000", "0x", 'ipfs://QmbqbUQJkZqt8m1akGMKJBY3FZC94Ec2FMJKsLmp6szMNH']
+        const data = [userAddress.value, getDetails.data.handleName,imageCid, "0x0000000000000000000000000000000000000000", "0x", 'ipfs://QmbqbUQJkZqt8m1akGMKJBY3FZC94Ec2FMJKsLmp6szMNH']
                 const txn =  await contract.proxyCreateProfile(data, {gasLimit: 500000})
               const newTxn =  await txn.wait()
               sendingBtn.value= false

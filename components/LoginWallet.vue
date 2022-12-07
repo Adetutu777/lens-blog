@@ -37,7 +37,9 @@ import { ethers } from "ethers";
                                                     userAddress.value = address.value 
                                                     isConnected.value = true    
                                                                                      
-                                               const defaultId = await clientId.request(defaultProfileQuery, { address:address.value})                                            
+                                               const defaultId = await clientId.request(defaultProfileQuery, { address:address.value})   
+                                               
+                                               console.log("profile",defaultId)
                                                defaultProfile.data = defaultId.defaultProfile
                                                localStorage.setItem("storyDefaultProfile", JSON.stringify(defaultId.defaultProfile))
                                          
