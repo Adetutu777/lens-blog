@@ -72,14 +72,14 @@
                   </div>
                 </div>
                 <div class="title ">
-                  <h4 class="mb-4">{{viewBlog?.data?.metadata?.description}}</h4>
+                  <h4 class="mb-4">{{viewBlog?.data?.metadata?.content}}</h4>
                 </div>
                 <!-- {{viewBlog?.data?.media?.[0]?.original?.url}} -->
                 <div class="photo">
                   <img :src="viewBlog?.data?.blogUrl ?? 'https://github.com/DrVickie8/Team-Lens-Developers/blob/main/Lens-folder/images/Frame%202.png?raw=true'" @error="replaceByDefault">
                 </div>                
                 <div class="blog">                  
-                  <p>{{viewBlog?.data?.metadata?.content}}</p>
+                  <p>{{viewBlog?.data?.metadata?.description}}</p>
                 </div>
               </div>
               <div class="feed">

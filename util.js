@@ -1,4 +1,4 @@
-
+import { utils } from "ethers"
 export const formatIpfdImg =(ipfs)=>{
     const CID = ipfs
      const getCid =  CID? CID.split('').slice(7).join('') : 'bafkreigfkue3cdeve7pa23vvsmp2lcmj32flksdvlrllt44gpl25bqhp6m'
@@ -37,3 +37,12 @@ export const dateFormatter = (date) => {
   if (!date) return ""
   return new Date(date).toDateString();  
 }
+
+export function splitSignature(signature) {
+  return utils.splitSignature(signature);
+}
+
+
+export const wait= (milliseconds) => {
+  return new Promise((resolve) => setTimeout(resolve, milliseconds));
+};

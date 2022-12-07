@@ -85,6 +85,14 @@ import { onMounted, ref, reactive} from '@nuxtjs/composition-api';
 import {publishPost, clientId } from "../../api.js"
 import { storeNFT} from "../../upload.js"
 import { defaultProfile , userAccessToken} from "../../store"
+import {ethers} from "ethers"
+import { splitSignature} from "../../util"
+import  LENSHUB from "../../config/lens.json"
+import {omit, wait} from "../../helpers"
+import { v4 as uuidv4 } from 'uuid';
+import axios from "axios"
+import {LENS_HUB_CONTRACT_ADDRESS} from "../../config/constant"
+
 import "@/styles/create.css"
 
     export default {
@@ -94,6 +102,12 @@ import "@/styles/create.css"
             const showImg = ref('')
             const crudStatus = ref('')
             const imageRef = ref('')
+             const signer = ref('')
+
+          onMounted(()=>{
+      const signerOrProvider = new ethers.providers.Web3Provider(window.ethereum);
+            signer.value = signerOrProvider?.getSigner()
+    })
             const publishContent = reactive({
                 data:{
                   fileCid :'',
@@ -104,66 +118,71 @@ import "@/styles/create.css"
                 }
             })
 
- const sampleJson ={
-"version": "2.0.0",
-"metadata_id": "1c71292d-b9a9-499c-9da6-08394572067d",
-"description": "Hello testing",
-"content": "Hello testing",
-"external_url": "https://lenster.xyz/u/testingme.test",
-"image": "ipfs://bafkreiguwgr6xrclk2hp3373m33anrzh2ioxunqlcfugw5s7f5ux7fid5m",
-"imageMimeType": "image/svg+xml",
-"name": "Comment by @testingme.test",
-"tags": [],
-"animation_url": null,
-"mainContentFocus": "TEXT_ONLY",
-"contentWarning": null,
-"attributes": [
-{
-"traitType": "type",
-"displayType": "string",
-"value": "text_only"
-}
-],
-"media": [],
-"locale": "en-US",
-"createdOn": "2022-12-01T16:27:45.881Z",
-"appId": "Lenster"
-}
+
  
          const uploadImage =async(values)=>{
           imageRef.value = values.target.files[0]
  }
 
     const postData =async()=>{
+
+     const signedTypeData =async (
+  domain,
+  types,
+  value
+) => {
+  const signe =signer.value
+  // remove the __typedname from the signature!
+  return signe._signTypedData(
+    omit(domain, '__typename'),
+    omit(types, '__typename'),
+    omit(value, '__typename')
+  );
+};
+
     
         try {
           crudStatus.value ="image upload in progress..."
           const imageUpload = await storeNFT(imageRef.value)
-          const jsonData ={
+
+const data = {
   version: "2.0.0",
-  metadata_id: "",
-  description: publishContent.data.description,
-  content: publishContent.data.content,
-  external_url: "",
-  image: imageUpload,
-  imageMimeType: "image/svg+xml",
-  name: "",
-  tags: [],
-  animation_url: null,
   mainContentFocus: "TEXT_ONLY",
-  contentWarning: null,
-  attributes: [
-    {
-      traitType: "type",
-      displayType: "string",
-      value: "text_only"
-    }
-  ],
-  media: [],
+ metadata_id: uuidv4(),
+  description: publishContent.data.description,
   locale: "en-US",
-  createdOn: new Date(),
-  appId: "Lenster"
-    }
+  // ${https://bafkreift45aowdxpojq7px42ytugpjr4by5ui3w3n6zkciup5yw75plrmm.ipfs.nftstorage.link/}
+  conte:``,
+  content: "ipfs://bafkreib77svyjz3amgqdfbpiguizjkzmo6u7j52jzopjpmwejyzlihwcdq",
+  external_url: null,
+    image: "ipfs//:"+imageUpload,
+  imageMimeType: "text/html",
+  name: "Name",
+  attributes: [],
+  tags: [
+    "using_api_examples"
+  ],
+  appId: "api_examples_github"
+}
+
+
+          const jsonData = {
+  version: "2.0.0",
+  mainContentFocus: "TEXT_ONLY",
+ metadata_id: uuidv4(),
+  description: publishContent.data.description,
+  locale: "en-US",
+  content: publishContent.data.content,
+  external_url: null,
+    image: "ipfs//:"+imageUpload,
+  imageMimeType: "text/html",
+  name: "Name",
+  attributes: [],
+  tags: [
+    "using_api_examples"
+  ],
+  appId: "api_examples_github"
+}
 
     crudStatus.value = "uploading content..."
  const file = await storeNFT(jsonData)
@@ -171,17 +190,69 @@ import "@/styles/create.css"
 
 
        
-
+   const refreshToken = localStorage.getItem("storybiteRefreshToken")
+   const {id} =JSON.parse(localStorage.getItem("storyDefaultProfile"))
+ 
    const resp = await clientId.request(publishPost, { 
-    id:defaultProfile?.data?.id,
+    id,
     uri:`ipfs://${file}`
 
    }, 
    {
-  ['x-access-token']: userAccessToken.value,
+  ['x-access-token']: refreshToken,
 },
    )
-        } catch (error) {
+
+// console.log(resp, 'respo')
+
+     const typedData =resp.createPostTypedData.typedData
+
+      const contract = new ethers.Contract(
+        LENS_HUB_CONTRACT_ADDRESS,
+        LENSHUB,
+        signer.value
+      )
+
+   
+      await wait(10000)
+      const dataAvailable = await axios.get(`
+      https://ipfs.io/ipfs/${file}`)
+      console.log("dataAvailable", dataAvailable)
+      const tx = await contract.post({
+        profileId: typedData.value.profileId,
+        // contentURI: `https://${file}.ipfs.nftstorage.link/
+        // `,
+           contentURI: `ipfs://${file}`,
+        collectModule: typedData.value.collectModule,
+        collectModuleInitData: typedData.value.collectModuleInitData,
+        referenceModule: typedData.value.referenceModule,
+        referenceModuleInitData: typedData.value.referenceModuleInitData,
+     
+      })
+
+      console.log({
+        profileId: typedData.value.profileId,
+        contentURI: typedData.value.contentURI,
+        collectModule: typedData.value.collectModule,
+        collectModuleInitData: typedData.value.collectModuleInitData,
+        referenceModule: typedData.value.referenceModule,
+        referenceModuleInitData: typedData.value.referenceModuleInitData,     
+      })
+
+  // const tx = await contract.post({
+  //       profileId: id,
+  //       contentURI: "ipfs://QmfEPiVnr7iTs8JQ4BJqkuUWgktmBPH2CFJvCkwUFWEEB6",
+  //       collectModule: "0x0BE6bD7092ee83D44a6eC1D949626FeE48caB30c",
+  //       collectModuleInitData:"0x0000000000000000000000000000000000000000000000000000000000000001",
+  //       referenceModule: "0x0000000000000000000000000000000000000000",
+  //       referenceModuleInitData: "0x",
+     
+  //     })
+
+      await tx.wait()
+      console.log('successfully created post: tx hash', tx.hash)
+     
+         } catch (error) {
           console.log('error', error)
         }
     }

@@ -1,7 +1,9 @@
 <template>
     <div class="d-flex justify-content-center my-2">
-            
-            <button type="button" :class="`${isConnecting ? 'disabled' : ''} btn btn-lg btn-connect text-light`" @click="login">
+     
+            <button
+          
+             type="button" :class="`${isConnecting ? 'disabled' : ''} btn btn-lg btn-connect text-light`" @click="login">
               {{isConnecting ? 'connecting' : 'Connect Wallet'}}  
             </button>
     </div>
@@ -37,13 +39,14 @@ import { ethers } from "ethers";
                                                                                      
                                                const defaultId = await clientId.request(defaultProfileQuery, { address:address.value})                                            
                                                defaultProfile.data = defaultId.defaultProfile
+                                               localStorage.setItem("storyDefaultProfile", JSON.stringify(defaultId.defaultProfile))
                                          
 
                                                     }
                                         } catch (error) {
                                             console.log(error)
                                         } finally {
-                                            isConnecting.value = false
+                                        
                                         }
                
             }
@@ -55,23 +58,28 @@ import { ethers } from "ethers";
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner()
            const challengeInfo = await clientId.request(challenge, { address:address.value })
+
       /* ask the user to sign a message with the challenge info returned from the server */
       const signature = await signer.signMessage(challengeInfo.challenge.text)
       /* authenticate the user */
       const authData = await clientId.request(authenticate, {address:address.value, signature})
       /* if user authentication is successful, you will receive an accessToken and refreshToken */
-      const  { authenticate: { accessToken }} = authData
+      const  { authenticate: { accessToken,refreshToken}} = authData
+      localStorage.setItem("storybiteRefreshToken", accessToken)
       
      token.value= accessToken
    userAccessToken.value = accessToken
-   if (userAccessToken.value && props.redirect){
+    if (accessToken && props.redirect){
        router.push("/blogs")
    }
         
     } catch (err) {
       console.log('Error signing in: ', err)
     }
+    finally {
+            isConnecting.value = false
   }
+                 }
   return { signerOrProvider, address, token, login, isConnecting}
         }
     }
