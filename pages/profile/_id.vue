@@ -123,6 +123,7 @@
 <script>
 import { useRoute,   onMounted,  reactive, computed, ref} from '@nuxtjs/composition-api';
 import {clientId,  defaultProfileQuery, userPublicationsQuery} from "../../api"
+import {wait} from "../../util"
 
 import "@/styles/profile.css"
     export default {

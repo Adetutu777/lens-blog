@@ -54,6 +54,7 @@ import profileAbi from "../config/createProfileAbi.json"
 import {ethers} from "ethers"
 import {userAddress} from "../store"
 import { storeNFT} from "../upload.js"
+import {wait} from "../helpers"
   export default {
     components: { ValidationProvider, ValidationObserver },
     setup(){
@@ -86,6 +87,8 @@ import { storeNFT} from "../upload.js"
                     
                 const contract = getContract(true)
         const data = [userAddress.value, getDetails.data.handleName,imageCid, "0x0000000000000000000000000000000000000000", "0x", 'ipfs://QmbqbUQJkZqt8m1akGMKJBY3FZC94Ec2FMJKsLmp6szMNH']
+        
+        await wait(10000)
                 const txn =  await contract.proxyCreateProfile(data, {gasLimit: 500000})
               const newTxn =  await txn.wait()
               sendingBtn.value= false

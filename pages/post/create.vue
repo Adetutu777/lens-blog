@@ -55,35 +55,7 @@
        
 </div>
 </div>
-  <!-- <nav class="nav-header-top">
-      <div class="navbar nav-top" id="topnav">
-        <h4 class="logo"><span>story</span>tribe</h4>
-
-        <div class="labels">
-
-         <NuxtLink to="/blogs">
-       <button type="button" class="btn btn-primary" id="post1">
-            Cancel           
-            </button>
-        </NuxtLink>
-       
-         
-
-          <button  class="btn btn-primary" id="post3"
-          type="submit"
-            >
-          
-              Publish
-            
-            </button
-          >
-
-          <a href="javascript:void(0);" class="burger-menu" onclick="myFunction()">
-            <i class="uil uil-bars"></i>
-          </a>
-        </div>
-      </div>
-    </nav> -->
+  
     
       <div class="container first-class">
         <button class="gallery">
@@ -117,10 +89,6 @@
       </div>
 </form>
     </main>
-
-
-        
-
 
     </div>
 </template>

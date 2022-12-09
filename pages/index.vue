@@ -36,7 +36,7 @@
                            <!-- <p class="text-center">New here? Sign up instead</p> -->
 
                              <template #modal-footer>
-     {{" "}}
+   <h6 class="mx-auto network" >Please ensure you are on Mumbai Network</h6>  
       </template>
                         </b-modal>
                         </div>
@@ -58,16 +58,17 @@
             <div class="">
                 <div class="container">
                 <div class="row">
-                    <!-- <div class="col-md-1"></div> -->
                     <div class="col-lg-6">
-                    <h1 class="stay-curious-one"> <b>Stay curious</b> </h1>
-                    <p class="mt-3 pb-4 stories">Uncover stories from writers on any topic <br>    	
+                      <div class=" mx-auto" style="max-width:23rem;">
+                    <h1 class="stay-curious-one pt-5"> <b>Stay curious</b> </h1>
+                    <p class="mt-3 pb-4 stories stories-one ">Uncover stories from writers on any topic <br>    	
                             of your choice safely on the blockchain</p>
                                     
                                 <b-button size="sm" class="my-2 my-sm-0 create text-light"> Let’s Get Started</b-button>
                     </div>
+                    </div>
                     <div class="col-lg-6">
-                    <img src="@/images/img-man2.svg" alt="image">
+                    <img src="@/images/blogging.svg" alt="image">
                     </div>
     
              </div>
@@ -210,7 +211,7 @@
                 
                 <div class="row">
                 <!-- <div class="col-md-2"></div> -->
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
                         
                         <img src="@/images/storytribe.svg" alt="">
                         <p>A decentralized blogging experience. Built on the lens protocol </p>
@@ -267,6 +268,8 @@
     </div>
 
 </template>
+
+
 <script>
 import { onMounted, ref, useRouter} from '@nuxtjs/composition-api';
 import { clientId, createProfile } from "../api.js"
@@ -395,7 +398,7 @@ ol, ul {
 }
 .footer-top h4 {
     font-size: 19px;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     margin-bottom: 30px;
 }
 .footer-top p {

@@ -145,8 +145,8 @@ header .search-bar input[type="search"]::placeholder {
 /*------hero section -------*/
 
 .hero {
-    position: relative;
-    top: 6.6rem;
+    /* position: relative;
+    top: 6.6rem; */
 }
 
 .hero .hero-container {

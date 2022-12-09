@@ -28,7 +28,8 @@
                            </div>
 
                              <template #modal-footer>
-   <h6 class="mx-auto network" >Please ensure you are on Mumbai Network</h6>  
+   <!-- <h6 class="mx-auto network" >Please ensure you are on Mumbai Network</h6>   -->
+   {{''}}
       </template>
                            
                         </b-modal>
