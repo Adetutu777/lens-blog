@@ -40,8 +40,6 @@
                         <h3>Home</h3>
                     </NuxtLink>
 
-                   
-
                     <a class="menu-item">
                         <span><i class="uil uil-envelope-add"></i></span>
                         <h3>Notifications</h3>
@@ -63,7 +61,7 @@
                         <h3>Help</h3>
                     </NuxtLink>
                         
-                       <button class=" mt-2 mb-3 btn btn-primary"
+                       <button class=" mt-2 mb-3 text-center mx-auto d-flex justify-content-center "
                         @click="gotoCreate"
             
                         >Write</button>
@@ -75,7 +73,7 @@
             <!----------middle--------->
             <div class="middle">
                 <!-------------- middle header ---------------->
-                <div class="post">
+                <div class="post post-blog">
                     <a class="new active">
                         <span><i class="uil uil-award-alt"></i></span>
                         <h3>New</h3>
@@ -156,6 +154,16 @@ export default{
 <style>
 .profile2{
     background: 1px solid red;
+}
+.post-blog{
+    margin-top: 5.2rem !important;
+}
+
+.write-btn {
+    background: #0C2ACB;
+padding: 0.5rem;
+    border-radius: 15px;
+    
 }
 
 </style>

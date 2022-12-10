@@ -42,8 +42,9 @@
                         <h3>Help</h3>
                     </NuxtLink>
 
-              <button class=" mt-2 mb-3 btn btn-primary" @click.prevent="$router.push('/post/create')">Write</button>
-              <!-- > -->
+              <button class=" mt-2 mb-3 write-btn text-center mx-auto d-flex justify-content-center" @click.prevent="$router.push('/post/create')">Write</button>
+             <!-- <button class=" mt-2 mb-3 write-btn text-center d-flex justify-content-center"
+                        @click="gotoCreate">Writeyyy</button> -->
             </div>
           </div>
 
@@ -66,9 +67,9 @@
                     </NuxtLink>
                   </div>
                   <div class="info">
-                    <span><i class="uil uil-book-open"></i></span
-                    ><small>2min read</small>
-                    <span class="adjust"><i class="uil uil-bookmark"></i></span>
+                    <!-- <span><i class="uil uil-book-open"></i></span> -->
+                    <!-- <small>2min read</small>
+                    <span class="adjust"><i class="uil uil-bookmark"></i></span> -->
                   </div>
                 </div>
                 <div class="title ">

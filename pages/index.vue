@@ -218,7 +218,7 @@
 
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <h4 class="company">Company</h4>
                         <ul class="address1">
                             <li>About Us</li>
@@ -229,7 +229,7 @@
                         </ul>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <h4 class="company">Resources</h4>
                         <ul class="address1">
                             <li>Tutorials</li>
@@ -239,7 +239,17 @@
                             
                         </ul>
                     </div>
-              <div class="col-md-1"></div>
+                    <div class="col-md-3">
+                        <h4 class="company">FAQs</h4>
+                        <ul class="address1">
+                            <li>Ask us anything</li>
+                            <li>Message us</li>
+                            <li>Contact us</li>
+                            <li>Other projects</li>
+                            
+                        </ul>
+                    </div>
+              <!-- <div class="col-md-1"></div> -->
                 </div>
 
                 <div class="footer-bottom pt-5 pb-3">
@@ -442,6 +452,9 @@ ul.address1 i {
     border:0;
     color:#05177B;
       background: #CCDFFB;
+}
+.login-btn:hover{
+   background: #051C93;
 }
 .stay-curious3{
   margin-top: 12rem;

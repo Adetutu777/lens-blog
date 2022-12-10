@@ -244,7 +244,7 @@ header .search-bar input[type="search"]::placeholder {
 /* -----------middle feeds----------------- */
 
 .middle .feeds {
-    background: rgba(243, 246, 251, 1);
+    /* background: rgba(243, 246, 251, 1); */
     border-radius: 2rem 2rem 0 0;
     padding: var(--card-padding);
     margin: 1rem 0 0 0;
