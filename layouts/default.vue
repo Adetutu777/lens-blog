@@ -161,9 +161,8 @@ export default{
 
 .write-btn {
     background: #0C2ACB;
-padding: 0.5rem;
-    border-radius: 15px;
-    
+    padding: 0.5rem;
+    border-radius: 15px;  
 }
 
 </style>
