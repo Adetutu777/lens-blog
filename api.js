@@ -1,29 +1,21 @@
-import { createClient } from "@urql/vue"
+import { gql, GraphQLClient } from "graphql-request";
 
-import { request, gql, GraphQLClient } from 'graphql-request'
+const API_URL = "https://api-mumbai.lens.dev";
 
-const API_URL = "https://api-mumbai.lens.dev"
-
-export const clientId = new GraphQLClient(API_URL)
-
-export const client = createClient({
-    url: API_URL,
-})
+export const clientId = new GraphQLClient(API_URL);
 
 export const query = gql`
-query Profile($id: ProfileId!){  
-  profile(request:{profileId:$id})
-  {
-    id
-    name
-    bio
-    stats{
-      totalFollowers
-}
-}
-
-}
-`
+  query Profile($id: ProfileId!) {
+    profile(request: { profileId: $id }) {
+      id
+      name
+      bio
+      stats {
+        totalFollowers
+      }
+    }
+  }
+`;
 // export const publicationsQuery = `
 // query Publications($ids: [ProfileId!]) {
 //   publications(request: {
@@ -31,7 +23,7 @@ query Profile($id: ProfileId!){
 //     limit: 10
 //   }) {
 //     items {
-//       __typename 
+//       __typename
 //       ... on Post {
 //         ...PostFields
 //       }
@@ -115,7 +107,7 @@ query Profile($id: ProfileId!){
 //   }
 // }
 
-// fragment PublicationStatsFields on PublicationStats { 
+// fragment PublicationStatsFields on PublicationStats {
 //   totalAmountOfMirrors
 //   totalAmountOfCollects
 //   totalAmountOfComments
@@ -199,10 +191,10 @@ query Profile($id: ProfileId!){
 //   ...MirrorBaseFields
 //   mirrorOf {
 //    ... on Post {
-//       ...PostFields          
+//       ...PostFields
 //    }
 //    ... on Comment {
-//       ...CommentFields          
+//       ...CommentFields
 //    }
 //   }
 // }
@@ -242,10 +234,10 @@ query Profile($id: ProfileId!){
 //       ...MirrorBaseFields
 //       mirrorOf {
 //         ... on Post {
-//            ...PostFields          
+//            ...PostFields
 //         }
 //         ... on Comment {
-//            ...CommentMirrorOfFields        
+//            ...CommentMirrorOfFields
 //         }
 //       }
 //     }
@@ -641,7 +633,7 @@ fragment ReferenceModuleFields on ReferenceModule {
   }
 }
 
-`
+`;
 
 export const userPublicationsQuery = `
 query Publications($id: ProfileId!) {
@@ -997,7 +989,7 @@ fragment ReferenceModuleFields on ReferenceModule {
   }
 }
 
-`
+`;
 
 export const recommendProfiles = `
 query RecommendedProfiles {
@@ -1082,7 +1074,7 @@ query RecommendedProfiles {
         }
     }
   }
-`
+`;
 
 export const viewPublicationQuery = `
 # Writequery Publication {
@@ -1428,7 +1420,7 @@ export const viewPublicationQuery = `
    }
  }
  
-`
+`;
 
 export const challenge = gql`
   query Challenge($address: EthereumAddress!) {
@@ -1436,35 +1428,24 @@ export const challenge = gql`
       text
     }
   }
-`
+`;
 
 export const authenticate = gql`
-  mutation Authenticate(
-    $address: EthereumAddress!
-    $signature: Signature!
-  ) {
-    authenticate(request: {
-      address: $address,
-      signature: $signature
-    }) {
+  mutation Authenticate($address: EthereumAddress!, $signature: Signature!) {
+    authenticate(request: { address: $address, signature: $signature }) {
       accessToken
       refreshToken
     }
   }
-`
+`;
 
 export const createProfile = gql`
-mutation CreateProfile {
-  createProfile(request:{ 
-                  handle: "adetutu",
-                
-                    }) {
-   
-   
-    __typename
+  mutation CreateProfile {
+    createProfile(request: { handle: "adetutu" }) {
+      __typename
+    }
   }
-}
-`
+`;
 
 export const publishPost = `
 mutation CreatePostTypedData($id: ProfileId!, $uri:Url!) {
@@ -1505,7 +1486,7 @@ mutation CreatePostTypedData($id: ProfileId!, $uri:Url!) {
       }
     }
   }
-}`
+}`;
 export const publishComment = `
 mutation CreateCommentTypedData($id: ProfileId!, $uri:Url!, $publishId: InternalPublicationId!) {
   createCommentTypedData(request: {
@@ -1550,8 +1531,7 @@ mutation CreateCommentTypedData($id: ProfileId!, $uri:Url!, $publishId: Internal
     }
   }
 }
-`
-
+`;
 
 export const defaultProfileQuery = `
 query DefaultProfile($address: EthereumAddress!) {
@@ -1636,4 +1616,4 @@ query DefaultProfile($address: EthereumAddress!) {
       }
     }
   }
-}`
+}`;

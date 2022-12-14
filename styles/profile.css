@@ -105,9 +105,9 @@ img {
 header {
     width: 100%;
     background: var(--color-white);
-    position: fixed;
+    position: sticky !important;
     top: 0;
-    z-index: 10;
+    /* z-index: 10; */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -132,10 +132,7 @@ header .search-bar input[type="search"]::placeholder {
     color: var(--color-gray);
 }
 
-.profile {
-    display: flex;
-    align-items: center;
-}
+
 
 .handle {
     padding-left: 5px;
@@ -244,7 +241,7 @@ header .search-bar input[type="search"]::placeholder {
 /* -----------middle feeds----------------- */
 
 .middle .feeds {
-    background: rgba(243, 246, 251, 1);
+    /* background: rgba(243, 246, 251, 1); */
     border-radius: 2rem 2rem 0 0;
     padding: var(--card-padding);
     margin: 1rem 0 0 0;

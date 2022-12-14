@@ -27,7 +27,29 @@
   --card-padding: 1rem;
   --sticky-top-left: 5.4rem;
   --sticky-top-right: -18rem;
+  --account-center-z-index:10;
+  --account-center-position-top:0.1rem;
 }
+
+
+
+
+button:disabled,
+button[disabled]{
+  pointer-events: none;
+  opacity: 0.7;  
+  transition: all 0.5s ;
+}
+
+button:hover
+{
+  /* border:1px solid red!important;  */
+  opacity: 0.7;  
+  transition: all 0.5s ;
+}
+
+
+
 /* Homepage */
 
 .homepage {
@@ -106,7 +128,7 @@ img {
   background: var(--color-white);
   /* position: fixed; */
   top: 0;
-  z-index: 10;
+  /* z-index: 10; */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -260,14 +282,14 @@ img {
 }
 /* -----------middle feeds----------------- */
 
-.middle .feeds .feed {
+/* .middle .feeds .feed {
   background: var(--color-white);
   border-radius: var(--card-border-radius);
   padding: var(--card-padding);
   margin: 1rem 0;
   font-size: 0.85rem;
   line-height: 1.5;
-}
+} */
 
 .middle .feed .head {
   display: flex;
@@ -400,4 +422,28 @@ img {
   .navbar-toggler-icon {
     background: rgb(181, 181, 234);
   }
+}
+
+.login-btn {
+  border: 0;
+  color: #05177b;
+  background: #ccdffb;
+  border-radius: 100px;
+  padding: 0.5rem 2rem;
+}
+.login-btn:hover {
+  background: #051c93;
+  color: #ccdffb;
+}
+
+.modal-footer{
+  display: none!important;
+}
+
+a,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+  color: inherit;
 }

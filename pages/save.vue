@@ -1,0 +1,153 @@
+<template>
+  <div class="mt-4">
+    <!-- <button @click="onClickConnect" class="bg-info"> connect ijn </button> -->
+    <div>
+      <!-------------- feeds --------------->
+      <div class="feeds">
+        <!------- feed 1 ------->
+        <div class="feed" v-for="item in publications.data" :key="item.id">
+          <div class="head">
+            <div class="user">
+              <div class="profile-photo">
+                <img
+                  :src="
+                    item?.profile?.coverPicture?.original?.url ??
+                    'https://github.com/DrVickie8/Team-Lens-Developers/blob/main/Lens-folder/images/Frame%202.png?raw=true'
+                  "
+                />
+              </div>
+              <NuxtLink :to="`/profile/${item?.profile?.ownedBy}`">
+                <div class="info">
+                  <h3>{{ item?.profile?.name }}</h3>
+                  <small
+                    >{{ item?.profile?.handle }} .
+                    {{ dateFormatter(item?.createdAt) }}</small
+                  >
+                </div>
+              </NuxtLink>
+            </div>
+            <span class="edit">
+              <i class="uil uil-book-open"></i> 2mins read
+            </span>
+          </div>
+          <div class="photo">
+            <!-- {{item}} -->
+            <h3 v-if="item?.mainPost?.metadata?.description">
+              {{ item?.mainPost?.metadata?.description?.slice(0, 70) }}...
+            </h3>
+
+            <NuxtLink :to="'/post/' + item?.id">
+              <img
+                :src="
+                  item?.metadata?.[0]?.url ??
+                  'https://github.com/DrVickie8/Team-Lens-Developers/blob/main/Lens-folder/images/Frame%202.png?raw=true'
+                "
+                @error="replaceByDefault"
+              />
+            </NuxtLink>
+          </div>
+
+          <div class="action-button">
+            <div class="interaction-button">
+              <span><i class="uil uil-bookmark"></i></span>
+              <h5
+                class="bg-danger"
+                v-for="val in item?.mainPost?.metadata?.attribute"
+                :key="val.value"
+              >
+                {{ val.value }}
+              </h5>
+            </div>
+            <div class="bookmark">
+              <span><i class="uil uil-heart"></i></span>
+              <h5>{{ item?.stats?.totalUpvotes }}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import { recommendProfiles, clientId, publicationsQuery } from "../../api";
+import { formatIpfdImg, dateFormatter } from "@/util";
+
+export default {
+  setup() {
+    const loading = ref(true);
+    const ethWindowObj = ref("");
+    const signerOrProvider = ref("");
+    const isConnected = ref(false);
+    const userAddress = ref("");
+    const getProfiles = reactive({
+      data: {},
+    });
+    const publications = reactive({
+      data: {},
+    });
+
+    onMounted(() => {
+      signerOrProvider.value = window.ethereum;
+      userQuery();
+    });
+
+    // function to connect to MetaMask
+    const onClickConnect = async () => {
+      try {
+        // Will open the MetaMask UI
+        const account = await signerOrProvider.value.send(
+          "eth_requestAccounts",
+          []
+        );
+        isConnected.value = true;
+        userAddress.value = account[0];
+      } catch (error) {
+        console.error(error);
+        console.log(error.message);
+      }
+    };
+
+    const userQuery = async () => {
+      try {
+        const getProfilesId = await clientId.request(recommendProfiles);
+        const ids = getProfilesId?.recommendedProfiles?.map((i) => i?.id);
+        const publicationsPost = await clientId?.request(publicationsQuery, {
+          ids,
+        });
+        const mappedData = publicationsPost?.publications?.items
+          .filter((i) => i.__typename == "Post")
+          ?.map((i) => {
+            const dataMap = i?.metadata?.media?.map((j) => {
+              return { ...j, url: formatIpfdImg(j?.original?.url) };
+            });
+            return {
+              ...i,
+              metadata: dataMap,
+            };
+          });
+        publications.data = mappedData ?? publications.data;
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+
+    const replaceByDefault = (e) => {
+      e.target.src =
+        "https://github.com/DrVickie8/Team-Lens-Developers/blob/main/Lens-folder/images/Frame%206.png?raw=true";
+    };
+    return {
+      loading,
+      getProfiles,
+      onClickConnect,
+      isConnected,
+      userAddress,
+      publications,
+      replaceByDefault,
+      dateFormatter,
+    };
+  },
+};
+</script>
+
+<style></style>
