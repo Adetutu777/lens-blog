@@ -2,7 +2,7 @@
 
 ### Tech Stack : NuxtJs, VueJs, Ethers, GraphQl, Html, Css, BootstrapVue
 
-### Deployed network : Mumbai
+### Deployed network : Polygon Mumbai
 
 - To create an account please ensure you have a matic testnet token to complete transaction
 
