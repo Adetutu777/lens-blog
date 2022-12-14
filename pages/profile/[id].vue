@@ -13,11 +13,11 @@
                     <img src="images/Ellipse 43.png" />
                   </div> -->
                   <div class="info">
-                    <h3>
+                    <h3 class="mt-3">
                       {{ userData.data.handle }}
                     </h3>
                     <!-- <small>@nkem_asake</small> -->
-                    <p>
+                    <p class="mb-2">
                       {{ userData?.data.stats?.totalFollowers ?? 0 }}
                       followers
                     </p>
@@ -40,7 +40,9 @@
             <div class="  " v-for="item in postsData" :key="item.id">
               <div class="post-tab p-2 mt-3">
                 <NuxtLink  :to="`/post/${item?.id}`">
+                <h5>
                   {{ item?.metadata?.content }}
+                  </h5>
                 </NuxtLink>
               </div>
             </div>
@@ -117,9 +119,9 @@ export default {
 }
 
 .post-tab {
+  width: 80%;
   display: inline-flex;
-  align-items: center;
-  border: 1.5px solid #0c2acb;
+  border: 0.8px solid #0c2acb;
   border-radius: 5px;
   flex-direction: column;
 }

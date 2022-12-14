@@ -12,7 +12,7 @@
           <ConnectWallet classes="login-btn" text="Login" />
         </div>
         <div>
-          <CreateAccountWallet />
+          <CreateAccountWallet classes ="create-btn" />
         </div>
       </div>
     </div>
@@ -483,6 +483,9 @@ ul.address1 i {
   background: #ccdffb;
 }
 .login-btn:hover {
+  background: #051c93;
+}
+.create-btn:hover {
   background: #051c93;
 }
 .stay-curious3 {
