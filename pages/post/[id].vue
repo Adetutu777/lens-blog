@@ -8,7 +8,8 @@
                 <div class="head">
                   <div class="user">
                     <div class="profile-photo">
-                      <img src="@/images/Ellipse 44.png" alt="" />
+                     <JazzIcon  />
+                      <!-- <img src="@/images/Ellipse 44.png" alt="" /> -->
                     </div>
 
                     <NuxtLink
@@ -62,7 +63,8 @@
                     <div class="grp2">
                       <div class="flex">
                         <div class="profile-photo">
-                          <img src="@/images/Ellipse 43.png" alt="" />
+                          <!-- <img src="@/images/Ellipse 43.png" alt="" /> -->
+                           <JazzIcon />
                         </div>
                         <div class="flex2" id="add">
                           <input
@@ -87,11 +89,7 @@
                       <div class="ellipses">
                         <div class="pro1">
                           <div class="sub">
-                            <img
-                              src="@/images/Ellipse 53.png"
-                              alt=""
-                              class="profile-photo1"
-                            />
+                             <JazzIcon />
                           </div>
                           <div class="sub2">
                             <small id="br">@milkway.lens</small><br />
@@ -123,7 +121,7 @@
                 <div class="content">
                   <div class="first">
                     <div class="profile-photo">
-                      <img src="@/images/Ellipse 46.png" alt="" />
+                      <JazzIcon/>
                     </div>
                     <div class="funds">
                       <h5>{{ viewBlog?.data?.profile?.name }}</h5>
