@@ -125,6 +125,9 @@ export default {
   padding: 1rem 0;
   text-decoration: none;
 }
+a.dropdown:hover {
+ background:#F3F6FB;;
+}
 .btn-write {
   background: #0c2acb;
   text-decoration: none;
@@ -136,14 +139,13 @@ export default {
   background: #f4f8ff;
   color: #0c2acb;
 }
-a.nuxt-link-active {
-  color: white;
-  background: #243b41;
+.router-link-active,
+.router-link-active i,
+.router-link-active span {
+  color: #0C2ACB !important;
+  font-weight: bold;
 }
-a.nuxt-link-active.active:hover {
-  color: white;
-  background: #243b41;
-}
+
 .card-image {
   max-width: 50rem;
 }

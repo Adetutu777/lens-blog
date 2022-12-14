@@ -40,7 +40,7 @@
             <div class="  " v-for="item in postsData" :key="item.id">
               <div class="post-tab p-2 mt-3">
                 <NuxtLink  :to="`/post/${item?.id}`">
-                <h5>
+                <h5 cass="pr-5">
                   {{ item?.metadata?.content }}
                   </h5>
                 </NuxtLink>
